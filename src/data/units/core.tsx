@@ -12,6 +12,7 @@ export enum UnitType {
   Cavalry,
   GunpowderUnit,
   SiegeUnit,
+  SuicideUnit,
   Monk,
   Healer,
 }
@@ -26,6 +27,7 @@ export enum UnitAbility {
   HealUnits,
   ConvertUnits,
   CarryRelics,
+  GenerateGoldByTrading,
 }
 
 export interface Unit {

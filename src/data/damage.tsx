@@ -20,6 +20,7 @@ export enum ArmorType {
   Monk,
   Condottiero,
   Ram,
+  WallAndGate,
 }
 
 export interface Armor {
@@ -40,6 +41,7 @@ export interface Dommage {
 }
 
 export enum AttackType {
+  None,
   CaC,
   Range,
   Conversion,
@@ -55,6 +57,10 @@ interface DommageAttack extends AttackBase {
   areaOfDamage?: number;
   dommage: Dommage;
   bonuses: Map<ArmorType, number>;
+}
+
+export interface NoAttack {
+  type: AttackType.None;
 }
 
 export interface CaCAttack extends DommageAttack {
@@ -74,4 +80,4 @@ export interface ConversionAttack extends AttackBase {
   conversion: number;
 }
 
-export type Attack = CaCAttack | RangeAttack | ConversionAttack;
+export type Attack = CaCAttack | RangeAttack | ConversionAttack | NoAttack;

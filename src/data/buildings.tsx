@@ -23,6 +23,9 @@ export enum BuildingAbility {
   TrainAndImproveMonks,
   TrainUniqueUnit,
   TrainSiegeWeapons,
+  ExchangeAndSendResources,
+  TradeWithTradeCarts,
+  ResearchTradeImprovements,
 }
 
 export interface Overridable<T> {
@@ -241,6 +244,32 @@ export const Monastery: Building = {
   armor: makeAgeable(
     undefined,
     undefined,
+    {melee: 2, pierce: 9, types: [ArmorType.Building, ArmorType.StandardBuilding]},
+    {melee: 3, pierce: 10, types: [ArmorType.Building, ArmorType.StandardBuilding]}
+  ),
+  lineOfSight: 6,
+};
+
+export const Market: Building = {
+  id: 'market',
+  name: 'Marché',
+  types: [BuildingType.Economic],
+  age: {default: Age.FeudalAge},
+  use: [
+    BuildingAbility.ExchangeAndSendResources,
+    BuildingAbility.TradeWithTradeCarts,
+    BuildingAbility.ResearchTradeImprovements,
+  ],
+  cost: {
+    wood: 175,
+  },
+  constructionTime: {default: 60},
+  size: [4, 4],
+  health: makeAgeable(undefined, 1800, 2100, 2100),
+  garrison: 0,
+  armor: makeAgeable(
+    undefined,
+    {melee: 1, pierce: 8, types: [ArmorType.Building, ArmorType.StandardBuilding]},
     {melee: 2, pierce: 9, types: [ArmorType.Building, ArmorType.StandardBuilding]},
     {melee: 3, pierce: 10, types: [ArmorType.Building, ArmorType.StandardBuilding]}
   ),
