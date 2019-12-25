@@ -1,7 +1,7 @@
 import {Cost} from './resource';
 import {Technology} from './technologies/core';
 import {ArmorType} from './damage';
-import {UnitType} from './units/core';
+import {UnitType, Unit} from './units/core';
 
 export interface InterpolationString {
   template: string;
@@ -13,6 +13,7 @@ export enum InterpolationVariableType {
   Technology,
   ArmorType,
   UnitType,
+  Unit,
 }
 
 interface InterpolationVariableBase {
@@ -39,8 +40,14 @@ interface InterpolationVariableUnitType extends InterpolationVariableBase {
   unitType: UnitType;
 }
 
+interface InterpolationVariableUnit extends InterpolationVariableBase {
+  type: InterpolationVariableType.Unit;
+  unit: Unit;
+}
+
 type InterpolationVariables =
   | InterpolationVariableCost
   | InterpolationVariableTechnology
   | InterpolationVariableArmorType
-  | InterpolationVariableUnitType;
+  | InterpolationVariableUnitType
+  | InterpolationVariableUnit;

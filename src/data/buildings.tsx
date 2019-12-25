@@ -8,6 +8,7 @@ export enum BuildingType {
   Economic,
   Military,
   DefensiveStructure,
+  Special,
 }
 
 export enum BuildingAbility {
@@ -19,6 +20,7 @@ export enum BuildingAbility {
   TrainAndImproveInfantry,
   TrainAndImproveArchers,
   TrainAndImproveSiegeUnits,
+  TrainAndImproveMonks,
   TrainUniqueUnit,
   TrainSiegeWeapons,
 }
@@ -217,6 +219,28 @@ export const SiegeWorkshop: Building = {
   armor: makeAgeable(
     undefined,
     {melee: 1, pierce: 8, types: [ArmorType.Building, ArmorType.StandardBuilding]}, // TODO - Verify value for Cumans
+    {melee: 2, pierce: 9, types: [ArmorType.Building, ArmorType.StandardBuilding]},
+    {melee: 3, pierce: 10, types: [ArmorType.Building, ArmorType.StandardBuilding]}
+  ),
+  lineOfSight: 6,
+};
+
+export const Monastery: Building = {
+  id: 'monastery',
+  name: 'Monastère',
+  types: [BuildingType.Special],
+  age: {default: Age.CastleAge},
+  use: [BuildingAbility.TrainAndImproveMonks],
+  cost: {
+    wood: 175,
+  },
+  constructionTime: {default: 40},
+  size: [3, 3],
+  health: AllAge(2100),
+  garrison: 10,
+  armor: makeAgeable(
+    undefined,
+    undefined,
     {melee: 2, pierce: 9, types: [ArmorType.Building, ArmorType.StandardBuilding]},
     {melee: 3, pierce: 10, types: [ArmorType.Building, ArmorType.StandardBuilding]}
   ),

@@ -42,22 +42,26 @@ export interface Dommage {
 export enum AttackType {
   CaC,
   Range,
+  Conversion,
 }
 
 interface AttackBase {
   type: AttackType;
-  bonuses: Map<ArmorType, number>;
-  frameDelay?: number;
-  areaOfDamage?: number;
   rateOfFire: number;
-  dommage: Dommage;
 }
 
-export interface CaCAttack extends AttackBase {
+interface DommageAttack extends AttackBase {
+  frameDelay?: number;
+  areaOfDamage?: number;
+  dommage: Dommage;
+  bonuses: Map<ArmorType, number>;
+}
+
+export interface CaCAttack extends DommageAttack {
   type: AttackType.CaC;
 }
 
-export interface RangeAttack extends AttackBase {
+export interface RangeAttack extends DommageAttack {
   type: AttackType.Range;
   range: number;
   minimumRange?: number;
@@ -65,4 +69,9 @@ export interface RangeAttack extends AttackBase {
   projectileSpeed: number;
 }
 
-export type Attack = CaCAttack | RangeAttack;
+export interface ConversionAttack extends AttackBase {
+  type: AttackType.Conversion;
+  conversion: number;
+}
+
+export type Attack = CaCAttack | RangeAttack | ConversionAttack;

@@ -12,6 +12,8 @@ export enum UnitType {
   Cavalry,
   GunpowderUnit,
   SiegeUnit,
+  Monk,
+  Healer,
 }
 
 export enum UnitAbility {
@@ -21,6 +23,9 @@ export enum UnitAbility {
   RepairShips,
   RepairSiegeWeapons,
   KillTree,
+  HealUnits,
+  ConvertUnits,
+  CarryRelics,
 }
 
 export interface Unit {
@@ -36,6 +41,7 @@ export interface Unit {
   health: number;
   attack: Attack;
   armor: Armor;
+  healing?: number;
   speed: number;
   garrison?: number;
   lineOfSight: number;
