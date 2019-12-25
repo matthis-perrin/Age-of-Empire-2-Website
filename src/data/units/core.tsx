@@ -3,6 +3,7 @@ import {Age} from '../age';
 import {Building} from '../buildings';
 import {Cost} from '../resource';
 import {Attack, Armor} from '../damage';
+import {InterpolationString} from '../core';
 
 export enum UnitType {
   Civilian,
@@ -10,6 +11,7 @@ export enum UnitType {
   Archer,
   Cavalry,
   GunpowderUnit,
+  SiegeUnit,
 }
 
 export enum UnitAbility {
@@ -18,6 +20,7 @@ export enum UnitAbility {
   RepairBuildings,
   RepairShips,
   RepairSiegeWeapons,
+  KillTree,
 }
 
 export interface Unit {
@@ -36,7 +39,7 @@ export interface Unit {
   speed: number;
   garrison?: number;
   lineOfSight: number;
-  comments: string[];
+  comments: InterpolationString[];
 }
 
 export interface UnitTraining {

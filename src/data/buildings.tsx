@@ -2,7 +2,7 @@
 import {Age} from './age';
 import {Cost} from './resource';
 import {Civilization, Cumans} from './civilizations';
-import {ArmorType, RangeAttack, Armor, AttackType} from './damage';
+import {ArmorType, RangeAttack, Armor, AttackType, DommageType} from './damage';
 
 export enum BuildingType {
   Economic,
@@ -18,6 +18,7 @@ export enum BuildingAbility {
   ResearchTechnologies,
   TrainAndImproveInfantry,
   TrainAndImproveArchers,
+  TrainAndImproveSiegeUnits,
   TrainUniqueUnit,
   TrainSiegeWeapons,
 }
@@ -98,8 +99,8 @@ export const TownCenter: Building = {
   health: AllAge(2400),
   garrison: 15,
   attack: {
-    type: AttackType.Pierce,
-    pierceDommage: 5,
+    type: AttackType.Range,
+    dommage: {type: DommageType.Pierce, value: 5},
     bonuses: new Map([
       [ArmorType.Ship, 5],
       [ArmorType.Building, 5],
@@ -152,7 +153,7 @@ export const Archery: Building = {
   },
   constructionTime: {default: 50},
   size: [3, 3],
-  health: makeAgeable(undefined, 1500, 1800, 2100),
+  health: makeAgeable(undefined, 1500, 1800, 2100), // TODO - Verify Feudal value for Cumans
   garrison: 10,
   armor: makeAgeable(
     undefined,
@@ -182,8 +183,8 @@ export const Castle: Building = {
   health: AllAge(4800),
   garrison: 20,
   attack: {
-    type: AttackType.Pierce,
-    pierceDommage: 11,
+    type: AttackType.Range,
+    dommage: {type: DommageType.Pierce, value: 11},
     bonuses: new Map([[ArmorType.Spearman, 2]]),
     rateOfFire: 2.03,
     range: 8,
@@ -198,4 +199,26 @@ export const Castle: Building = {
     bonuses: new Map([[ArmorType.Building, 8]]),
   }),
   lineOfSight: 11,
+};
+
+export const SiegeWorkshop: Building = {
+  id: 'siege-workshop',
+  name: 'Atelier de siège',
+  types: [BuildingType.Military],
+  age: {default: Age.CastleAge, overrides: new Map([[Cumans, Age.FeudalAge]])},
+  use: [BuildingAbility.TrainAndImproveSiegeUnits],
+  cost: {
+    wood: 200,
+  },
+  constructionTime: {default: 40},
+  size: [4, 4],
+  health: makeAgeable(undefined, 1500, 1800, 2100),
+  garrison: 10,
+  armor: makeAgeable(
+    undefined,
+    {melee: 1, pierce: 8, types: [ArmorType.Building, ArmorType.StandardBuilding]}, // TODO - Verify value for Cumans
+    {melee: 2, pierce: 9, types: [ArmorType.Building, ArmorType.StandardBuilding]},
+    {melee: 3, pierce: 10, types: [ArmorType.Building, ArmorType.StandardBuilding]}
+  ),
+  lineOfSight: 6,
 };

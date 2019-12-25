@@ -22,11 +22,6 @@ export enum ArmorType {
   Ram,
 }
 
-export enum AttackType {
-  Melee,
-  Pierce,
-}
-
 export interface Armor {
   melee: number;
   pierce: number;
@@ -34,25 +29,40 @@ export interface Armor {
   bonuses?: Map<ArmorType, number>;
 }
 
+export enum DommageType {
+  Melee,
+  Pierce,
+}
+
+export interface Dommage {
+  type: DommageType;
+  value: number;
+}
+
+export enum AttackType {
+  CaC,
+  Range,
+}
+
 interface AttackBase {
   type: AttackType;
   bonuses: Map<ArmorType, number>;
   frameDelay?: number;
+  areaOfDamage?: number;
   rateOfFire: number;
+  dommage: Dommage;
 }
 
-export interface MeleeAttack extends AttackBase {
-  type: AttackType.Melee;
-  meleeDommage: number;
+export interface CaCAttack extends AttackBase {
+  type: AttackType.CaC;
 }
 
 export interface RangeAttack extends AttackBase {
-  type: AttackType.Pierce;
-  pierceDommage: number;
+  type: AttackType.Range;
   range: number;
   minimumRange?: number;
   accuracy: number;
   projectileSpeed: number;
 }
 
-export type Attack = MeleeAttack | RangeAttack;
+export type Attack = CaCAttack | RangeAttack;
