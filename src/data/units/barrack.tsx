@@ -26,11 +26,13 @@ import {Age} from '../age';
 import {Barrack, Castle} from '../buildings';
 import {ArmorType, AttackType} from '../damage';
 
-import {Unit} from './core';
+import {Unit, UnitType} from './core';
 
 export const Militia: Unit = {
   id: 'militia',
   name: 'Milicien',
+  type: [UnitType.Infantry],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Militia_(Age_of_Empires_II)',
   civilizations: allCivilizations(),
   age: Age.DarkAge,
   abilities: [],
@@ -49,11 +51,14 @@ export const Militia: Unit = {
   armor: {melee: 0, pierce: 1, types: [ArmorType.Infantry]},
   speed: 0.9,
   lineOfSight: 4,
+  comments: [],
 };
 
 export const ManAtArms: Unit = {
   id: 'man-at-arms',
   name: "Homme d'armes",
+  type: [UnitType.Infantry],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Man-at-Arms',
   civilizations: allCivilizations(),
   age: Age.FeudalAge,
   abilities: [],
@@ -75,11 +80,14 @@ export const ManAtArms: Unit = {
   armor: {melee: 0, pierce: 1, types: [ArmorType.Infantry]},
   speed: 0.9,
   lineOfSight: 4,
+  comments: [],
 };
 
 export const LongSwordsman: Unit = {
   id: 'long-swordsman',
   name: 'Fantassin à épée longue',
+  type: [UnitType.Infantry],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Long_Swordsman_(Age_of_Empires_II)',
   civilizations: allCivilizations(),
   age: Age.CastleAge,
   abilities: [],
@@ -101,11 +109,14 @@ export const LongSwordsman: Unit = {
   armor: {melee: 0, pierce: 1, types: [ArmorType.Infantry]},
   speed: 0.9,
   lineOfSight: 4,
+  comments: [],
 };
 
 export const TwoHandedSwordsman: Unit = {
   id: 'two-handed-swordsman',
   name: 'Fantassin à épée à 2 mains',
+  type: [UnitType.Infantry],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Two-Handed_Swordsman',
   civilizations: allCivilizationsWithout([Persians]),
   age: Age.ImperialAge,
   abilities: [],
@@ -127,11 +138,14 @@ export const TwoHandedSwordsman: Unit = {
   armor: {melee: 0, pierce: 1, types: [ArmorType.Infantry]},
   speed: 0.9,
   lineOfSight: 5,
+  comments: [],
 };
 
 export const Champion: Unit = {
   id: 'champion',
   name: 'Champion',
+  type: [UnitType.Infantry],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Champion',
   civilizations: allCivilizationsWithout([
     Ethiopians,
     Huns,
@@ -162,11 +176,14 @@ export const Champion: Unit = {
   armor: {melee: 1, pierce: 1, types: [ArmorType.Infantry]},
   speed: 0.9,
   lineOfSight: 5,
+  comments: [],
 };
 
 export const Spearman: Unit = {
   id: 'spearman',
   name: 'Lancier',
+  type: [UnitType.Infantry],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Spearman_(Age_of_Empires_II)',
   civilizations: allCivilizations(),
   age: Age.FeudalAge,
   abilities: [],
@@ -194,11 +211,14 @@ export const Spearman: Unit = {
   armor: {melee: 0, pierce: 0, types: [ArmorType.Infantry, ArmorType.Spearman]},
   speed: 1,
   lineOfSight: 4,
+  comments: [],
 };
 
 export const Pikeman: Unit = {
   id: 'pikeman',
   name: 'Piquier',
+  type: [UnitType.Infantry],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Pikeman_(Age_of_Empires_II)',
   civilizations: allCivilizationsWithout([Turks]),
   age: Age.CastleAge,
   abilities: [],
@@ -226,11 +246,14 @@ export const Pikeman: Unit = {
   armor: {melee: 0, pierce: 0, types: [ArmorType.Infantry, ArmorType.Spearman]},
   speed: 1,
   lineOfSight: 4,
+  comments: [],
 };
 
 export const Halberdier: Unit = {
   id: 'halberdier',
   name: 'Hallebardier',
+  type: [UnitType.Infantry],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Halberdier_(Age_of_Empires_II)',
   civilizations: allCivilizationsWithout([
     Aztecs,
     Berbers,
@@ -268,11 +291,15 @@ export const Halberdier: Unit = {
   armor: {melee: 0, pierce: 0, types: [ArmorType.Infantry, ArmorType.Spearman]},
   speed: 1,
   lineOfSight: 4,
+  comments: [],
 };
 
+// TODO - Handle carac change across ages for the next 3
 export const EagleScout: Unit = {
   id: 'eagle-scout',
   name: 'Éclaireur aigle',
+  type: [UnitType.Infantry],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Eagle_Scout',
   civilizations: onlyCivilizations([Aztecs, Incas, Mayans]),
   age: Age.FeudalAge,
   abilities: [],
@@ -297,11 +324,14 @@ export const EagleScout: Unit = {
   armor: {melee: 0, pierce: 2, types: [ArmorType.Infantry, ArmorType.EagleWarrior]},
   speed: 1.1,
   lineOfSight: 5,
+  comments: [],
 };
 
 export const EagleWarrior: Unit = {
   id: 'eagle-warrior',
   name: 'Guerrier aigle',
+  type: [UnitType.Infantry],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Eagle_Warrior',
   civilizations: onlyCivilizations([Aztecs, Incas, Mayans]),
   age: Age.CastleAge,
   abilities: [],
@@ -327,11 +357,14 @@ export const EagleWarrior: Unit = {
   armor: {melee: 0, pierce: 3, types: [ArmorType.Infantry, ArmorType.EagleWarrior]},
   speed: 1.15,
   lineOfSight: 6,
+  comments: [],
 };
 
 export const EilteEagleWarrior: Unit = {
   id: 'elite-eagle-warrior',
   name: "Guerrier aigle d'élite",
+  type: [UnitType.Infantry],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Elite_Eagle_Warrior',
   civilizations: onlyCivilizations([Aztecs, Incas, Mayans]),
   age: Age.ImperialAge,
   abilities: [],
@@ -357,11 +390,14 @@ export const EilteEagleWarrior: Unit = {
   armor: {melee: 0, pierce: 4, types: [ArmorType.Infantry, ArmorType.EagleWarrior]},
   speed: 1.3,
   lineOfSight: 6,
+  comments: [],
 };
 
 export const Condottiero: Unit = {
   id: 'condotierro',
   name: 'Condottière',
+  type: [UnitType.Infantry],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Condottiero',
   civilizations: onlyCivilizations([Italians]),
   age: Age.ImperialAge,
   abilities: [],
@@ -388,11 +424,14 @@ export const Condottiero: Unit = {
   },
   speed: 1.2,
   lineOfSight: 6,
+  comments: [],
 };
 
 export const Huskarl: Unit = {
   id: 'huskarl',
   name: 'Huskarl',
+  type: [UnitType.Infantry],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Huskarl_(Age_of_Empires_II)',
   civilizations: onlyCivilizations([Goths]),
   age: Age.CastleAge,
   abilities: [],
@@ -422,11 +461,14 @@ export const Huskarl: Unit = {
   },
   speed: 1.05,
   lineOfSight: 3,
+  comments: [],
 };
 
 export const EliteHuskarl: Unit = {
   id: 'elite-huskarl',
   name: "Huskarl d'élite",
+  type: [UnitType.Infantry],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Huskarl_(Age_of_Empires_II)',
   civilizations: onlyCivilizations([Goths]),
   age: Age.ImperialAge,
   abilities: [],
@@ -456,4 +498,5 @@ export const EliteHuskarl: Unit = {
   },
   speed: 1.05,
   lineOfSight: 5,
+  comments: [],
 };

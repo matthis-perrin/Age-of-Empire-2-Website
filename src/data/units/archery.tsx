@@ -37,11 +37,13 @@ import {Age} from '../age';
 import {Archery} from '../buildings';
 import {AttackType, ArmorType} from '../damage';
 
-import {Unit} from './core';
+import {Unit, UnitType} from './core';
 
 export const Archer: Unit = {
   id: 'archer',
   name: 'Archer',
+  type: [UnitType.Archer],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Archer_(Age_of_Empires_II)',
   civilizations: allCivilizations(),
   age: Age.FeudalAge,
   abilities: [],
@@ -64,11 +66,14 @@ export const Archer: Unit = {
   armor: {melee: 0, pierce: 0, types: [ArmorType.Archer]},
   speed: 0.96,
   lineOfSight: 6,
+  comments: [],
 };
 
 export const Crossbowman: Unit = {
   id: 'crossbowman',
   name: 'Arbalétrier',
+  type: [UnitType.Archer],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Crossbowman_(Age_of_Empires_II)',
   civilizations: allCivilizationsWithout([Bulgarians, Spanish]),
   age: Age.CastleAge,
   abilities: [],
@@ -91,11 +96,14 @@ export const Crossbowman: Unit = {
   armor: {melee: 0, pierce: 0, types: [ArmorType.Archer]},
   speed: 0.96,
   lineOfSight: 7,
+  comments: [],
 };
 
 export const Arbalester: Unit = {
   id: 'arbalester',
   name: 'Fantassin à arc lourd',
+  type: [UnitType.Archer],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Arbalester',
   civilizations: allCivilizationsWithout([
     Berbers,
     Bulgarians,
@@ -135,11 +143,14 @@ export const Arbalester: Unit = {
   armor: {melee: 0, pierce: 0, types: [ArmorType.Archer]},
   speed: 0.96,
   lineOfSight: 7,
+  comments: [],
 };
 
 export const Skirmisher: Unit = {
   id: 'skirmisher',
   name: 'Tirailleur',
+  type: [UnitType.Archer],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Skirmisher_(Age_of_Empires_II)',
   civilizations: allCivilizations(),
   age: Age.FeudalAge,
   abilities: [],
@@ -165,11 +176,14 @@ export const Skirmisher: Unit = {
   armor: {melee: 0, pierce: 3, types: [ArmorType.Archer]},
   speed: 0.96,
   lineOfSight: 6,
+  comments: [],
 };
 
 export const EliteSkirmisher: Unit = {
   id: 'elite-skirmisher',
   name: "Tirailleur d'élite",
+  type: [UnitType.Archer],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Elite_Skirmisher',
   civilizations: allCivilizationsWithout([Turks]),
   age: Age.CastleAge,
   abilities: [],
@@ -197,11 +211,14 @@ export const EliteSkirmisher: Unit = {
   armor: {melee: 0, pierce: 4, types: [ArmorType.Archer]},
   speed: 0.96,
   lineOfSight: 7,
+  comments: [],
 };
 
 export const ImperialSkirmisher: Unit = {
   id: 'imperial-skirmisher',
   name: 'Tirailleur impérial',
+  type: [UnitType.Archer],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Imperial_Skirmisher',
   civilizations: onlyCivilizations([Vietnamese]),
   age: Age.ImperialAge,
   abilities: [],
@@ -229,11 +246,14 @@ export const ImperialSkirmisher: Unit = {
   armor: {melee: 0, pierce: 5, types: [ArmorType.Archer]},
   speed: 0.96,
   lineOfSight: 7,
+  comments: [],
 };
 
 export const CavalryArcher: Unit = {
   id: 'cavalry-archer',
   name: 'Archer de cavalerie',
+  type: [UnitType.Cavalry, UnitType.Archer],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Cavalry_Archer_(Age_of_Empires_II)',
   civilizations: allCivilizationsWithout([Aztecs, Incas, Mayans]),
   age: Age.CastleAge,
   abilities: [],
@@ -260,11 +280,14 @@ export const CavalryArcher: Unit = {
   },
   speed: 1.4,
   lineOfSight: 5,
+  comments: [],
 };
 
 export const HeavyCavalryArcher: Unit = {
   id: 'heavy-cavalry-archer',
   name: 'Archer de cavalerie lourde',
+  type: [UnitType.Cavalry, UnitType.Archer],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Heavy_Cavalry_Archer',
   civilizations: allCivilizationsWithout([
     Aztecs,
     Incas,
@@ -300,11 +323,14 @@ export const HeavyCavalryArcher: Unit = {
   },
   speed: 1.4,
   lineOfSight: 6,
+  comments: [],
 };
 
 export const HandCannoneer: Unit = {
   id: 'hand-cannoneer',
   name: 'Canonnier à main',
+  type: [UnitType.GunpowderUnit],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Hand_Cannoneer',
   civilizations: allCivilizationsWithout([
     Aztecs,
     Britons,
@@ -353,11 +379,14 @@ export const HandCannoneer: Unit = {
   },
   speed: 0.96,
   lineOfSight: 9,
+  comments: [],
 };
 
 export const Slinger: Unit = {
   id: 'slinger',
   name: 'Frondeur',
+  type: [UnitType.Archer],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Slinger_(Age_of_Empires_II)',
   civilizations: onlyCivilizations([Incas]),
   age: Age.CastleAge,
   abilities: [],
@@ -390,11 +419,14 @@ export const Slinger: Unit = {
   },
   speed: 0.95,
   lineOfSight: 7,
+  comments: [],
 };
 
 export const Genitour: Unit = {
   id: 'Genitour',
   name: 'Jinete',
+  type: [UnitType.Cavalry, UnitType.Archer],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Genitour_(mounted)',
   civilizations: onlyCivilizations([Berbers]),
   age: Age.CastleAge,
   abilities: [],
@@ -425,11 +457,14 @@ export const Genitour: Unit = {
   },
   speed: 1.35,
   lineOfSight: 5,
+  comments: [],
 };
 
 export const EliteGenitour: Unit = {
   id: 'elite-Genitour',
   name: "Jinete d'élite",
+  type: [UnitType.Cavalry, UnitType.Archer],
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Genitour_(mounted)',
   civilizations: onlyCivilizations([Berbers]),
   age: Age.ImperialAge,
   abilities: [],
@@ -461,4 +496,5 @@ export const EliteGenitour: Unit = {
   },
   speed: 1.35,
   lineOfSight: 6,
+  comments: [],
 };

@@ -6,6 +6,10 @@ import {Attack, Armor} from '../damage';
 
 export enum UnitType {
   Civilian,
+  Infantry,
+  Archer,
+  Cavalry,
+  GunpowderUnit,
 }
 
 export enum UnitAbility {
@@ -19,6 +23,8 @@ export enum UnitAbility {
 export interface Unit {
   id: string;
   name: string;
+  type: UnitType[];
+  wikiUrl: string;
   civilizations: CivilizationRange;
   age: Age;
   abilities: UnitAbility[];
@@ -28,7 +34,9 @@ export interface Unit {
   attack: Attack;
   armor: Armor;
   speed: number;
+  garrison?: number;
   lineOfSight: number;
+  comments: string[];
 }
 
 export interface UnitTraining {
