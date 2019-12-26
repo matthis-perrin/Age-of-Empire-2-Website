@@ -73,7 +73,7 @@ export interface RangeAttack extends DommageAttack {
   range: number;
   minimumRange?: number;
   accuracy: number;
-  projectileSpeed: number;
+  projectileSpeed: number | undefined;
 }
 
 export interface ConversionAttack extends AttackBase {

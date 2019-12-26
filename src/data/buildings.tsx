@@ -19,6 +19,7 @@ export enum BuildingAbility {
   ResearchTechnologies,
   TrainAndImproveInfantry,
   TrainAndImproveArchers,
+  TrainAndImproveCavalry,
   TrainAndImproveSiegeUnits,
   TrainAndImproveMonks,
   TrainUniqueUnit,
@@ -126,6 +127,28 @@ export const TownCenter: Building = {
   lineOfSight: 8,
 };
 
+export const Dock: Building = {
+  id: 'dock',
+  name: 'Port',
+  types: [BuildingType.Economic, BuildingType.Military],
+  age: {default: Age.DarkAge},
+  use: [BuildingAbility.BuildAndImproveShips],
+  cost: {
+    wood: 150,
+  },
+  constructionTime: {default: 35},
+  size: [3, 3],
+  health: AllAge(1800),
+  garrison: 10,
+  armor: makeAgeable(
+    {melee: 0, pierce: 7, types: [ArmorType.Building, ArmorType.StandardBuilding]},
+    {melee: 1, pierce: 8, types: [ArmorType.Building, ArmorType.StandardBuilding]},
+    {melee: 2, pierce: 9, types: [ArmorType.Building, ArmorType.StandardBuilding]},
+    {melee: 3, pierce: 10, types: [ArmorType.Building, ArmorType.StandardBuilding]}
+  ),
+  lineOfSight: 6,
+};
+
 export const Barrack: Building = {
   id: 'barrack',
   name: 'Caserne',
@@ -170,6 +193,50 @@ export const Archery: Building = {
   lineOfSight: 6,
 };
 
+export const Stable: Building = {
+  id: 'stable',
+  name: 'Écurie',
+  types: [BuildingType.Military],
+  age: {default: Age.FeudalAge},
+  use: [BuildingAbility.TrainAndImproveCavalry],
+  cost: {
+    wood: 175,
+  },
+  constructionTime: {default: 50},
+  size: [3, 3],
+  health: makeAgeable(undefined, 1500, 1800, 2100),
+  garrison: 10,
+  armor: makeAgeable(
+    undefined,
+    {melee: 1, pierce: 8, types: [ArmorType.Building, ArmorType.StandardBuilding]},
+    {melee: 2, pierce: 9, types: [ArmorType.Building, ArmorType.StandardBuilding]},
+    {melee: 3, pierce: 10, types: [ArmorType.Building, ArmorType.StandardBuilding]}
+  ),
+  lineOfSight: 6,
+};
+
+export const SiegeWorkshop: Building = {
+  id: 'siege-workshop',
+  name: 'Atelier de siège',
+  types: [BuildingType.Military],
+  age: {default: Age.CastleAge, overrides: new Map([[Cumans, Age.FeudalAge]])},
+  use: [BuildingAbility.TrainAndImproveSiegeUnits],
+  cost: {
+    wood: 200,
+  },
+  constructionTime: {default: 40},
+  size: [4, 4],
+  health: makeAgeable(undefined, 1500, 1800, 2100),
+  garrison: 10,
+  armor: makeAgeable(
+    undefined,
+    {melee: 1, pierce: 8, types: [ArmorType.Building, ArmorType.StandardBuilding]}, // TODO - Verify value for Cumans
+    {melee: 2, pierce: 9, types: [ArmorType.Building, ArmorType.StandardBuilding]},
+    {melee: 3, pierce: 10, types: [ArmorType.Building, ArmorType.StandardBuilding]}
+  ),
+  lineOfSight: 6,
+};
+
 export const Castle: Building = {
   id: 'castle',
   name: 'Château',
@@ -205,28 +272,6 @@ export const Castle: Building = {
     bonuses: new Map([[ArmorType.Building, 8]]),
   }),
   lineOfSight: 11,
-};
-
-export const SiegeWorkshop: Building = {
-  id: 'siege-workshop',
-  name: 'Atelier de siège',
-  types: [BuildingType.Military],
-  age: {default: Age.CastleAge, overrides: new Map([[Cumans, Age.FeudalAge]])},
-  use: [BuildingAbility.TrainAndImproveSiegeUnits],
-  cost: {
-    wood: 200,
-  },
-  constructionTime: {default: 40},
-  size: [4, 4],
-  health: makeAgeable(undefined, 1500, 1800, 2100),
-  garrison: 10,
-  armor: makeAgeable(
-    undefined,
-    {melee: 1, pierce: 8, types: [ArmorType.Building, ArmorType.StandardBuilding]}, // TODO - Verify value for Cumans
-    {melee: 2, pierce: 9, types: [ArmorType.Building, ArmorType.StandardBuilding]},
-    {melee: 3, pierce: 10, types: [ArmorType.Building, ArmorType.StandardBuilding]}
-  ),
-  lineOfSight: 6,
 };
 
 export const Monastery: Building = {
@@ -270,28 +315,6 @@ export const Market: Building = {
   garrison: 0,
   armor: makeAgeable(
     undefined,
-    {melee: 1, pierce: 8, types: [ArmorType.Building, ArmorType.StandardBuilding]},
-    {melee: 2, pierce: 9, types: [ArmorType.Building, ArmorType.StandardBuilding]},
-    {melee: 3, pierce: 10, types: [ArmorType.Building, ArmorType.StandardBuilding]}
-  ),
-  lineOfSight: 6,
-};
-
-export const Dock: Building = {
-  id: 'dock',
-  name: 'Port',
-  types: [BuildingType.Economic, BuildingType.Military],
-  age: {default: Age.DarkAge},
-  use: [BuildingAbility.BuildAndImproveShips],
-  cost: {
-    wood: 150,
-  },
-  constructionTime: {default: 35},
-  size: [3, 3],
-  health: AllAge(1800),
-  garrison: 10,
-  armor: makeAgeable(
-    {melee: 0, pierce: 7, types: [ArmorType.Building, ArmorType.StandardBuilding]},
     {melee: 1, pierce: 8, types: [ArmorType.Building, ArmorType.StandardBuilding]},
     {melee: 2, pierce: 9, types: [ArmorType.Building, ArmorType.StandardBuilding]},
     {melee: 3, pierce: 10, types: [ArmorType.Building, ArmorType.StandardBuilding]}
