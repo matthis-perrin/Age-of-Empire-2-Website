@@ -55,7 +55,7 @@ export const Archer: Unit = {
   health: 30,
   attack: {
     type: AttackType.Range,
-    dommage: {type: DommageType.Pierce, value: 4},
+    dommage: {melee: 0, pierce: 4},
     bonuses: new Map([[ArmorType.Spearman, 3]]),
     rateOfFire: 2.03,
     frameDelay: 5,
@@ -85,7 +85,7 @@ export const Crossbowman: Unit = {
   health: 35,
   attack: {
     type: AttackType.Range,
-    dommage: {type: DommageType.Pierce, value: 5},
+    dommage: {melee: 0, pierce: 5},
     bonuses: new Map([[ArmorType.Spearman, 3]]),
     rateOfFire: 2.03,
     frameDelay: 5,
@@ -132,7 +132,7 @@ export const Arbalester: Unit = {
   health: 40,
   attack: {
     type: AttackType.Range,
-    dommage: {type: DommageType.Pierce, value: 6},
+    dommage: {melee: 0, pierce: 6},
     bonuses: new Map([[ArmorType.Spearman, 3]]),
     rateOfFire: 2,
     frameDelay: 20,
@@ -162,7 +162,7 @@ export const Skirmisher: Unit = {
   health: 30,
   attack: {
     type: AttackType.Range,
-    dommage: {type: DommageType.Pierce, value: 2},
+    dommage: {melee: 0, pierce: 2},
     bonuses: new Map([
       [ArmorType.Archer, 3],
       [ArmorType.Spearman, 3],
@@ -195,7 +195,7 @@ export const EliteSkirmisher: Unit = {
   health: 35,
   attack: {
     type: AttackType.Range,
-    dommage: {type: DommageType.Pierce, value: 3},
+    dommage: {melee: 0, pierce: 3},
     bonuses: new Map([
       [ArmorType.Archer, 4],
       [ArmorType.Spearman, 3],
@@ -230,7 +230,7 @@ export const ImperialSkirmisher: Unit = {
   health: 35,
   attack: {
     type: AttackType.Range,
-    dommage: {type: DommageType.Pierce, value: 4},
+    dommage: {melee: 0, pierce: 4},
     bonuses: new Map([
       [ArmorType.Archer, 5],
       [ArmorType.Spearman, 3],
@@ -265,7 +265,7 @@ export const CavalryArcher: Unit = {
   health: 50,
   attack: {
     type: AttackType.Range,
-    dommage: {type: DommageType.Pierce, value: 6},
+    dommage: {melee: 0, pierce: 6},
     bonuses: new Map([[ArmorType.Spearman, 2]]),
     rateOfFire: 2.03,
     frameDelay: 10,
@@ -308,7 +308,7 @@ export const HeavyCavalryArcher: Unit = {
   health: 60,
   attack: {
     type: AttackType.Range,
-    dommage: {type: DommageType.Pierce, value: 7},
+    dommage: {melee: 0, pierce: 7},
     bonuses: new Map([[ArmorType.Spearman, 2]]),
     rateOfFire: 2.03,
     frameDelay: 10,
@@ -360,7 +360,7 @@ export const HandCannoneer: Unit = {
   health: 35,
   attack: {
     type: AttackType.Range,
-    dommage: {type: DommageType.Pierce, value: 17},
+    dommage: {melee: 0, pierce: 17},
     bonuses: new Map([
       [ArmorType.Infantry, 10],
       [ArmorType.Ram, 2],
@@ -398,7 +398,7 @@ export const Slinger: Unit = {
   health: 40,
   attack: {
     type: AttackType.Range,
-    dommage: {type: DommageType.Pierce, value: 4},
+    dommage: {melee: 0, pierce: 4},
     bonuses: new Map([
       [ArmorType.Infantry, 10],
       [ArmorType.Condottiero, 10],
@@ -438,7 +438,7 @@ export const Genitour: Unit = {
   health: 50,
   attack: {
     type: AttackType.Range,
-    dommage: {type: DommageType.Pierce, value: 3},
+    dommage: {melee: 0, pierce: 3},
     bonuses: new Map([
       [ArmorType.Archer, 4],
       [ArmorType.CavalryArcher, 2],
@@ -476,7 +476,7 @@ export const EliteGenitour: Unit = {
   health: 55,
   attack: {
     type: AttackType.Range,
-    dommage: {type: DommageType.Pierce, value: 4},
+    dommage: {melee: 0, pierce: 4},
     bonuses: new Map([
       [ArmorType.Archer, 5],
       [ArmorType.CavalryArcher, 2],

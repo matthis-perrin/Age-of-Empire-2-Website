@@ -62,7 +62,7 @@ export const Petard: Unit = {
   attack: {
     type: AttackType.CaC,
     rateOfFire: 0,
-    dommage: {type: DommageType.Melee, value: 25},
+    dommage: {melee: 25, pierce: 0},
     bonuses: new Map([
       [ArmorType.WallAndGate, 900],
       [ArmorType.Building, 500],
@@ -117,8 +117,8 @@ export const TrebuchetUnpacked: Unit = {
   attack: {
     type: AttackType.Range,
     dommage: {
-      type: DommageType.Pierce,
-      value: 200,
+      melee: 0,
+      pierce: 200,
     },
     bonuses: new Map([[ArmorType.Building, 250]]),
     rateOfFire: 10,

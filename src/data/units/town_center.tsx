@@ -26,7 +26,7 @@ export const Villager: Unit = {
   health: 25,
   attack: {
     type: AttackType.CaC,
-    dommage: {type: DommageType.Melee, value: 3},
+    dommage: {melee: 3, pierce: 0},
     bonuses: new Map([[ArmorType.StoneDefense, ArmorType.Building]]),
     rateOfFire: 2.03,
   },

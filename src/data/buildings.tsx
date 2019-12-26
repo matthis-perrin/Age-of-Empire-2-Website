@@ -26,6 +26,7 @@ export enum BuildingAbility {
   ExchangeAndSendResources,
   TradeWithTradeCarts,
   ResearchTradeImprovements,
+  BuildAndImproveShips,
 }
 
 export interface Overridable<T> {
@@ -105,7 +106,7 @@ export const TownCenter: Building = {
   garrison: 15,
   attack: {
     type: AttackType.Range,
-    dommage: {type: DommageType.Pierce, value: 5},
+    dommage: {melee: 0, pierce: 5},
     bonuses: new Map([
       [ArmorType.Ship, 5],
       [ArmorType.Building, 5],
@@ -189,7 +190,7 @@ export const Castle: Building = {
   garrison: 20,
   attack: {
     type: AttackType.Range,
-    dommage: {type: DommageType.Pierce, value: 11},
+    dommage: {melee: 0, pierce: 11},
     bonuses: new Map([[ArmorType.Spearman, 2]]),
     rateOfFire: 2.03,
     range: 8,
@@ -269,6 +270,28 @@ export const Market: Building = {
   garrison: 0,
   armor: makeAgeable(
     undefined,
+    {melee: 1, pierce: 8, types: [ArmorType.Building, ArmorType.StandardBuilding]},
+    {melee: 2, pierce: 9, types: [ArmorType.Building, ArmorType.StandardBuilding]},
+    {melee: 3, pierce: 10, types: [ArmorType.Building, ArmorType.StandardBuilding]}
+  ),
+  lineOfSight: 6,
+};
+
+export const Dock: Building = {
+  id: 'dock',
+  name: 'Port',
+  types: [BuildingType.Economic, BuildingType.Military],
+  age: {default: Age.DarkAge},
+  use: [BuildingAbility.BuildAndImproveShips],
+  cost: {
+    wood: 150,
+  },
+  constructionTime: {default: 35},
+  size: [3, 3],
+  health: AllAge(1800),
+  garrison: 10,
+  armor: makeAgeable(
+    {melee: 0, pierce: 7, types: [ArmorType.Building, ArmorType.StandardBuilding]},
     {melee: 1, pierce: 8, types: [ArmorType.Building, ArmorType.StandardBuilding]},
     {melee: 2, pierce: 9, types: [ArmorType.Building, ArmorType.StandardBuilding]},
     {melee: 3, pierce: 10, types: [ArmorType.Building, ArmorType.StandardBuilding]}

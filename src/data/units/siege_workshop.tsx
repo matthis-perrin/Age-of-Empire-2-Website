@@ -60,7 +60,7 @@ export const BatteringRam: Unit = {
   health: 175,
   attack: {
     type: AttackType.CaC,
-    dommage: {type: DommageType.Melee, value: 2},
+    dommage: {melee: 2, pierce: 0},
     bonuses: new Map([
       [ArmorType.Building, 125],
       [ArmorType.SiegeWeapon, 40],
@@ -102,7 +102,7 @@ export const CappedRam: Unit = {
   health: 200,
   attack: {
     type: AttackType.CaC,
-    dommage: {type: DommageType.Melee, value: 3},
+    dommage: {melee: 3, pierce: 0},
     bonuses: new Map([
       [ArmorType.Building, 150],
       [ArmorType.SiegeWeapon, 50],
@@ -166,7 +166,7 @@ export const SiegeRam: Unit = {
   health: 270,
   attack: {
     type: AttackType.CaC,
-    dommage: {type: DommageType.Melee, value: 4},
+    dommage: {melee: 4, pierce: 0},
     bonuses: new Map([
       [ArmorType.Building, 200],
       [ArmorType.SiegeWeapon, 65],
@@ -214,7 +214,7 @@ export const Mangonel: Unit = {
   health: 50,
   attack: {
     type: AttackType.Range,
-    dommage: {type: DommageType.Melee, value: 40},
+    dommage: {melee: 40, pierce: 0},
     bonuses: new Map([
       [ArmorType.Building, 35],
       [ArmorType.SiegeWeapon, 12],
@@ -248,7 +248,7 @@ export const Onager: Unit = {
   health: 60,
   attack: {
     type: AttackType.Range,
-    dommage: {type: DommageType.Melee, value: 50},
+    dommage: {melee: 50, pierce: 0},
     bonuses: new Map([
       [ArmorType.Building, 45],
       [ArmorType.SiegeWeapon, 12],
@@ -294,7 +294,7 @@ export const SiegeOnager: Unit = {
   health: 70,
   attack: {
     type: AttackType.Range,
-    dommage: {type: DommageType.Melee, value: 75},
+    dommage: {melee: 75, pierce: 0},
     bonuses: new Map([
       [ArmorType.Building, 60],
       [ArmorType.SiegeWeapon, 12],
@@ -328,7 +328,7 @@ export const Scorpion: Unit = {
   health: 40,
   attack: {
     type: AttackType.Range,
-    dommage: {type: DommageType.Pierce, value: 12},
+    dommage: {melee: 0, pierce: 12},
     bonuses: new Map([
       [ArmorType.WarElephant, 6],
       [ArmorType.Building, 2],
@@ -377,7 +377,7 @@ export const HeavyScorpion: Unit = {
   health: 50,
   attack: {
     type: AttackType.Range,
-    dommage: {type: DommageType.Pierce, value: 16},
+    dommage: {melee: 0, pierce: 16},
     bonuses: new Map([
       [ArmorType.WarElephant, 8],
       [ArmorType.Building, 4],
@@ -428,7 +428,7 @@ export const BombardCanon: Unit = {
   health: 80,
   attack: {
     type: AttackType.Range,
-    dommage: {type: DommageType.Melee, value: 40},
+    dommage: {melee: 40, pierce: 0},
     bonuses: new Map([
       [ArmorType.Building, 200],
       [ArmorType.Ship, 40],

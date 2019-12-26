@@ -44,7 +44,7 @@ export const Militia: Unit = {
   health: 40,
   attack: {
     type: AttackType.CaC,
-    dommage: {type: DommageType.Melee, value: 4},
+    dommage: {melee: 4, pierce: 0},
     bonuses: new Map(),
     rateOfFire: 2.03,
   },
@@ -70,7 +70,7 @@ export const ManAtArms: Unit = {
   health: 45,
   attack: {
     type: AttackType.CaC,
-    dommage: {type: DommageType.Melee, value: 6},
+    dommage: {melee: 6, pierce: 0},
     bonuses: new Map([
       [ArmorType.EagleWarrior, 2],
       [ArmorType.StandardBuilding, 2],
@@ -99,7 +99,7 @@ export const LongSwordsman: Unit = {
   health: 60,
   attack: {
     type: AttackType.CaC,
-    dommage: {type: DommageType.Melee, value: 9},
+    dommage: {melee: 9, pierce: 0},
     bonuses: new Map([
       [ArmorType.EagleWarrior, 6],
       [ArmorType.StandardBuilding, 3],
@@ -128,7 +128,7 @@ export const TwoHandedSwordsman: Unit = {
   health: 60,
   attack: {
     type: AttackType.CaC,
-    dommage: {type: DommageType.Melee, value: 12},
+    dommage: {melee: 12, pierce: 0},
     bonuses: new Map([
       [ArmorType.EagleWarrior, 8],
       [ArmorType.StandardBuilding, 4],
@@ -166,7 +166,7 @@ export const Champion: Unit = {
   health: 70,
   attack: {
     type: AttackType.CaC,
-    dommage: {type: DommageType.Melee, value: 13},
+    dommage: {melee: 13, pierce: 0},
     bonuses: new Map([
       [ArmorType.EagleWarrior, 8],
       [ArmorType.StandardBuilding, 4],
@@ -195,7 +195,7 @@ export const Spearman: Unit = {
   health: 45,
   attack: {
     type: AttackType.CaC,
-    dommage: {type: DommageType.Melee, value: 3},
+    dommage: {melee: 3, pierce: 0},
     bonuses: new Map([
       [ArmorType.Cavalry, 15],
       [ArmorType.WarElephant, 15],
@@ -230,7 +230,7 @@ export const Pikeman: Unit = {
   health: 55,
   attack: {
     type: AttackType.CaC,
-    dommage: {type: DommageType.Melee, value: 4},
+    dommage: {melee: 4, pierce: 0},
     bonuses: new Map([
       [ArmorType.WarElephant, 25],
       [ArmorType.Cavalry, 22],
@@ -275,7 +275,7 @@ export const Halberdier: Unit = {
   health: 60,
   attack: {
     type: AttackType.CaC,
-    dommage: {type: DommageType.Melee, value: 6},
+    dommage: {melee: 6, pierce: 0},
     bonuses: new Map([
       [ArmorType.Cavalry, 32],
       [ArmorType.WarElephant, 28],
@@ -311,7 +311,7 @@ export const EagleScout: Unit = {
   health: 50,
   attack: {
     type: AttackType.CaC,
-    dommage: {type: DommageType.Melee, value: 4},
+    dommage: {melee: 4, pierce: 0},
     bonuses: new Map([
       [ArmorType.Monk, 8],
       [ArmorType.SiegeWeapon, 3],
@@ -343,7 +343,7 @@ export const EagleWarrior: Unit = {
   health: 55,
   attack: {
     type: AttackType.CaC,
-    dommage: {type: DommageType.Melee, value: 7},
+    dommage: {melee: 7, pierce: 0},
     bonuses: new Map([
       [ArmorType.Monk, 8],
       [ArmorType.SiegeWeapon, 3],
@@ -376,7 +376,7 @@ export const EilteEagleWarrior: Unit = {
   health: 60,
   attack: {
     type: AttackType.CaC,
-    dommage: {type: DommageType.Melee, value: 9},
+    dommage: {melee: 9, pierce: 0},
     bonuses: new Map([
       [ArmorType.Monk, 10],
       [ArmorType.SiegeWeapon, 5],
@@ -409,7 +409,7 @@ export const Condottiero: Unit = {
   health: 80,
   attack: {
     type: AttackType.CaC,
-    dommage: {type: DommageType.Melee, value: 9},
+    dommage: {melee: 9, pierce: 0},
     bonuses: new Map([
       [ArmorType.GunPowderUnit, 10],
       [ArmorType.StandardBuilding, 2],
@@ -446,7 +446,7 @@ export const Huskarl: Unit = {
   health: 60,
   attack: {
     type: AttackType.CaC,
-    dommage: {type: DommageType.Melee, value: 10},
+    dommage: {melee: 10, pierce: 0},
     bonuses: new Map([
       [ArmorType.Archer, 6],
       [ArmorType.EagleWarrior, 2],
@@ -483,7 +483,7 @@ export const EliteHuskarl: Unit = {
   health: 70,
   attack: {
     type: AttackType.CaC,
-    dommage: {type: DommageType.Melee, value: 12},
+    dommage: {melee: 12, pierce: 0},
     bonuses: new Map([
       [ArmorType.Archer, 10],
       [ArmorType.EagleWarrior, 3],

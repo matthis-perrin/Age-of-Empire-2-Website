@@ -6,6 +6,7 @@ export enum ArmorType {
   GunPowderUnit,
   Ship,
   FishingShip,
+  TurtleShip,
   Building,
   StandardBuilding,
   Castle,
@@ -36,8 +37,8 @@ export enum DommageType {
 }
 
 export interface Dommage {
-  type: DommageType;
-  value: number;
+  melee: number;
+  pierce: number;
 }
 
 export enum AttackType {

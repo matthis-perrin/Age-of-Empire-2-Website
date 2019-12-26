@@ -15,10 +15,13 @@ export enum UnitType {
   SuicideUnit,
   Monk,
   Healer,
+  Ship,
+  NavalVessel,
 }
 
 export enum UnitAbility {
   GatherRessources,
+  GatherFood,
   ConstructBuilding,
   RepairBuildings,
   RepairShips,
