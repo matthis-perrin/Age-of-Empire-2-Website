@@ -78,7 +78,8 @@ export interface RangeAttack extends DommageAttack {
 
 export interface ConversionAttack extends AttackBase {
   type: AttackType.Conversion;
-  conversion: number;
+  conversionRange: number;
+  healingRange: number;
 }
 
 export type Attack = CaCAttack | RangeAttack | ConversionAttack | NoAttack;
