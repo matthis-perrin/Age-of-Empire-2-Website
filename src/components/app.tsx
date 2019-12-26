@@ -2,12 +2,14 @@ import React from 'react';
 
 import {CSSReset} from './css_reset';
 import {CivilizationPage} from './civilization_page';
+import {Search} from './search-bar/search';
 
 export function App(): JSX.Element {
   return (
     <React.Fragment>
       <CSSReset />
-      <CivilizationPage />
+      <Search />
+      {/* <CivilizationPage /> */}
     </React.Fragment>
   );
 }
