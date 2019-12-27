@@ -35,7 +35,7 @@ import {
 } from '../civilizations';
 import {Age} from '../age';
 import {Archery} from '../buildings';
-import {AttackType, ArmorType, DommageType} from '../damage';
+import {AttackType, ArmorType} from '../damage';
 
 import {Unit, UnitType} from './core';
 

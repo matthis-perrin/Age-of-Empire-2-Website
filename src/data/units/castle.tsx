@@ -1,49 +1,10 @@
 /* eslint-disable no-magic-numbers */
-import {
-  allCivilizations,
-  allCivilizationsWithout,
-  Ethiopians,
-  Huns,
-  Malay,
-  Mayans,
-  Bulgarians,
-  Tatars,
-  Turks,
-  Aztecs,
-  Berbers,
-  Italians,
-  Malians,
-  Mongols,
-  Saracens,
-  Vikings,
-  onlyCivilizations,
-  Incas,
-  Goths,
-  Britons,
-  Burmese,
-  Franks,
-  Indians,
-  Japanese,
-  Koreans,
-  Magyars,
-  Portuguese,
-  Teutons,
-  Vietnamese,
-  Byzantines,
-  Chinese,
-  Celts,
-  Cumans,
-  Slavs,
-  Lithuanians,
-  Spanish,
-} from '../civilizations';
+import {allCivilizations} from '../civilizations';
 import {Age} from '../age';
-import {Barrack, Castle, SiegeWorkshop, Monastery} from '../buildings';
-import {ArmorType, AttackType, DommageType} from '../damage';
-import {InterpolationVariableType} from '../core';
+import {Castle} from '../buildings';
+import {ArmorType, AttackType} from '../damage';
 
-import {Unit, UnitType, UnitAbility} from './core';
-import {BatteringRam} from './siege_workshop';
+import {Unit, UnitType} from './core';
 
 export const Petard: Unit = {
   id: 'petard',

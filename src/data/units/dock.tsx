@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers */
 import {
   allCivilizations,
   allCivilizationsWithout,
@@ -33,8 +34,8 @@ import {
   Tatars,
 } from '../civilizations';
 import {Age} from '../age';
-import {Market, Dock, BuildingType} from '../buildings';
-import {ArmorType, AttackType, DommageType} from '../damage';
+import {Dock} from '../buildings';
+import {ArmorType, AttackType} from '../damage';
 
 import {Unit, UnitAbility, UnitType} from './core';
 

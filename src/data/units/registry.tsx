@@ -103,6 +103,4 @@ export const unitRegistry: UnitInfo[] = [
   StableUnits.EliteSteppeLancer,
 
   TownCenterUnits.Villager,
-].map(u => {
-  return {...u, searchName: u.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '')};
-});
+].map(u => ({...u, searchName: u.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '')}));

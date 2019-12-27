@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import Fuse from 'fuse.js';
 
 import {Palette} from '../theme';
-import {SearchInput} from './search_input';
 import {Unit} from '../../data/units/core';
 import {unitRegistry, UnitInfo} from '../../data/units/registry';
+
+import {SearchInput} from './search_input';
 import {SearchResults} from './search_results';
 
 const FuseSearch = new Fuse(unitRegistry, {
@@ -32,7 +33,7 @@ export function Search(): JSX.Element {
   const [selectedIndex, setSelectedIndex] = React.useState<number | undefined>(undefined);
   const [searchResults, setSearchResults] = React.useState<UnitInfo[] | undefined>(undefined);
 
-  console.log(selectedIndex);
+  const hasBackdrop = searchResults !== undefined && searchResults.length > 0;
 
   function handleSearchChange(newValue: string): void {
     if (newValue.length === 0) {
@@ -58,7 +59,7 @@ export function Search(): JSX.Element {
     }
   }
 
-  function handleCancel() {
+  function handleCancel(): void {
     setSearchValue('');
     setSearchResults(undefined);
     setSelectedIndex(undefined);
@@ -71,7 +72,7 @@ export function Search(): JSX.Element {
 
   return (
     <div onKeyDown={handleKeyDown}>
-      <Backdrop onClick={handleCancel} />
+      <Backdrop style={{display: hasBackdrop ? 'block' : 'none'}} onClick={handleCancel} />
       <InputWrapper>
         <SearchInput
           value={searchValue}

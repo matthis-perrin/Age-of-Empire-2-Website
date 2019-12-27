@@ -1,6 +1,6 @@
 import {CivilizationRange} from '../civilizations';
 import {Age} from '../age';
-import {Building, Monastery, SiegeWorkshop} from '../buildings';
+import {Building} from '../buildings';
 import {Cost} from '../resource';
 import {Attack, Armor} from '../damage';
 import {InterpolationString} from '../core';

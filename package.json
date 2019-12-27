@@ -32,7 +32,7 @@
   "scripts": {
     "// DEV": "",
     "start": "react-scripts start",
-    "lint": "eslint --ext=tsx src",
+    "lint": "eslint --ext=tsx --fix src",
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "// DEPLOYMENT": "",
     "build": "react-scripts build",

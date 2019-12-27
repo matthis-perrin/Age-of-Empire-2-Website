@@ -1,6 +1,5 @@
 /* eslint-disable no-magic-numbers */
 import {
-  allCivilizations,
   allCivilizationsWithout,
   Persians,
   Ethiopians,
@@ -13,14 +12,12 @@ import {
   Turks,
   Aztecs,
   Berbers,
-  Italians,
   Malians,
   Mongols,
   Saracens,
   Vikings,
   onlyCivilizations,
   Incas,
-  Goths,
   Indians,
   Byzantines,
   Celts,
@@ -38,8 +35,9 @@ import {
   Portuguese,
 } from '../civilizations';
 import {Age} from '../age';
-import {Barrack, Castle, Stable} from '../buildings';
-import {ArmorType, AttackType, DommageType} from '../damage';
+import {Castle, Stable} from '../buildings';
+import {ArmorType, AttackType} from '../damage';
+
 import {Unit, UnitType} from './core';
 
 export const ScoutCavalryDarkAge: Unit = {

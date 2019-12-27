@@ -38,8 +38,8 @@ import {
   Spanish,
 } from '../civilizations';
 import {Age} from '../age';
-import {Barrack, Castle, SiegeWorkshop} from '../buildings';
-import {ArmorType, AttackType, DommageType} from '../damage';
+import {SiegeWorkshop} from '../buildings';
+import {ArmorType, AttackType} from '../damage';
 import {InterpolationVariableType} from '../core';
 
 import {Unit, UnitType, UnitAbility} from './core';

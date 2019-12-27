@@ -2,7 +2,7 @@
 import {Age} from './age';
 import {Cost} from './resource';
 import {Civilization, Cumans} from './civilizations';
-import {ArmorType, RangeAttack, Armor, AttackType, DommageType} from './damage';
+import {ArmorType, RangeAttack, Armor, AttackType} from './damage';
 
 export enum BuildingType {
   Economic,
