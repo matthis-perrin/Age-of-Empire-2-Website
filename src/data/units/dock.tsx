@@ -275,7 +275,7 @@ export const FastFireShip: Unit = {
   id: 'fast-fire-ship',
   name: "Navire d'incendie rapide",
   type: [UnitType.NavalVessel],
-  wikiUrl: 'https://ageofempires.fandom.com/wiki/Fire_Ship_(Age_of_Empires_II)',
+  wikiUrl: 'https://ageofempires.fandom.com/wiki/Fast_Fire_Ship',
   civilizations: allCivilizationsWithout([
     Burmese,
     Celts,

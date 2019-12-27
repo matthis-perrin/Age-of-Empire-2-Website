@@ -40,9 +40,9 @@ import {ArmorType, AttackType} from '../damage';
 
 import {Unit, UnitType} from './core';
 
-export const ScoutCavalryDarkAge: Unit = {
+export const ScoutCavalry: Unit = {
   id: 'scout-cavalry-dark-age',
-  name: "Cavalerie d'éclairage (Age Sombre)",
+  name: "Cavalerie d'éclairage",
   type: [UnitType.Cavalry],
   wikiUrl: 'https://ageofempires.fandom.com/wiki/Scout_Cavalry_(Age_of_Empires_II)',
   civilizations: allCivilizationsWithout([Aztecs, Incas, Mayans]),
@@ -64,7 +64,7 @@ export const ScoutCavalryDarkAge: Unit = {
 };
 
 export const ScoutCavalryFeudalAge: Unit = {
-  ...ScoutCavalryDarkAge,
+  ...ScoutCavalry,
   id: 'scout-cavalry-feudal-age',
   name: "Cavalerie d'éclairage (Age Féodal)",
   age: Age.FeudalAge,
@@ -94,9 +94,9 @@ export const ScoutCavalryImperialAge: Unit = {
   lineOfSight: 10,
 };
 
-export const LightCavalryCastleAge: Unit = {
-  id: 'light-cavalry-castle-age',
-  name: 'Cavalerie légère (Age Chateaux)',
+export const LightCavalry: Unit = {
+  id: 'light-cavalry',
+  name: 'Cavalerie légère',
   type: [UnitType.Cavalry],
   wikiUrl: 'https://ageofempires.fandom.com/wiki/Light_Cavalry_(Age_of_Empires_II)',
   civilizations: allCivilizationsWithout([Aztecs, Incas, Mayans, Teutons]),
@@ -118,7 +118,7 @@ export const LightCavalryCastleAge: Unit = {
 };
 
 export const LightCavalryImperialAge: Unit = {
-  ...LightCavalryCastleAge,
+  ...LightCavalry,
   id: 'light-cavalry-imperial-age',
   name: 'Cavalerie légère (Age Impérial)',
   age: Age.ImperialAge,

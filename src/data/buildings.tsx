@@ -3,6 +3,7 @@ import {Age} from './age';
 import {Cost} from './resource';
 import {Civilization, Cumans} from './civilizations';
 import {ArmorType, RangeAttack, Armor, AttackType} from './damage';
+import {Ageable, AllAge, makeAgeable} from './core';
 
 export enum BuildingType {
   Economic,
@@ -33,34 +34,6 @@ export enum BuildingAbility {
 export interface Overridable<T> {
   default: T;
   overrides?: Map<Civilization, T>;
-}
-
-export interface Ageable<T> {
-  [Age.DarkAge]?: T;
-  [Age.FeudalAge]?: T;
-  [Age.CastleAge]?: T;
-  [Age.ImperialAge]?: T;
-}
-function AllAge<T>(value: T): Ageable<T> {
-  return {
-    [Age.DarkAge]: value,
-    [Age.FeudalAge]: value,
-    [Age.CastleAge]: value,
-    [Age.ImperialAge]: value,
-  };
-}
-function makeAgeable<T>(
-  dark: T | undefined,
-  feudal: T | undefined,
-  castle: T | undefined,
-  imperial: T | undefined
-): Ageable<T> {
-  return {
-    [Age.DarkAge]: dark,
-    [Age.FeudalAge]: feudal,
-    [Age.CastleAge]: castle,
-    [Age.ImperialAge]: imperial,
-  };
 }
 
 export interface Building {
