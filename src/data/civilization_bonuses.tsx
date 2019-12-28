@@ -58,12 +58,12 @@ import {Monk} from './units/monastery';
 import {Villager} from './units/town_center';
 import {Mangonel, BombardCanon, Scorpion, BatteringRam} from './units/siege_workshop';
 
-enum CivilizationBonusConstraint {
+export enum CivilizationBonusConstraint {
   AllMonasteryTechResearched,
   AtLeast5RelicGarrisoned,
 }
 
-interface CivilizationBonus {
+export interface CivilizationBonus {
   description: InterpolationString;
   teamBonus: boolean;
   units(unit: Unit): boolean;
@@ -480,7 +480,7 @@ export const JapaneseBonuses: CivilizationBonus[] = [
   },
 ];
 
-export const Khmer: CivilizationBonus[] = [
+export const KhmerBonuses: CivilizationBonus[] = [
   {
     description: {
       template: 'Les %1 se déplacent 15% plus vite.',
@@ -655,7 +655,7 @@ export const PersiansBonuses: CivilizationBonus[] = [
   },
 ];
 
-export const Portuguese: CivilizationBonus[] = [
+export const PortugueseBonuses: CivilizationBonus[] = [
   {
     description: {
       template: "Toutes les unités coutent 15% de moins d'or.",
@@ -729,7 +729,7 @@ export const SaracensBonuses: CivilizationBonus[] = [
   },
 ];
 
-export const SlavesBonuses: CivilizationBonus[] = [
+export const SlavsBonuses: CivilizationBonus[] = [
   {
     description: {
       template: 'Les unité de %1 coutent 15% de moins.',
