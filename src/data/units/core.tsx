@@ -39,6 +39,7 @@ export interface Unit {
   type: UnitType[];
   wikiUrl: string;
   civilizations: CivilizationRange;
+  sharedUnit?: boolean;
   age: Age;
   abilities: UnitAbility[];
   training: UnitTraining[];

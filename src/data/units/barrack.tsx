@@ -294,7 +294,6 @@ export const Halberdier: Unit = {
   comments: [],
 };
 
-// TODO - Handle carac change across ages for the next 3
 export const EagleScout: Unit = {
   id: 'eagle-scout',
   name: 'Éclaireur aigle',
@@ -303,7 +302,7 @@ export const EagleScout: Unit = {
   civilizations: onlyCivilizations([Aztecs, Incas, Mayans]),
   age: Age.FeudalAge,
   abilities: [],
-  training: [{building: Barrack, time: 35}],
+  training: [{building: Barrack, time: 60}],
   cost: {
     food: 20,
     gold: 50,
@@ -315,9 +314,6 @@ export const EagleScout: Unit = {
     bonuses: new Map([
       [ArmorType.Monk, 8],
       [ArmorType.SiegeWeapon, 3],
-      [ArmorType.Cavalry, 2],
-      [ArmorType.Camel, 1],
-      [ArmorType.Ship, 1],
     ]),
     rateOfFire: 2.03,
   },
@@ -326,6 +322,36 @@ export const EagleScout: Unit = {
   lineOfSight: 5,
   comments: [],
 };
+export const EagleScoutFeudalAge: Unit = {
+  ...EagleScout,
+  id: 'eagle-scout-feudal-age',
+  name: 'Éclaireur aigle (Age Féodal)',
+  lineOfSight: 6,
+};
+
+//
+
+export const EagleScoutCastleAge: Unit = {
+  ...EagleScoutFeudalAge,
+  id: 'eagle-scout-castle-age',
+  name: 'Éclaireur aigle (Age Chateaux)',
+  age: Age.CastleAge,
+  training: [{building: Barrack, time: 35}],
+  attack: {
+    type: AttackType.CaC,
+    dommage: {melee: 7, pierce: 0},
+    bonuses: new Map([
+      [ArmorType.Monk, 8],
+      [ArmorType.SiegeWeapon, 3],
+      [ArmorType.Cavalry, 2],
+      [ArmorType.Camel, 1],
+      [ArmorType.Ship, 1],
+    ]),
+    rateOfFire: 2.03,
+  },
+};
+
+//
 
 export const EagleWarrior: Unit = {
   id: 'eagle-warrior',
@@ -399,6 +425,7 @@ export const Condottiero: Unit = {
   type: [UnitType.Infantry],
   wikiUrl: 'https://ageofempires.fandom.com/wiki/Condottiero',
   civilizations: onlyCivilizations([Italians]),
+  sharedUnit: true,
   age: Age.ImperialAge,
   abilities: [],
   training: [{building: Barrack, time: 18}],

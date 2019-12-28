@@ -155,7 +155,7 @@ export const Archery: Building = {
   },
   constructionTime: {default: 50},
   size: [3, 3],
-  health: makeAgeable(undefined, 1500, 1800, 2100), // TODO - Verify Feudal value for Cumans
+  health: makeAgeable(undefined, 1500, 1800, 2100),
   garrison: 10,
   armor: makeAgeable(
     undefined,
@@ -203,7 +203,7 @@ export const SiegeWorkshop: Building = {
   garrison: 10,
   armor: makeAgeable(
     undefined,
-    {melee: 1, pierce: 8, types: [ArmorType.Building, ArmorType.StandardBuilding]}, // TODO - Verify value for Cumans
+    {melee: 1, pierce: 8, types: [ArmorType.Building, ArmorType.StandardBuilding]},
     {melee: 2, pierce: 9, types: [ArmorType.Building, ArmorType.StandardBuilding]},
     {melee: 3, pierce: 10, types: [ArmorType.Building, ArmorType.StandardBuilding]}
   ),
