@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {Civilization} from '../data/civilizations';
-import {getStrengthLabel} from '../data/civilization_strength';
+import {Civilization} from '../data/civilizations/registry';
+import {getStrengthLabel} from '../data/civilizations/strength';
 
 import {Palette} from './theme';
 

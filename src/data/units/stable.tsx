@@ -33,8 +33,8 @@ import {
   Britons,
   Japanese,
   Portuguese,
-} from '../civilizations';
-import {Age} from '../age';
+} from '../civilizations/registry';
+import {Age} from '../ages/core';
 import {Castle, Stable} from '../buildings';
 import {ArmorType, AttackType} from '../damage';
 

@@ -32,8 +32,8 @@ import {
   Ethiopians,
   Magyars,
   Mongols,
-} from '../civilizations';
-import {Age} from '../age';
+} from '../civilizations/registry';
+import {Age} from '../ages/core';
 import {Archery} from '../buildings';
 import {AttackType, ArmorType} from '../damage';
 

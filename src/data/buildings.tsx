@@ -1,7 +1,7 @@
 /* eslint-disable no-magic-numbers */
-import {Age} from './age';
+import {Age} from './ages/core';
 import {Cost} from './resource';
-import {Civilization, Cumans} from './civilizations';
+import {Civilization, Cumans} from './civilizations/registry';
 import {ArmorType, RangeAttack, Armor, AttackType} from './damage';
 import {Ageable, AllAge, makeAgeable} from './core';
 
@@ -10,6 +10,7 @@ export enum BuildingType {
   Military,
   DefensiveStructure,
   Special,
+  Research,
 }
 
 export enum BuildingAbility {
@@ -29,6 +30,16 @@ export enum BuildingAbility {
   TradeWithTradeCarts,
   ResearchTradeImprovements,
   BuildAndImproveShips,
+  ImproveBuildingsAndRangeUnits,
+  DropOffWood,
+  DropOffFood,
+  DropOffGoldAndStone,
+  ResearchLoggingTechnologies,
+  UpgradeAndQueueFarms,
+  ResearchMiningTechnologies,
+  ImproveInfantry,
+  ImproveArchers,
+  ImproveCavalry,
 }
 
 export interface Overridable<T> {
@@ -284,6 +295,120 @@ export const Market: Building = {
   },
   constructionTime: {default: 60},
   size: [4, 4],
+  health: makeAgeable(undefined, 1800, 2100, 2100),
+  garrison: 0,
+  armor: makeAgeable(
+    undefined,
+    {melee: 1, pierce: 8, types: [ArmorType.Building, ArmorType.StandardBuilding]},
+    {melee: 2, pierce: 9, types: [ArmorType.Building, ArmorType.StandardBuilding]},
+    {melee: 3, pierce: 10, types: [ArmorType.Building, ArmorType.StandardBuilding]}
+  ),
+  lineOfSight: 6,
+};
+
+export const University: Building = {
+  id: 'university',
+  name: 'Université',
+  types: [BuildingType.Research],
+  age: {default: Age.CastleAge},
+  use: [BuildingAbility.ImproveBuildingsAndRangeUnits],
+  cost: {
+    wood: 200,
+  },
+  constructionTime: {default: 60},
+  size: [4, 4],
+  health: AllAge(2100),
+  garrison: 0,
+  armor: makeAgeable(
+    undefined,
+    undefined,
+    {melee: 2, pierce: 9, types: [ArmorType.Building, ArmorType.StandardBuilding]},
+    {melee: 3, pierce: 10, types: [ArmorType.Building, ArmorType.StandardBuilding]}
+  ),
+  lineOfSight: 6,
+};
+
+export const LumberCamp: Building = {
+  id: 'lumber-camp',
+  name: 'Camp de bûcheron',
+  types: [BuildingType.Economic],
+  age: {default: Age.DarkAge},
+  use: [BuildingAbility.DropOffWood, BuildingAbility.ResearchLoggingTechnologies],
+  cost: {
+    wood: 100,
+  },
+  constructionTime: {default: 35},
+  size: [2, 2],
+  health: makeAgeable(600, 800, 1000, 1000),
+  garrison: 0,
+  armor: makeAgeable(
+    {melee: 0, pierce: 7, types: [ArmorType.Building, ArmorType.StandardBuilding]},
+    {melee: 1, pierce: 8, types: [ArmorType.Building, ArmorType.StandardBuilding]},
+    {melee: 2, pierce: 9, types: [ArmorType.Building, ArmorType.StandardBuilding]},
+    {melee: 3, pierce: 10, types: [ArmorType.Building, ArmorType.StandardBuilding]}
+  ),
+  lineOfSight: 6,
+};
+
+export const MiningCamp: Building = {
+  id: 'mining-camp',
+  name: 'Camp de mineurs',
+  types: [BuildingType.Economic],
+  age: {default: Age.DarkAge},
+  use: [BuildingAbility.DropOffGoldAndStone, BuildingAbility.ResearchMiningTechnologies],
+  cost: {
+    wood: 100,
+  },
+  constructionTime: {default: 35},
+  size: [2, 2],
+  health: makeAgeable(600, 800, 1000, 1000),
+  garrison: 0,
+  armor: makeAgeable(
+    {melee: 0, pierce: 7, types: [ArmorType.Building, ArmorType.StandardBuilding]},
+    {melee: 1, pierce: 8, types: [ArmorType.Building, ArmorType.StandardBuilding]},
+    {melee: 2, pierce: 9, types: [ArmorType.Building, ArmorType.StandardBuilding]},
+    {melee: 3, pierce: 10, types: [ArmorType.Building, ArmorType.StandardBuilding]}
+  ),
+  lineOfSight: 6,
+};
+
+export const Mill: Building = {
+  id: 'mill',
+  name: 'Moulin',
+  types: [BuildingType.Economic],
+  age: {default: Age.DarkAge},
+  use: [BuildingAbility.DropOffFood, BuildingAbility.UpgradeAndQueueFarms],
+  cost: {
+    wood: 100,
+  },
+  constructionTime: {default: 35},
+  size: [2, 2],
+  health: makeAgeable(600, 800, 1000, 1000),
+  garrison: 0,
+  armor: makeAgeable(
+    {melee: 0, pierce: 7, types: [ArmorType.Building, ArmorType.StandardBuilding]},
+    {melee: 1, pierce: 8, types: [ArmorType.Building, ArmorType.StandardBuilding]},
+    {melee: 2, pierce: 9, types: [ArmorType.Building, ArmorType.StandardBuilding]},
+    {melee: 3, pierce: 10, types: [ArmorType.Building, ArmorType.StandardBuilding]}
+  ),
+  lineOfSight: 6,
+};
+
+export const Blacksmith: Building = {
+  id: 'blacksmith',
+  name: 'Forge',
+  types: [BuildingType.Research],
+  age: {default: Age.FeudalAge},
+  use: [
+    BuildingAbility.ImproveInfantry,
+    BuildingAbility.ImproveArchers,
+    BuildingAbility.ImproveCavalry,
+  ],
+  cost: {
+    wood: 150,
+  },
+  constructionTime: {default: 40},
+  size: [3, 3],
   health: makeAgeable(undefined, 1800, 2100, 2100),
   garrison: 0,
   armor: makeAgeable(

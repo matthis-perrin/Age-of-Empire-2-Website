@@ -1,6 +1,6 @@
 /* eslint-disable no-magic-numbers */
-import {allCivilizations, onlyCivilizations, Spanish} from '../civilizations';
-import {Age} from '../age';
+import {allCivilizations, onlyCivilizations, Spanish} from '../civilizations/registry';
+import {Age} from '../ages/core';
 import {Monastery} from '../buildings';
 import {ArmorType, AttackType} from '../damage';
 import {InterpolationVariableType} from '../core';

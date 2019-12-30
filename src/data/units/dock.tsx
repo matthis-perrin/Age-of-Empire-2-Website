@@ -32,8 +32,8 @@ import {
   Persians,
   Spanish,
   Tatars,
-} from '../civilizations';
-import {Age} from '../age';
+} from '../civilizations/registry';
+import {Age} from '../ages/core';
 import {Dock} from '../buildings';
 import {ArmorType, AttackType} from '../damage';
 

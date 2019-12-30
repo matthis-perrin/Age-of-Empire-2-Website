@@ -1,13 +1,14 @@
 import {Unit, UnitType} from '../units/core';
 import * as ArcheryUnits from '../units/archery';
-import {Archery, Barrack, SiegeWorkshop, Stable, Monastery} from '../buildings';
+import {Archery, Barrack, SiegeWorkshop, Stable, Monastery, Castle} from '../buildings';
 import * as StableUnits from '../units/stable';
 import * as MonasteryUnits from '../units/monastery';
 import * as BarrackUnits from '../units/barrack';
 import * as DockUnits from '../units/dock';
 import * as SiegeWorkshopUnits from '../units/siege_workshop';
 import {Villager} from '../units/town_center';
-import {ArmorType} from '../damage';
+import {ArmorType, AttackType} from '../damage';
+import {Petard} from '../units/castle';
 
 export function isSiegeUnit(unit: Unit): boolean {
   return unit.type.indexOf(UnitType.SiegeUnit) !== -1;
@@ -28,6 +29,16 @@ export function isMangonel(unit: Unit): boolean {
 export function isScorpionLine(unit: Unit): boolean {
   return (
     [SiegeWorkshopUnits.Scorpion.id, SiegeWorkshopUnits.HeavyScorpion.id].indexOf(unit.id) !== -1
+  );
+}
+
+export function isBatteringRamLine(unit: Unit): boolean {
+  return (
+    [
+      SiegeWorkshopUnits.BatteringRam.id,
+      SiegeWorkshopUnits.CappedRam.id,
+      SiegeWorkshopUnits.SiegeRam.id,
+    ].indexOf(unit.id) !== -1
   );
 }
 
@@ -56,6 +67,10 @@ export function isDemolitionShipLine(unit: Unit): boolean {
       DockUnits.HeavyDemolitionShip.id,
     ].indexOf(unit.id) !== -1
   );
+}
+
+export function isLongboatLine(unit: Unit): boolean {
+  return [DockUnits.Longboat.id, DockUnits.EliteLongboat.id].indexOf(unit.id) !== -1;
 }
 
 export function isFishingShip(unit: Unit): boolean {
@@ -197,6 +212,68 @@ export function isArcher(unit: Unit): boolean {
   return unit.type.indexOf(UnitType.Archer) !== -1;
 }
 
+export function isWarWagonLine(unit: Unit): boolean {
+  throw new Error('Not implemented yet');
+}
+
+export function isGenoeseLine(unit: Unit): boolean {
+  throw new Error('Not implemented yet');
+}
+
+export function isArcherLine(unit: Unit): boolean {
+  return (
+    [ArcheryUnits.Archer.id, ArcheryUnits.Crossbowman.id, ArcheryUnits.Arbalester.id].indexOf(
+      unit.id
+    ) !== -1
+  );
+}
+
+export function isMountedArcher(unit: Unit): boolean {
+  return (
+    isCavalryArcherLine(unit) ||
+    isMangudaiLine(unit) ||
+    isElephantLine(unit) ||
+    isCamelArcherLine(unit) ||
+    isKipchakLine(unit)
+  );
+}
+
+export function isLongbowLine(unit: Unit): boolean {
+  throw new Error('Not implemented yet');
+}
+
+export function isMangudaiLine(unit: Unit): boolean {
+  throw new Error('Not implemented yet');
+}
+
+export function isPlumedArcherLine(unit: Unit): boolean {
+  throw new Error('Not implemented yet');
+}
+
+export function isRattanLine(unit: Unit): boolean {
+  throw new Error('Not implemented yet');
+}
+
+export function isChuKoNuLine(unit: Unit): boolean {
+  throw new Error('Not implemented yet');
+}
+
+export function isCamelArcherLine(unit: Unit): boolean {
+  throw new Error('Not implemented yet');
+}
+
+export function isKipchakLine(unit: Unit): boolean {
+  throw new Error('Not implemented yet');
+}
+
+export function isSlinger(unit: Unit): boolean {
+  return unit.id === ArcheryUnits.Slinger.id;
+}
+
+export function isGenitourLine(unit: Unit): boolean {
+  return [ArcheryUnits.Genitour.id, ArcheryUnits.EliteGenitour.id].indexOf(unit.id) !== -1;
+}
+
 export function isSkirmisherLine(unit: Unit): boolean {
   return (
     [
@@ -225,10 +302,30 @@ export function isGunpowderUnit(unit: Unit): boolean {
   return unit.type.indexOf(UnitType.GunpowderUnit) !== -1;
 }
 
+export function isPetard(unit: Unit): boolean {
+  return unit.id === Petard.id;
+}
+
+export function isInCastle(unit: Unit): boolean {
+  return unit.training.map(t => t.building.id).indexOf(Castle.id) !== -1;
+}
+
+export function isRange(unit: Unit): boolean {
+  return unit.attack.type === AttackType.Range;
+}
+
+export function isMounted(unit: Unit): boolean {
+  return unit.armor.types.indexOf(ArmorType.Cavalry) !== -1;
+}
+
 export function isMilitary(unit: Unit): boolean {
   return unit.type.indexOf(UnitType.Civilian) === -1;
 }
 
 export function allUnits(): boolean {
   return true;
+}
+
+export function noUnits(): boolean {
+  return false;
 }

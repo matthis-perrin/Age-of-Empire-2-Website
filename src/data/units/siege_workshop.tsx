@@ -36,8 +36,8 @@ import {
   Slavs,
   Lithuanians,
   Spanish,
-} from '../civilizations';
-import {Age} from '../age';
+} from '../civilizations/registry';
+import {Age} from '../ages/core';
 import {SiegeWorkshop} from '../buildings';
 import {ArmorType, AttackType} from '../damage';
 import {InterpolationVariableType} from '../core';

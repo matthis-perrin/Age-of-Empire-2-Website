@@ -104,14 +104,15 @@ import vikings from '../images/civilizations/vikings.png';
 import vikingsHover from '../images/civilizations/vikings_hover.png';
 import vikingsPressed from '../images/civilizations/vikings_pressed.png';
 
-import {CivilizationStrength} from './civilization_strength';
-import * as CivilizationBonuses from './civilization_bonuses';
+import {CivilizationStrength} from './strength';
+import * as CivilizationBonuses from './bonuses';
+import { Bonus } from '../core';
 
 export interface Civilization {
   id: string;
   name: string;
   strengths: CivilizationStrength[];
-  bonuses: CivilizationBonuses.CivilizationBonus[];
+  bonuses: Bonus[];
   baseImg: string;
   hoverImg: string;
   pressedImg: string;

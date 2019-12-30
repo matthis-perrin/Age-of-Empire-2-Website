@@ -2,7 +2,7 @@ import {Cost} from './resource';
 import {Technology} from './technologies/core';
 import {ArmorType} from './damage';
 import {UnitType, Unit} from './units/core';
-import {Age} from './age';
+import {Age} from './ages/core';
 import {Building} from './buildings';
 
 export interface InterpolationString {
@@ -94,4 +94,38 @@ export function makeAgeable<T>(
     [Age.CastleAge]: castle,
     [Age.ImperialAge]: imperial,
   };
+}
+
+export enum BonusConstraint {
+  AllMonasteryTechResearched,
+  AtLeast5RelicGarrisoned,
+}
+
+export interface Bonus {
+  description: InterpolationString;
+  effects: {
+    teamBonus: boolean;
+    units(unit: Unit): boolean;
+    extraConstraint?: BonusConstraint;
+    rangeBonus?: Ageable<number>;
+    trainingSpeedBonus?: Ageable<number>;
+    costBonus?: Ageable<number>;
+    goldCostBonus?: Ageable<number>;
+    woodCostBonus?: Ageable<number>;
+    rateOfFireBonus?: Ageable<number>;
+    speedBonus?: Ageable<number>;
+    healthBonus?: Ageable<number>;
+    healthFixedBonus?: Ageable<number>;
+    lineOfSightBonus?: Ageable<number>;
+    lineOfSightPercentBonus?: Ageable<number>;
+    attackBonus?: Ageable<number>;
+    attackBonusBonus?: Ageable<[ArmorType, number]>;
+    armorBonus?: Ageable<{melee: number; pierce: number}>;
+    garrisonBonus?: Ageable<number>;
+    healingRangeBonus?: Ageable<number>;
+    minimumRangeBonus?: Ageable<number>;
+    conversionRangeBonus?: Ageable<number>;
+    fullAccuracyBonus?: Ageable<boolean>;
+    ageAvailability?: Age;
+  }[];
 }

@@ -1,5 +1,5 @@
-import {allCivilizations} from '../civilizations';
-import {Age} from '../age';
+import {allCivilizations} from '../civilizations/registry';
+import {Age} from '../ages/core';
 import {Market} from '../buildings';
 import {AttackType} from '../damage';
 

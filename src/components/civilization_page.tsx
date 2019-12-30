@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import {every} from 'lodash-es';
 
-import {civilizationRegistry} from '../data/civilizations';
-import {CivilizationStrength} from '../data/civilization_strength';
+import {civilizationRegistry} from '../data/civilizations/registry';
+import {CivilizationStrength} from '../data/civilizations/strength';
 
 import {CivilizationTile} from './civilization_tile';
 import {CivilizationStrengthFilter} from './civilization_filters';

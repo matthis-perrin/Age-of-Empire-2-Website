@@ -1,5 +1,5 @@
-import {CivilizationRange} from '../civilizations';
-import {Age} from '../age';
+import {CivilizationRange} from '../civilizations/registry';
+import {Age} from '../ages/core';
 import {Building} from '../buildings';
 import {Cost} from '../resource';
 import {Attack, Armor} from '../damage';

@@ -1,6 +1,6 @@
 /* eslint-disable no-magic-numbers */
-import {allCivilizations} from '../civilizations';
-import {Age} from '../age';
+import {allCivilizations} from '../civilizations/registry';
+import {Age} from '../ages/core';
 import {Castle} from '../buildings';
 import {ArmorType, AttackType} from '../damage';
 

@@ -1,9 +1,17 @@
 /* eslint-disable no-magic-numbers */
-import {InterpolationString, InterpolationVariableType, makeAgeable, Ageable, AllAge} from './core';
-import {Unit, UnitType} from './units/core';
-import {Archery, SiegeWorkshop, Barrack, Stable, Monastery} from './buildings';
-import {Skirmisher, CavalryArcher, HandCannoneer, Archer} from './units/archery';
-import {Age} from './age';
+import {
+  InterpolationString,
+  InterpolationVariableType,
+  makeAgeable,
+  Ageable,
+  AllAge,
+  Bonus,
+  BonusConstraint,
+} from '../core';
+import {Unit, UnitType} from '../units/core';
+import {Archery, SiegeWorkshop, Barrack, Stable, Monastery} from '../buildings';
+import {Skirmisher, CavalryArcher, HandCannoneer} from '../units/archery';
+import {Age} from '../ages/core';
 import {
   CamelRider,
   Knight,
@@ -11,8 +19,8 @@ import {
   Hussar,
   ScoutCavalry,
   BattleElephant,
-} from './units/stable';
-import {Spearman} from './units/barrack';
+} from '../units/stable';
+import {Spearman} from '../units/barrack';
 import {
   isBombardCanon,
   isByFootArcher,
@@ -51,51 +59,26 @@ import {
   isScorpionLine,
   isBatteringRam,
   isInMonastery,
-} from './lib/unit_groups';
-import {FireGalley, DemolitionShip, FishingShip, Galley, TransportShip} from './units/dock';
-import {ArmorType} from './damage';
-import {Monk} from './units/monastery';
-import {Villager} from './units/town_center';
-import {Mangonel, BombardCanon, Scorpion, BatteringRam} from './units/siege_workshop';
+} from '../lib/unit_groups';
+import {FireGalley, DemolitionShip, FishingShip, Galley, TransportShip} from '../units/dock';
+import {ArmorType} from '../damage';
+import {Monk} from '../units/monastery';
+import {Villager} from '../units/town_center';
+import {Mangonel, BombardCanon, Scorpion, BatteringRam} from '../units/siege_workshop';
 
-export enum CivilizationBonusConstraint {
-  AllMonasteryTechResearched,
-  AtLeast5RelicGarrisoned,
-}
-
-export interface CivilizationBonus {
-  description: InterpolationString;
-  teamBonus: boolean;
-  units(unit: Unit): boolean;
-  extraConstraint?: CivilizationBonusConstraint;
-  rangeBonus?: Ageable<number>;
-  trainingSpeedBonus?: Ageable<number>;
-  costBonus?: Ageable<number>;
-  goldCostBonus?: Ageable<number>;
-  rateOfFireBonus?: Ageable<number>;
-  speedBonus?: Ageable<number>;
-  healthBonus?: Ageable<number>;
-  healthFixedBonus?: Ageable<number>;
-  lineOfSightBonus?: Ageable<number>;
-  lineOfSightPercentBonus?: Ageable<number>;
-  attackBonus?: Ageable<number>;
-  attackBonusBonus?: Ageable<[ArmorType, number]>;
-  armorBonus?: Ageable<{melee: number; pierce: number}>;
-  garrisonBonus?: Ageable<number>;
-  healingRangeBonus?: Ageable<number>;
-  minimumRangeBonus?: Ageable<number>;
-  ageAvailability?: Age;
-}
-
-export const AztecsBonuses: CivilizationBonus[] = [
+export const AztecsBonuses: Bonus[] = [
   {
     description: {
       template: 'Les unités militaires sont créées 15% plus vite.',
       variables: [],
     },
-    teamBonus: false,
-    units: isMilitary,
-    trainingSpeedBonus: AllAge(0.15),
+    effects: [
+      {
+        teamBonus: false,
+        units: isMilitary,
+        trainingSpeedBonus: AllAge(0.15),
+      },
+    ],
   },
   {
     description: {
@@ -105,22 +88,30 @@ export const AztecsBonuses: CivilizationBonus[] = [
         {type: InterpolationVariableType.Building, building: Monastery},
       ],
     },
-    extraConstraint: CivilizationBonusConstraint.AllMonasteryTechResearched,
-    teamBonus: false,
-    units: isMonk,
-    healthFixedBonus: AllAge(50), // Aztechs have 10 monastery techs
+    effects: [
+      {
+        extraConstraint: BonusConstraint.AllMonasteryTechResearched,
+        teamBonus: false,
+        units: isMonk,
+        healthFixedBonus: AllAge(50), // Aztechs have 10 monastery techs
+      },
+    ],
   },
 ];
 
-export const BerbersBonuses: CivilizationBonus[] = [
+export const BerbersBonuses: Bonus[] = [
   {
     description: {
       template: "L'%1 se déplace 10% plus vite.",
       variables: [{type: InterpolationVariableType.Unit, unit: Villager}],
     },
-    teamBonus: false,
-    units: isVillager,
-    speedBonus: AllAge(0.1),
+    effects: [
+      {
+        teamBonus: false,
+        units: isVillager,
+        speedBonus: AllAge(0.1),
+      },
+    ],
   },
   {
     description: {
@@ -131,22 +122,30 @@ export const BerbersBonuses: CivilizationBonus[] = [
         {type: InterpolationVariableType.Age, age: Age.ImperialAge},
       ],
     },
-    teamBonus: false,
-    units: isInStable,
-    costBonus: makeAgeable(undefined, undefined, 0.15, 0.2),
+    effects: [
+      {
+        teamBonus: false,
+        units: isInStable,
+        costBonus: makeAgeable(undefined, undefined, 0.15, 0.2),
+      },
+    ],
   },
   {
     description: {
       template: 'Les %1 se déplacent 10% plus vite.',
       variables: [{type: InterpolationVariableType.UnitType, unitType: UnitType.Ship}],
     },
-    teamBonus: false,
-    units: isShip,
-    speedBonus: AllAge(0.1),
+    effects: [
+      {
+        teamBonus: false,
+        units: isShip,
+        speedBonus: AllAge(0.1),
+      },
+    ],
   },
 ];
 
-export const BritonsBonuses: CivilizationBonus[] = [
+export const BritonsBonuses: Bonus[] = [
   {
     description: {
       template: 'Les archers à pieds (sauf %1) ont +1 de porté à %2 et +2 à %3.',
@@ -156,24 +155,32 @@ export const BritonsBonuses: CivilizationBonus[] = [
         {type: InterpolationVariableType.Age, age: Age.ImperialAge},
       ],
     },
-    teamBonus: false,
-    units: unit => isByFootArcher(unit) && !isSkirmisherLine(unit),
-    rangeBonus: makeAgeable(undefined, undefined, 1, 2),
+    effects: [
+      {
+        teamBonus: false,
+        units: unit => isByFootArcher(unit) && !isSkirmisherLine(unit),
+        rangeBonus: makeAgeable(undefined, undefined, 1, 2),
+      },
+    ],
   },
   {
     description: {
       template: 'Les %1 fonctionnent 20% plus vite.',
       variables: [{type: InterpolationVariableType.Building, building: Archery}],
     },
-    teamBonus: true,
-    units: isInArchery,
-    trainingSpeedBonus: AllAge(0.2),
+    effects: [
+      {
+        teamBonus: true,
+        units: isInArchery,
+        trainingSpeedBonus: AllAge(0.2),
+      },
+    ],
   },
 ];
 
-export const BulgariansBonuses: CivilizationBonus[] = [];
+export const BulgariansBonuses: Bonus[] = [];
 
-export const BurmeseBonuses: CivilizationBonus[] = [
+export const BurmeseBonuses: Bonus[] = [
   {
     description: {
       template: "L'%1 a +1 d'attaque à %2, +2 à %3 et +3 à %4.",
@@ -184,13 +191,17 @@ export const BurmeseBonuses: CivilizationBonus[] = [
         {type: InterpolationVariableType.Age, age: Age.ImperialAge},
       ],
     },
-    teamBonus: false,
-    units: isInfantry,
-    attackBonus: makeAgeable(undefined, 1, 2, 3),
+    effects: [
+      {
+        teamBonus: false,
+        units: isInfantry,
+        attackBonus: makeAgeable(undefined, 1, 2, 3),
+      },
+    ],
   },
 ];
 
-export const ByzantinesBonuses: CivilizationBonus[] = [
+export const ByzantinesBonuses: Bonus[] = [
   {
     description: {
       template: 'Les %1, %2 et %3 coutent 25% de moins.',
@@ -200,64 +211,88 @@ export const ByzantinesBonuses: CivilizationBonus[] = [
         {type: InterpolationVariableType.Unit, unit: Spearman},
       ],
     },
-    teamBonus: false,
-    units: unit => isCamelRiderLine(unit) || isSkirmisherLine(unit) || isSpearmanLine(unit),
-    costBonus: AllAge(0.25),
+    effects: [
+      {
+        teamBonus: false,
+        units: unit => isCamelRiderLine(unit) || isSkirmisherLine(unit) || isSpearmanLine(unit),
+        costBonus: AllAge(0.25),
+      },
+    ],
   },
   {
     description: {
       template: 'Les %1 attaquent 25% plus vite.',
       variables: [{type: InterpolationVariableType.Unit, unit: FireGalley}],
     },
-    teamBonus: false,
-    units: isFireGalleyLine,
-    rateOfFireBonus: AllAge(0.25),
+    effects: [
+      {
+        teamBonus: false,
+        units: isFireGalleyLine,
+        rateOfFireBonus: AllAge(0.25),
+      },
+    ],
   },
 ];
 
-export const CeltsBonuses: CivilizationBonus[] = [
+export const CeltsBonuses: Bonus[] = [
   {
     description: {
       template: "L'%1 se déplace 15% plus vite.",
       variables: [{type: InterpolationVariableType.UnitType, unitType: UnitType.Infantry}],
     },
-    teamBonus: false,
-    units: isInfantry,
-    speedBonus: AllAge(0.15),
+    effects: [
+      {
+        teamBonus: false,
+        units: isInfantry,
+        speedBonus: AllAge(0.15),
+      },
+    ],
   },
   {
     description: {
       template: 'Les %1 tire 20% plus vite.',
       variables: [{type: InterpolationVariableType.UnitType, unitType: UnitType.SiegeUnit}],
     },
-    teamBonus: false,
-    units: isSiegeUnit,
-    rateOfFireBonus: AllAge(0.25),
+    effects: [
+      {
+        teamBonus: false,
+        units: isSiegeUnit,
+        rateOfFireBonus: AllAge(0.25),
+      },
+    ],
   },
   {
     description: {
       template: 'Les %1 fonctionnent 20% plus vite.',
       variables: [{type: InterpolationVariableType.Building, building: SiegeWorkshop}],
     },
-    teamBonus: true,
-    units: isInSiegeWorkshop,
-    trainingSpeedBonus: AllAge(0.2),
+    effects: [
+      {
+        teamBonus: true,
+        units: isInSiegeWorkshop,
+        trainingSpeedBonus: AllAge(0.2),
+      },
+    ],
   },
 ];
 
-export const ChineseBonuses: CivilizationBonus[] = [
+export const ChineseBonuses: Bonus[] = [
   {
     description: {
       template: 'Les %1 ont +50% PDV.',
       variables: [{type: InterpolationVariableType.Unit, unit: DemolitionShip}],
     },
-    teamBonus: false,
-    units: isDemolitionShipLine,
-    healthBonus: AllAge(0.5),
+    effects: [
+      {
+        teamBonus: false,
+        units: isDemolitionShipLine,
+        healthBonus: AllAge(0.5),
+      },
+    ],
   },
 ];
 
-export const CumansBonuses: CivilizationBonus[] = [
+export const CumansBonuses: Bonus[] = [
   {
     description: {
       template: 'Les %1 et %2 peuvent être construient à %3.',
@@ -267,9 +302,13 @@ export const CumansBonuses: CivilizationBonus[] = [
         {type: InterpolationVariableType.Age, age: Age.FeudalAge},
       ],
     },
-    teamBonus: false,
-    units: isBatteringRam,
-    ageAvailability: Age.FeudalAge,
+    effects: [
+      {
+        teamBonus: false,
+        units: isBatteringRam,
+        ageAvailability: Age.FeudalAge,
+      },
+    ],
   },
   {
     description: {
@@ -279,46 +318,62 @@ export const CumansBonuses: CivilizationBonus[] = [
         {type: InterpolationVariableType.Age, age: Age.FeudalAge},
       ],
     },
-    teamBonus: false,
-    units: isCavalry,
-    speedBonus: makeAgeable(undefined, 0.1, 0.1, 0.1),
+    effects: [
+      {
+        teamBonus: false,
+        units: isCavalry,
+        speedBonus: makeAgeable(undefined, 0.1, 0.1, 0.1),
+      },
+    ],
   },
 ];
 
-export const EthiopiansBonuses: CivilizationBonus[] = [
+export const EthiopiansBonuses: Bonus[] = [
   {
     description: {
       template: 'Les %1 tirent 15% plus vite.',
       variables: [{type: InterpolationVariableType.UnitType, unitType: UnitType.Archer}],
     },
-    teamBonus: false,
-    units: isArcher,
-    healthBonus: AllAge(0.5),
+    effects: [
+      {
+        teamBonus: false,
+        units: isArcher,
+        healthBonus: AllAge(0.5),
+      },
+    ],
   },
 ];
 
-export const FranksBonuses: CivilizationBonus[] = [
+export const FranksBonuses: Bonus[] = [
   {
     description: {
       template: 'La %1 a +20% PDV.',
       variables: [{type: InterpolationVariableType.UnitType, unitType: UnitType.Cavalry}],
     },
-    teamBonus: false,
-    units: isInStable,
-    healthBonus: AllAge(0.2),
+    effects: [
+      {
+        teamBonus: false,
+        units: isInStable,
+        healthBonus: AllAge(0.2),
+      },
+    ],
   },
   {
     description: {
       template: 'Les %1 ont +2 de ligne de vue.',
       variables: [{type: InterpolationVariableType.Unit, unit: Knight}],
     },
-    teamBonus: true,
-    units: isKnightLine,
-    lineOfSightBonus: AllAge(2),
+    effects: [
+      {
+        teamBonus: true,
+        units: isKnightLine,
+        lineOfSightBonus: AllAge(2),
+      },
+    ],
   },
 ];
 
-export const GothsBonuses: CivilizationBonus[] = [
+export const GothsBonuses: Bonus[] = [
   {
     description: {
       template: "L'%1 est 35% moins cher à partir de %2",
@@ -327,9 +382,13 @@ export const GothsBonuses: CivilizationBonus[] = [
         {type: InterpolationVariableType.Age, age: Age.FeudalAge},
       ],
     },
-    teamBonus: false,
-    units: isInfantry,
-    costBonus: makeAgeable(undefined, 0.35, 0.35, 0.35),
+    effects: [
+      {
+        teamBonus: false,
+        units: isInfantry,
+        costBonus: makeAgeable(undefined, 0.35, 0.35, 0.35),
+      },
+    ],
   },
   {
     description: {
@@ -339,22 +398,30 @@ export const GothsBonuses: CivilizationBonus[] = [
         {type: InterpolationVariableType.ArmorType, armorType: ArmorType.StandardBuilding},
       ],
     },
-    teamBonus: false,
-    units: isInfantry,
-    attackBonusBonus: AllAge([ArmorType.StandardBuilding, 1]),
+    effects: [
+      {
+        teamBonus: false,
+        units: isInfantry,
+        attackBonusBonus: AllAge([ArmorType.StandardBuilding, 1]),
+      },
+    ],
   },
   {
     description: {
       template: 'Les %1 fonctionnent 20% plus vite.',
       variables: [{type: InterpolationVariableType.Building, building: Barrack}],
     },
-    teamBonus: true,
-    units: isInBarrack,
-    trainingSpeedBonus: AllAge(0.2),
+    effects: [
+      {
+        teamBonus: true,
+        units: isInBarrack,
+        trainingSpeedBonus: AllAge(0.2),
+      },
+    ],
   },
 ];
 
-export const HunsBonuses: CivilizationBonus[] = [
+export const HunsBonuses: Bonus[] = [
   {
     description: {
       template: 'Les %1 sont 10% moins cher à %2 et 20% à %3.',
@@ -364,24 +431,32 @@ export const HunsBonuses: CivilizationBonus[] = [
         {type: InterpolationVariableType.Age, age: Age.ImperialAge},
       ],
     },
-    teamBonus: false,
-    units: isCavalryArcherLine,
-    trainingSpeedBonus: makeAgeable(undefined, undefined, 0.1, 0.2),
+    effects: [
+      {
+        teamBonus: false,
+        units: isCavalryArcherLine,
+        trainingSpeedBonus: makeAgeable(undefined, undefined, 0.1, 0.2),
+      },
+    ],
   },
   {
     description: {
       template: 'Les %1 fonctionnent 20% plus vite.',
       variables: [{type: InterpolationVariableType.Building, building: Stable}],
     },
-    teamBonus: true,
-    units: isInStable,
-    trainingSpeedBonus: AllAge(0.2),
+    effects: [
+      {
+        teamBonus: true,
+        units: isInStable,
+        trainingSpeedBonus: AllAge(0.2),
+      },
+    ],
   },
 ];
 
-export const IncasBonuses: CivilizationBonus[] = [];
+export const IncasBonuses: Bonus[] = [];
 
-export const IndiansBonuses: CivilizationBonus[] = [
+export const IndiansBonuses: Bonus[] = [
   {
     description: {
       template: 'Les %1 coutent 10% de moins à %2, 15% à %3, 20% à %4 et 25% à %5.',
@@ -393,69 +468,97 @@ export const IndiansBonuses: CivilizationBonus[] = [
         {type: InterpolationVariableType.Age, age: Age.ImperialAge},
       ],
     },
-    teamBonus: false,
-    units: isVillager,
-    costBonus: makeAgeable(0.1, 0.15, 0.2, 0.25),
+    effects: [
+      {
+        teamBonus: false,
+        units: isVillager,
+        costBonus: makeAgeable(0.1, 0.15, 0.2, 0.25),
+      },
+    ],
   },
   {
     description: {
-      template: "Les %1 ont +1 d'armure anti-percage.",
+      template: 'Les %1 ont +1 de protection perçage.',
       variables: [{type: InterpolationVariableType.Unit, unit: CamelRider}],
     },
-    teamBonus: false,
-    units: isCamelRiderLine,
-    armorBonus: AllAge({melee: 0, pierce: 1}),
+    effects: [
+      {
+        teamBonus: false,
+        units: isCamelRiderLine,
+        armorBonus: AllAge({melee: 0, pierce: 1}),
+      },
+    ],
   },
   {
     description: {
       template: "Les chameaux ont +6 d'attaque contre les batiments.",
       variables: [],
     },
-    teamBonus: true,
-    units: isCamel,
-    attackBonusBonus: AllAge([ArmorType.Building, 6]),
+    effects: [
+      {
+        teamBonus: true,
+        units: isCamel,
+        attackBonusBonus: AllAge([ArmorType.Building, 6]),
+      },
+    ],
   },
 ];
 
-export const ItaliansBonuses: CivilizationBonus[] = [
+export const ItaliansBonuses: Bonus[] = [
   {
     description: {
       template: 'Les %1 coutent 20% de moins.',
       variables: [{type: InterpolationVariableType.Unit, unit: FishingShip}],
     },
-    teamBonus: false,
-    units: isFishingShip,
-    costBonus: AllAge(0.2),
+    effects: [
+      {
+        teamBonus: false,
+        units: isFishingShip,
+        costBonus: AllAge(0.2),
+      },
+    ],
   },
   {
     description: {
       template: 'Les %1 coutent 20% de moins.',
       variables: [{type: InterpolationVariableType.UnitType, unitType: UnitType.GunpowderUnit}],
     },
-    teamBonus: false,
-    units: isGunpowderUnit,
-    costBonus: AllAge(0.2),
+    effects: [
+      {
+        teamBonus: false,
+        units: isGunpowderUnit,
+        costBonus: AllAge(0.2),
+      },
+    ],
   },
 ];
 
-export const JapaneseBonuses: CivilizationBonus[] = [
+export const JapaneseBonuses: Bonus[] = [
   {
     description: {
       template: 'Les %1 ont 2x plus de PDV.',
       variables: [{type: InterpolationVariableType.Unit, unit: FishingShip}],
     },
-    teamBonus: false,
-    units: isFishingShip,
-    healthBonus: AllAge(1),
+    effects: [
+      {
+        teamBonus: false,
+        units: isFishingShip,
+        healthBonus: AllAge(1),
+      },
+    ],
   },
   {
     description: {
-      template: "Les %1 ont +2 d'armure anti-percage.",
+      template: 'Les %1 ont +2 de protection perçage.',
       variables: [{type: InterpolationVariableType.Unit, unit: FishingShip}],
     },
-    teamBonus: false,
-    units: isFishingShip,
-    armorBonus: AllAge({melee: 0, pierce: 2}),
+    effects: [
+      {
+        teamBonus: false,
+        units: isFishingShip,
+        armorBonus: AllAge({melee: 0, pierce: 2}),
+      },
+    ],
   },
   {
     description: {
@@ -465,64 +568,88 @@ export const JapaneseBonuses: CivilizationBonus[] = [
         {type: InterpolationVariableType.Age, age: Age.FeudalAge},
       ],
     },
-    teamBonus: false,
-    units: isInfantry,
-    rateOfFireBonus: makeAgeable(undefined, 0.25, 0.25, 0.25),
+    effects: [
+      {
+        teamBonus: false,
+        units: isInfantry,
+        rateOfFireBonus: makeAgeable(undefined, 0.25, 0.25, 0.25),
+      },
+    ],
   },
   {
     description: {
       template: 'Les %1 ont +50% de ligne de vue.',
       variables: [{type: InterpolationVariableType.Unit, unit: Galley}],
     },
-    teamBonus: true,
-    units: isGalleyLine,
-    lineOfSightPercentBonus: AllAge(0.5),
+    effects: [
+      {
+        teamBonus: true,
+        units: isGalleyLine,
+        lineOfSightPercentBonus: AllAge(0.5),
+      },
+    ],
   },
 ];
 
-export const KhmerBonuses: CivilizationBonus[] = [
+export const KhmerBonuses: Bonus[] = [
   {
     description: {
       template: 'Les %1 se déplacent 15% plus vite.',
       variables: [{type: InterpolationVariableType.Unit, unit: BattleElephant}],
     },
-    teamBonus: false,
-    units: isElephantLine,
-    speedBonus: AllAge(0.15),
+    effects: [
+      {
+        teamBonus: false,
+        units: isElephantLine,
+        speedBonus: AllAge(0.15),
+      },
+    ],
   },
   {
     description: {
       template: 'Les %1 ont +1 de ligne de vue.',
       variables: [{type: InterpolationVariableType.Unit, unit: Scorpion}],
     },
-    teamBonus: true,
-    units: isScorpionLine,
-    lineOfSightBonus: AllAge(1),
+    effects: [
+      {
+        teamBonus: true,
+        units: isScorpionLine,
+        lineOfSightBonus: AllAge(1),
+      },
+    ],
   },
 ];
 
-export const KoreansBonuses: CivilizationBonus[] = [
+export const KoreansBonuses: Bonus[] = [
   {
     description: {
       template: 'Les %1 ont +3 de ligne de vue.',
       variables: [{type: InterpolationVariableType.Unit, unit: Villager}],
     },
-    teamBonus: false,
-    units: isVillager,
-    lineOfSightBonus: AllAge(3),
+    effects: [
+      {
+        teamBonus: false,
+        units: isVillager,
+        lineOfSightBonus: AllAge(3),
+      },
+    ],
   },
   {
     description: {
       template: 'Les %1 ont leurs porté minimum reduite de 2.',
       variables: [{type: InterpolationVariableType.Unit, unit: Mangonel}],
     },
-    teamBonus: true,
-    units: isMangonel,
-    minimumRangeBonus: AllAge(2),
+    effects: [
+      {
+        teamBonus: true,
+        units: isMangonel,
+        minimumRangeBonus: AllAge(2),
+      },
+    ],
   },
 ];
 
-export const LithuaniansBonuses: CivilizationBonus[] = [
+export const LithuaniansBonuses: Bonus[] = [
   {
     description: {
       template: 'Les %1 et %2 se déplacent 10% plus vite.',
@@ -531,67 +658,91 @@ export const LithuaniansBonuses: CivilizationBonus[] = [
         {type: InterpolationVariableType.Unit, unit: Skirmisher},
       ],
     },
-    teamBonus: false,
-    units: u => isSpearmanLine(u) || isSkirmisherLine(u),
-    speedBonus: AllAge(0.1),
+    effects: [
+      {
+        teamBonus: false,
+        units: u => isSpearmanLine(u) || isSkirmisherLine(u),
+        speedBonus: AllAge(0.1),
+      },
+    ],
   },
   {
     description: {
       template: 'Les %1 fonctionnent 20% plus vite.',
       variables: [{type: InterpolationVariableType.Building, building: Monastery}],
     },
-    teamBonus: true,
-    units: isInMonastery,
-    trainingSpeedBonus: AllAge(0.2),
+    effects: [
+      {
+        teamBonus: true,
+        units: isInMonastery,
+        trainingSpeedBonus: AllAge(0.2),
+      },
+    ],
   },
   {
     description: {
       template: "La %1 a +1 d'attaque pour chaque reliques en garnison (max +5).",
       variables: [{type: InterpolationVariableType.UnitType, unitType: UnitType.Cavalry}],
     },
-    extraConstraint: CivilizationBonusConstraint.AtLeast5RelicGarrisoned,
-    teamBonus: false,
-    units: isInStable,
-    attackBonus: AllAge(5),
+    effects: [
+      {
+        extraConstraint: BonusConstraint.AtLeast5RelicGarrisoned,
+        teamBonus: false,
+        units: isInStable,
+        attackBonus: AllAge(5),
+      },
+    ],
   },
 ];
 
-export const MagyarsBonuses: CivilizationBonus[] = [
+export const MagyarsBonuses: Bonus[] = [
   {
     description: {
       template: 'Les %1 coutent 15% de moins.',
       variables: [{type: InterpolationVariableType.Unit, unit: ScoutCavalry}],
     },
-    teamBonus: false,
-    units: isScoutCavalryLine,
-    costBonus: AllAge(0.15),
+    effects: [
+      {
+        teamBonus: false,
+        units: isScoutCavalryLine,
+        costBonus: AllAge(0.15),
+      },
+    ],
   },
   {
     description: {
       template: 'Les archers à pied ont +2 de ligne de vue.',
       variables: [],
     },
-    teamBonus: true,
-    units: isByFootArcher,
-    lineOfSightBonus: AllAge(2),
+    effects: [
+      {
+        teamBonus: true,
+        units: isByFootArcher,
+        lineOfSightBonus: AllAge(2),
+      },
+    ],
   },
 ];
 
-export const MalayBonuses: CivilizationBonus[] = [
+export const MalayBonuses: Bonus[] = [
   {
     description: {
       template: 'Les %1 coutent 30% de moins.',
       variables: [{type: InterpolationVariableType.Unit, unit: BattleElephant}],
     },
-    teamBonus: false,
-    units: isElephantLine,
-    costBonus: AllAge(0.3),
+    effects: [
+      {
+        teamBonus: false,
+        units: isElephantLine,
+        costBonus: AllAge(0.3),
+      },
+    ],
   },
 ];
 
-export const MaliansBonuses: CivilizationBonus[] = [];
+export const MaliansBonuses: Bonus[] = [];
 
-export const MayansBonuses: CivilizationBonus[] = [
+export const MayansBonuses: Bonus[] = [
   {
     description: {
       template: 'Les archers à pied coutent 10% de moins à %1, 20% à %2 et 30% à %3.',
@@ -601,21 +752,29 @@ export const MayansBonuses: CivilizationBonus[] = [
         {type: InterpolationVariableType.Age, age: Age.ImperialAge},
       ],
     },
-    teamBonus: false,
-    units: isByFootArcher,
-    costBonus: makeAgeable(undefined, 0.1, 0.2, 0.3),
+    effects: [
+      {
+        teamBonus: false,
+        units: isByFootArcher,
+        costBonus: makeAgeable(undefined, 0.1, 0.2, 0.3),
+      },
+    ],
   },
 ];
 
-export const MongolsBonuses: CivilizationBonus[] = [
+export const MongolsBonuses: Bonus[] = [
   {
     description: {
       template: 'Les %1 tire 25% plus vite.',
       variables: [{type: InterpolationVariableType.Unit, unit: CavalryArcher}],
     },
-    teamBonus: false,
-    units: isCavalryArcherLine,
-    rateOfFireBonus: AllAge(0.25),
+    effects: [
+      {
+        teamBonus: false,
+        units: isCavalryArcherLine,
+        rateOfFireBonus: AllAge(0.25),
+      },
+    ],
   },
   {
     description: {
@@ -625,22 +784,30 @@ export const MongolsBonuses: CivilizationBonus[] = [
         {type: InterpolationVariableType.Unit, unit: Hussar},
       ],
     },
-    teamBonus: false,
-    units: u => isLightCavalry(u) || isHussar(u),
-    healthBonus: AllAge(0.3),
+    effects: [
+      {
+        teamBonus: false,
+        units: u => isLightCavalry(u) || isHussar(u),
+        healthBonus: AllAge(0.3),
+      },
+    ],
   },
   {
     description: {
       template: 'Les %1 ont +2 de ligne de vue.',
       variables: [{type: InterpolationVariableType.Unit, unit: ScoutCavalry}],
     },
-    teamBonus: true,
-    units: isScoutCavalryLine,
-    lineOfSightBonus: AllAge(2),
+    effects: [
+      {
+        teamBonus: true,
+        units: isScoutCavalryLine,
+        lineOfSightBonus: AllAge(2),
+      },
+    ],
   },
 ];
 
-export const PersiansBonuses: CivilizationBonus[] = [
+export const PersiansBonuses: Bonus[] = [
   {
     description: {
       template: "Les %1 ont un bonus d'attaque de +2 contre les %2.",
@@ -649,60 +816,84 @@ export const PersiansBonuses: CivilizationBonus[] = [
         {type: InterpolationVariableType.ArmorType, armorType: ArmorType.Archer},
       ],
     },
-    teamBonus: true,
-    units: isKnightLine,
-    attackBonusBonus: AllAge([ArmorType.Archer, 2]),
+    effects: [
+      {
+        teamBonus: true,
+        units: isKnightLine,
+        attackBonusBonus: AllAge([ArmorType.Archer, 2]),
+      },
+    ],
   },
 ];
 
-export const PortugueseBonuses: CivilizationBonus[] = [
+export const PortugueseBonuses: Bonus[] = [
   {
     description: {
       template: "Toutes les unités coutent 15% de moins d'or.",
       variables: [],
     },
-    teamBonus: false,
-    units: allUnits,
-    goldCostBonus: AllAge(0.15),
+    effects: [
+      {
+        teamBonus: false,
+        units: allUnits,
+        goldCostBonus: AllAge(0.15),
+      },
+    ],
   },
   {
     description: {
       template: 'Tout les %1 ont 10% plus de PDV.',
       variables: [{type: InterpolationVariableType.UnitType, unitType: UnitType.Ship}],
     },
-    teamBonus: false,
-    units: isShip,
-    healthBonus: AllAge(0.1),
+    effects: [
+      {
+        teamBonus: false,
+        units: isShip,
+        healthBonus: AllAge(0.1),
+      },
+    ],
   },
 ];
 
-export const SaracensBonuses: CivilizationBonus[] = [
+export const SaracensBonuses: Bonus[] = [
   {
     description: {
       template: 'Les %1 ont 2x plus de PDV.',
       variables: [{type: InterpolationVariableType.Unit, unit: TransportShip}],
     },
-    teamBonus: false,
-    units: isTransportShip,
-    healthBonus: AllAge(0.5),
+    effects: [
+      {
+        teamBonus: false,
+        units: isTransportShip,
+        healthBonus: AllAge(0.5),
+      },
+    ],
   },
   {
     description: {
       template: 'Les %1 ont +5 de capacité de transport.',
       variables: [{type: InterpolationVariableType.Unit, unit: TransportShip}],
     },
-    teamBonus: false,
-    units: isTransportShip,
-    garrisonBonus: AllAge(5),
+    effects: [
+      {
+        teamBonus: false,
+        units: isTransportShip,
+        garrisonBonus: AllAge(5),
+      },
+    ],
   },
   {
     description: {
       template: 'Les %1 attaquent 20% plus vite.',
       variables: [{type: InterpolationVariableType.Unit, unit: Galley}],
     },
-    teamBonus: false,
-    units: isGalleyLine,
-    rateOfFireBonus: AllAge(0.2),
+    effects: [
+      {
+        teamBonus: false,
+        units: isGalleyLine,
+        rateOfFireBonus: AllAge(0.2),
+      },
+    ],
   },
   {
     description: {
@@ -712,9 +903,13 @@ export const SaracensBonuses: CivilizationBonus[] = [
         {type: InterpolationVariableType.ArmorType, armorType: ArmorType.StandardBuilding},
       ],
     },
-    teamBonus: false,
-    units: isCavalryArcherLine,
-    attackBonusBonus: AllAge([ArmorType.StandardBuilding, 4]),
+    effects: [
+      {
+        teamBonus: false,
+        units: isCavalryArcherLine,
+        attackBonusBonus: AllAge([ArmorType.StandardBuilding, 4]),
+      },
+    ],
   },
   {
     description: {
@@ -723,25 +918,33 @@ export const SaracensBonuses: CivilizationBonus[] = [
         {type: InterpolationVariableType.ArmorType, armorType: ArmorType.StandardBuilding},
       ],
     },
-    teamBonus: true,
-    units: isByFootArcher,
-    attackBonusBonus: AllAge([ArmorType.StandardBuilding, 2]),
+    effects: [
+      {
+        teamBonus: true,
+        units: isByFootArcher,
+        attackBonusBonus: AllAge([ArmorType.StandardBuilding, 2]),
+      },
+    ],
   },
 ];
 
-export const SlavsBonuses: CivilizationBonus[] = [
+export const SlavsBonuses: Bonus[] = [
   {
     description: {
       template: 'Les unité de %1 coutent 15% de moins.',
       variables: [{type: InterpolationVariableType.Building, building: SiegeWorkshop}],
     },
-    teamBonus: false,
-    units: isInSiegeWorkshop,
-    costBonus: AllAge(0.15),
+    effects: [
+      {
+        teamBonus: false,
+        units: isInSiegeWorkshop,
+        costBonus: AllAge(0.15),
+      },
+    ],
   },
 ];
 
-export const SpanishBonuses: CivilizationBonus[] = [
+export const SpanishBonuses: Bonus[] = [
   {
     description: {
       template: 'Les %1 et %2 tirent 15% plus vite.',
@@ -750,70 +953,94 @@ export const SpanishBonuses: CivilizationBonus[] = [
         {type: InterpolationVariableType.Unit, unit: BombardCanon},
       ],
     },
-    teamBonus: false,
-    units: u => isHandCannoneer(u) || isBombardCanon(u),
-    rateOfFireBonus: AllAge(0.15),
+    effects: [
+      {
+        teamBonus: false,
+        units: u => isHandCannoneer(u) || isBombardCanon(u),
+        rateOfFireBonus: AllAge(0.15),
+      },
+    ],
   },
 ];
 
-export const TatarsBonuses: CivilizationBonus[] = [
+export const TatarsBonuses: Bonus[] = [
   {
     description: {
       template: 'Les %1 ont +2 de ligne de vue.',
       variables: [{type: InterpolationVariableType.Unit, unit: CavalryArcher}],
     },
-    teamBonus: true,
-    units: isCavalryArcherLine,
-    lineOfSightBonus: AllAge(2),
+    effects: [
+      {
+        teamBonus: true,
+        units: isCavalryArcherLine,
+        lineOfSightBonus: AllAge(2),
+      },
+    ],
   },
 ];
 
-export const TeutonsBonuses: CivilizationBonus[] = [
+export const TeutonsBonuses: Bonus[] = [
   {
     description: {
       template: 'Les %1 2x plus de porté de soin.',
       variables: [{type: InterpolationVariableType.Unit, unit: Monk}],
     },
-    teamBonus: false,
-    units: isMonk,
-    healingRangeBonus: AllAge(1),
+    effects: [
+      {
+        teamBonus: false,
+        units: isMonk,
+        healingRangeBonus: AllAge(1),
+      },
+    ],
   },
 ];
 
-export const TurksBonuses: CivilizationBonus[] = [
+export const TurksBonuses: Bonus[] = [
   {
     description: {
       template: 'Les %1 on +25% de PDV.',
       variables: [{type: InterpolationVariableType.UnitType, unitType: UnitType.GunpowderUnit}],
     },
-    teamBonus: false,
-    units: isGunpowderUnit,
-    healthBonus: AllAge(0.25),
+    effects: [
+      {
+        teamBonus: false,
+        units: isGunpowderUnit,
+        healthBonus: AllAge(0.25),
+      },
+    ],
   },
   {
     description: {
       template: 'Les %1 sont créé 20% plus vite.',
       variables: [{type: InterpolationVariableType.UnitType, unitType: UnitType.GunpowderUnit}],
     },
-    teamBonus: true,
-    units: isGunpowderUnit,
-    trainingSpeedBonus: AllAge(0.2),
+    effects: [
+      {
+        teamBonus: true,
+        units: isGunpowderUnit,
+        trainingSpeedBonus: AllAge(0.2),
+      },
+    ],
   },
 ];
 
-export const VietnameseBonuses: CivilizationBonus[] = [
+export const VietnameseBonuses: Bonus[] = [
   {
     description: {
       template: 'Les unités de %1 ont 20% de plus de vie.',
       variables: [{type: InterpolationVariableType.Building, building: Archery}],
     },
-    teamBonus: false,
-    units: isInArchery,
-    healthBonus: AllAge(0.2),
+    effects: [
+      {
+        teamBonus: false,
+        units: isInArchery,
+        healthBonus: AllAge(0.2),
+      },
+    ],
   },
 ];
 
-export const VikingsBonuses: CivilizationBonus[] = [
+export const VikingsBonuses: Bonus[] = [
   {
     description: {
       template: 'Les vaisseaux de guerre sont 15% moins cher à %1 %2 et 20% à %3.',
@@ -823,17 +1050,25 @@ export const VikingsBonuses: CivilizationBonus[] = [
         {type: InterpolationVariableType.Age, age: Age.ImperialAge},
       ],
     },
-    teamBonus: false,
-    units: isWarShip,
-    costBonus: makeAgeable(undefined, 0.15, 0.15, 0.2),
+    effects: [
+      {
+        teamBonus: false,
+        units: isWarShip,
+        costBonus: makeAgeable(undefined, 0.15, 0.15, 0.2),
+      },
+    ],
   },
   {
     description: {
       template: "L'%1 à +10% de PDV à %2, +15% à %3 et +20% à %4.",
       variables: [{type: InterpolationVariableType.UnitType, unitType: UnitType.Infantry}],
     },
-    teamBonus: false,
-    units: isInfantry,
-    healthBonus: makeAgeable(undefined, 0.1, 0.15, 0.2),
+    effects: [
+      {
+        teamBonus: false,
+        units: isInfantry,
+        healthBonus: makeAgeable(undefined, 0.1, 0.15, 0.2),
+      },
+    ],
   },
 ];
