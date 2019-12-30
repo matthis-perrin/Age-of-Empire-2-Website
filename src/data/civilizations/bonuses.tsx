@@ -55,7 +55,7 @@ import {
   isWarShip,
   isArcher,
   allUnits,
-  isElephantLine,
+  isBattleElephantLine,
   isScorpionLine,
   isBatteringRam,
   isInMonastery,
@@ -600,7 +600,7 @@ export const KhmerBonuses: Bonus[] = [
     effects: [
       {
         teamBonus: false,
-        units: isElephantLine,
+        units: isBattleElephantLine,
         speedBonus: AllAge(0.15),
       },
     ],
@@ -733,7 +733,7 @@ export const MalayBonuses: Bonus[] = [
     effects: [
       {
         teamBonus: false,
-        units: isElephantLine,
+        units: isBattleElephantLine,
         costBonus: AllAge(0.3),
       },
     ],

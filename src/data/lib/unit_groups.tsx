@@ -73,6 +73,10 @@ export function isLongboatLine(unit: Unit): boolean {
   return [DockUnits.Longboat.id, DockUnits.EliteLongboat.id].indexOf(unit.id) !== -1;
 }
 
+export function isTurtleShip(unit: Unit): boolean {
+  return [DockUnits.TurtleShip.id, DockUnits.EliteTurtleShip.id].indexOf(unit.id) !== -1;
+}
+
 export function isFishingShip(unit: Unit): boolean {
   return unit.id === DockUnits.FishingShip.id;
 }
@@ -157,7 +161,7 @@ export function isScoutCavalryLine(unit: Unit): boolean {
   );
 }
 
-export function isElephantLine(unit: Unit): boolean {
+export function isBattleElephantLine(unit: Unit): boolean {
   return (
     [StableUnits.BattleElephant.id, StableUnits.EliteBattleElephant.id].indexOf(unit.id) !== -1
   );
@@ -213,11 +217,11 @@ export function isArcher(unit: Unit): boolean {
 }
 
 export function isWarWagonLine(unit: Unit): boolean {
-  throw new Error('Not implemented yet');
+  return false;
 }
 
 export function isGenoeseLine(unit: Unit): boolean {
-  throw new Error('Not implemented yet');
+  return false;
 }
 
 export function isArcherLine(unit: Unit): boolean {
@@ -232,38 +236,38 @@ export function isMountedArcher(unit: Unit): boolean {
   return (
     isCavalryArcherLine(unit) ||
     isMangudaiLine(unit) ||
-    isElephantLine(unit) ||
+    isBattleElephantLine(unit) ||
     isCamelArcherLine(unit) ||
     isKipchakLine(unit)
   );
 }
 
 export function isLongbowLine(unit: Unit): boolean {
-  throw new Error('Not implemented yet');
+  return false;
 }
 
 export function isMangudaiLine(unit: Unit): boolean {
-  throw new Error('Not implemented yet');
+  return false;
 }
 
 export function isPlumedArcherLine(unit: Unit): boolean {
-  throw new Error('Not implemented yet');
+  return false;
 }
 
 export function isRattanLine(unit: Unit): boolean {
-  throw new Error('Not implemented yet');
+  return false;
 }
 
 export function isChuKoNuLine(unit: Unit): boolean {
-  throw new Error('Not implemented yet');
+  return false;
 }
 
 export function isCamelArcherLine(unit: Unit): boolean {
-  throw new Error('Not implemented yet');
+  return false;
 }
 
 export function isKipchakLine(unit: Unit): boolean {
-  throw new Error('Not implemented yet');
+  return false;
 }
 
 export function isSlinger(unit: Unit): boolean {
@@ -308,6 +312,22 @@ export function isPetard(unit: Unit): boolean {
 
 export function isInCastle(unit: Unit): boolean {
   return unit.training.map(t => t.building.id).indexOf(Castle.id) !== -1;
+}
+
+export function isKonniksLine(unit: Unit): boolean {
+  return false;
+}
+
+export function isShotelWarriorLine(unit: Unit): boolean {
+  return false;
+}
+
+export function isHuskarlLine(unit: Unit): boolean {
+  return false;
+}
+
+export function isTarkanLine(unit: Unit): boolean {
+  return false;
 }
 
 export function isRange(unit: Unit): boolean {

@@ -29,7 +29,7 @@ import {
   isInArchery,
   isInCastle,
   isMonk,
-  isElephantLine,
+  isBattleElephantLine,
   isCavalryArcherLine,
   isLongboatLine,
   isSkirmisherLine,
@@ -703,7 +703,7 @@ export const ThumbRing: Technology = {
       {teamBonus: false, units: isWarWagonLine, rateOfFireBonus: AllAge(0.11)},
       {
         teamBonus: false,
-        units: u => isElephantLine(u) || isGenoeseLine(u),
+        units: u => isBattleElephantLine(u) || isGenoeseLine(u),
         rateOfFireBonus: AllAge(0.18),
       },
       {

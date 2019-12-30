@@ -124,6 +124,7 @@ export interface Bonus {
     garrisonBonus?: Ageable<number>;
     healingRangeBonus?: Ageable<number>;
     minimumRangeBonus?: Ageable<number>;
+    removeMinimumRange?: Ageable<boolean>;
     conversionRangeBonus?: Ageable<number>;
     fullAccuracyBonus?: Ageable<boolean>;
     ageAvailability?: Age;
