@@ -112,6 +112,7 @@ export interface Bonus {
     costBonus?: Ageable<number>;
     goldCostBonus?: Ageable<number>;
     woodCostBonus?: Ageable<number>;
+    foodCostBonus?: Ageable<number>;
     rateOfFireBonus?: Ageable<number>;
     speedBonus?: Ageable<number>;
     healthBonus?: Ageable<number>;
@@ -126,6 +127,8 @@ export interface Bonus {
     minimumRangeBonus?: Ageable<number>;
     removeMinimumRange?: Ageable<boolean>;
     conversionRangeBonus?: Ageable<number>;
+    areaOfDamageBonus?: Ageable<number>;
+    projectileSpeedBonus?: Ageable<number>;
     fullAccuracyBonus?: Ageable<boolean>;
     ageAvailability?: Age;
   }[];

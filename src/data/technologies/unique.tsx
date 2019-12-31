@@ -37,39 +37,87 @@ import {
   Vikings,
 } from '../civilizations/registry';
 import {Age} from '../ages/core';
-import {Castle, Stable, Barrack, TownCenter, Dock} from '../buildings';
+import {Castle, Stable, Barrack, TownCenter, Dock, SiegeWorkshop} from '../buildings';
 import {
-  noUnits,
-  isSkirmisherLine,
-  isGenitourLine,
-  isInCastle,
-  isByFootArcher,
-  isScoutCavalryLine,
-  isKonniksLine,
-  isBattleElephantLine,
-  isFireGalleyLine,
-  isCavalryArcherLine,
-  isKipchakLine,
-  isInStable,
-  isShotelWarriorLine,
-  isHuskarlLine,
-  isSlinger,
-  isTarkanLine,
+  isArambai,
   isArcher,
   isArcherLine,
-  isShip,
-  isMonk,
-  isSiegeUnit,
+  isBallistaElephantLine,
+  isBatteringRam,
+  isBattleElephantLine,
+  isBerzerkLine,
+  isBombardCanon,
+  isByFootArcher,
+  isCamel,
+  isCamelArcherLine,
+  isCamelRiderLine,
+  isCannonGalleonLine,
+  isCataphract,
+  isCavalry,
+  isCavalryArcherLine,
+  isChuKoNuLine,
+  isEagleWarriorLine,
+  isFireGalleyLine,
+  isGenitourLine,
+  isGunpowderUnit,
+  isHandCannoneer,
+  isHuskarlLine,
+  isInBarrack,
+  isInCastle,
   isInfantry,
+  isInSiegeWorkshop,
+  isInStable,
+  isKamayuk,
+  isKipchakLine,
+  isKnightLine,
+  isKonniksLine,
+  isMangonelLine,
+  isMilitiaLine,
+  isMonk,
+  isScorpionLine,
+  isScoutCavalryLine,
+  isShip,
+  isShotelWarriorLine,
+  isSiegeUnit,
+  isSkirmisherLine,
+  isSlinger,
+  isSpearmanLine,
+  isTarkanLine,
+  isThrowingAxemen,
+  isTradeCart,
+  isTradeCog,
+  isTrebuchetUnpacked,
   isTurtleShip,
+  isVillager,
+  isWarElephantLine,
+  noUnits,
 } from '../lib/unit_groups';
 import {InterpolationVariableType, AllAge} from '../core';
-import {Skirmisher, Genitour, CavalryArcher, Slinger, Archer} from '../units/archery';
-import {ScoutCavalry, BattleElephant, Hussar} from '../units/stable';
-import {FireGalley, TurtleShip} from '../units/dock';
+import {
+  Skirmisher,
+  Genitour,
+  CavalryArcher,
+  Slinger,
+  Archer,
+  HandCannoneer,
+} from '../units/archery';
+import {
+  ScoutCavalry,
+  BattleElephant,
+  Hussar,
+  CamelRider,
+  Knight,
+  LightCavalry,
+} from '../units/stable';
+import {FireGalley, TurtleShip, TradeCog, CannonGalleon} from '../units/dock';
 import {ArmorType} from '../damage';
 import {UnitType} from '../units/core';
 import {Monk} from '../units/monastery';
+import {TrebuchetUnpacked} from '../units/castle';
+import {Militia, EagleWarrior, Spearman} from '../units/barrack';
+import {Scorpion, BatteringRam, Mangonel, BombardCanon} from '../units/siege_workshop';
+import {TradeCart} from '../units/market';
+import {Villager} from '../units/town_center';
 
 import {TechnologyType, UniqueTechnology} from './core';
 
@@ -746,8 +794,6 @@ const Chieftains: UniqueTechnology = {
   },
 };
 
-// TODO - Fill those imperial unique technologies
-
 const GarlandWars: UniqueTechnology = {
   type: TechnologyType.Unique,
   civilization: Aztecs,
@@ -755,11 +801,14 @@ const GarlandWars: UniqueTechnology = {
   building: Castle,
   id: 'GarlandWars',
   englishName: 'Garland Wars',
-  frenchName: '',
+  frenchName: 'Guerres glorieuses',
   cost: {food: 450, gold: 750},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: "L'%1 a +4 d'attaque.",
+      variables: [{type: InterpolationVariableType.UnitType, unitType: UnitType.Infantry}],
+    },
+    effects: [{teamBonus: false, units: isInfantry, attackBonus: AllAge(4)}],
   },
 };
 const MaghrabiCamels: UniqueTechnology = {
@@ -769,11 +818,17 @@ const MaghrabiCamels: UniqueTechnology = {
   building: Castle,
   id: 'MaghrabiCamels',
   englishName: 'Maghrabi Camels',
-  frenchName: '',
+  frenchName: 'Chameaux du Maghreb',
   cost: {food: 700, gold: 300},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: 'Les %1 et les Archer de chamellerie se regénèrent 10 PDV par minute.',
+      variables: [
+        {type: InterpolationVariableType.Unit, unit: CamelRider},
+        // {type: InterpolationVariableType.Unit, unit: CamelArcher},
+      ],
+    },
+    effects: [{teamBonus: false, units: u => isCamelRiderLine(u) || isCamelArcherLine(u)}],
   },
 };
 const Warwolf: UniqueTechnology = {
@@ -783,11 +838,15 @@ const Warwolf: UniqueTechnology = {
   building: Castle,
   id: 'Warwolf',
   englishName: 'Warwolf',
-  frenchName: '',
+  frenchName: 'Loup de guerre',
   cost: {wood: 500, gold: 250},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template:
+        'Les trébuchets font des dégats de zone et ont 100% de précision contre les unités immobiles.',
+      variables: [{type: InterpolationVariableType.Unit, unit: TrebuchetUnpacked}],
+    },
+    effects: [{teamBonus: false, units: isTrebuchetUnpacked, areaOfDamageBonus: AllAge(0.5)}],
   },
 };
 const Bagains: UniqueTechnology = {
@@ -797,11 +856,14 @@ const Bagains: UniqueTechnology = {
   building: Castle,
   id: 'Bagains',
   englishName: 'Bagains',
-  frenchName: '',
+  frenchName: 'Bagains',
   cost: {food: 900, gold: 450},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: "Les %1 ont +5 d'armure",
+      variables: [{type: InterpolationVariableType.Unit, unit: Militia}],
+    },
+    effects: [{teamBonus: false, units: isMilitiaLine, armorBonus: AllAge({melee: 5, pierce: 0})}],
   },
 };
 const ManipurCavalry: UniqueTechnology = {
@@ -811,11 +873,30 @@ const ManipurCavalry: UniqueTechnology = {
   building: Castle,
   id: 'ManipurCavalry',
   englishName: 'Manipur Cavalry',
-  frenchName: '',
+  frenchName: 'Cavalerie du Manipur',
   cost: {food: 650, gold: 400},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: "Les Arambai et la %2 ont +3 d'attaque contre les %1 et %2",
+      variables: [
+        // {type: InterpolationVariableType.Unit, unit: Arambai},
+        {type: InterpolationVariableType.UnitType, unitType: UnitType.Cavalry},
+        {type: InterpolationVariableType.ArmorType, armorType: ArmorType.Building},
+        {type: InterpolationVariableType.ArmorType, armorType: ArmorType.StandardBuilding},
+      ],
+    },
+    effects: [
+      {
+        teamBonus: false,
+        units: u => isArambai(u) || isCavalry(u),
+        attackBonusBonus: AllAge([ArmorType.Building, 3]),
+      },
+      {
+        teamBonus: false,
+        units: u => isArambai(u) || isCavalry(u),
+        attackBonusBonus: AllAge([ArmorType.StandardBuilding, 3]),
+      },
+    ],
   },
 };
 const Logistica: UniqueTechnology = {
@@ -825,11 +906,17 @@ const Logistica: UniqueTechnology = {
   building: Castle,
   id: 'Logistica',
   englishName: 'Logistica',
-  frenchName: '',
+  frenchName: 'Logistique',
   cost: {food: 1000, gold: 600},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: "Les Cataphract font des dégats de piétinement et ont +6 d'attaque contre %1.",
+      variables: [
+        // {type: InterpolationVariableType.Unit, unit: Cataphract},
+        {type: InterpolationVariableType.UnitType, unitType: UnitType.Infantry},
+      ],
+    },
+    effects: [{teamBonus: false, units: isCataphract}],
   },
 };
 const FurorCeltica: UniqueTechnology = {
@@ -839,11 +926,14 @@ const FurorCeltica: UniqueTechnology = {
   building: Castle,
   id: 'FurorCeltica',
   englishName: 'Furor Celtica',
-  frenchName: '',
+  frenchName: 'Fureur celte',
   cost: {food: 750, gold: 450},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: 'Les unités de %1 ont +40% de PDV.',
+      variables: [{type: InterpolationVariableType.Building, building: SiegeWorkshop}],
+    },
+    effects: [{teamBonus: false, units: isInSiegeWorkshop, healthBonus: AllAge(0.4)}],
   },
 };
 const Rocketry: UniqueTechnology = {
@@ -853,11 +943,20 @@ const Rocketry: UniqueTechnology = {
   building: Castle,
   id: 'Rocketry',
   englishName: 'Rocketry',
-  frenchName: '',
+  frenchName: 'Propulsion',
   cost: {wood: 600, gold: 600},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: "Les Chu Ko Nu ont +2 d'attaque et les %1 ont +4 d'attaque",
+      variables: [
+        // {type: InterpolationVariableType.Unit, unit: ChuKoNu},
+        {type: InterpolationVariableType.Unit, unit: Scorpion},
+      ],
+    },
+    effects: [
+      {teamBonus: false, units: isChuKoNuLine, attackBonus: AllAge(2)},
+      {teamBonus: false, units: isScorpionLine, attackBonus: AllAge(4)},
+    ],
   },
 };
 const CumanMercenaries: UniqueTechnology = {
@@ -867,11 +966,14 @@ const CumanMercenaries: UniqueTechnology = {
   building: Castle,
   id: 'CumanMercenaries',
   englishName: 'Cuman Mercenaries',
-  frenchName: '',
+  frenchName: 'Mercenaires coumans',
   cost: {food: 650, gold: 400},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: "Les membres de l'équipe peuvent créer 10 Kipchaks d'élite gratuits au chateau",
+      variables: [],
+    },
+    effects: [{teamBonus: true, units: isKipchakLine}],
   },
 };
 const TorsionEngines: UniqueTechnology = {
@@ -881,11 +983,17 @@ const TorsionEngines: UniqueTechnology = {
   building: Castle,
   id: 'TorsionEngines',
   englishName: 'Torsion Engines',
-  frenchName: '',
+  frenchName: 'Mécanique à torsion',
   cost: {food: 1000, gold: 600},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: 'Les %1 ont une zone de dégats augmenté (sauf les tour de siège et %2).',
+      variables: [
+        {type: InterpolationVariableType.UnitType, unitType: UnitType.SiegeUnit},
+        {type: InterpolationVariableType.Unit, unit: BatteringRam},
+      ],
+    },
+    effects: [{teamBonus: false, units: u => isSiegeUnit(u) && !isBatteringRam(u)}],
   },
 };
 const BeardedAxe: UniqueTechnology = {
@@ -895,11 +1003,16 @@ const BeardedAxe: UniqueTechnology = {
   building: Castle,
   id: 'BeardedAxe',
   englishName: 'Bearded Axe',
-  frenchName: '',
+  frenchName: 'Hache francisque',
   cost: {food: 400, gold: 400},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: 'Les lanceurs de hache ont +1 de portée.',
+      variables: [
+        // {type: InterpolationVariableType.Unit, unit: ThrowingAxemen},
+      ],
+    },
+    effects: [{teamBonus: false, units: isThrowingAxemen, rangeBonus: AllAge(1)}],
   },
 };
 const Perfusion: UniqueTechnology = {
@@ -909,11 +1022,14 @@ const Perfusion: UniqueTechnology = {
   building: Castle,
   id: 'Perfusion',
   englishName: 'Perfusion',
-  frenchName: '',
+  frenchName: 'Perfusion',
   cost: {wood: 400, gold: 600},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: 'Les %1 fonctionnent 2x plus vite.',
+      variables: [{type: InterpolationVariableType.Building, building: Barrack}],
+    },
+    effects: [{teamBonus: false, units: isInBarrack, trainingSpeedBonus: AllAge(1)}],
   },
 };
 const Atheism: UniqueTechnology = {
@@ -923,10 +1039,17 @@ const Atheism: UniqueTechnology = {
   building: Castle,
   id: 'Atheism',
   englishName: 'Atheism',
-  frenchName: '',
+  frenchName: 'Athéisme',
   cost: {food: 500, gold: 500},
   bonus: {
-    description: {template: '', variables: []},
+    description: {
+      template:
+        'La victoire par reliques ou merveilles prend 100 ans de plus. Le cout de Espions et Trahison est réduit de 50%.',
+      variables: [
+        // {type: InterpolationVariableType.Technology, technology: Spies},
+        // {type: InterpolationVariableType.Technology, technology: Treason},
+      ],
+    },
     effects: [{teamBonus: false, units: noUnits}],
   },
 };
@@ -937,11 +1060,24 @@ const Couriers: UniqueTechnology = {
   building: Castle,
   id: 'Couriers',
   englishName: 'Couriers',
-  frenchName: '',
+  frenchName: 'Coursiers',
   cost: {food: 600, gold: 600},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: "Les Kamayuks, %1 et %2 ont +1 d'armure et +2 protection perçage.",
+      variables: [
+        // {type: InterpolationVariableType.Unit, unit: Kamayuk},
+        {type: InterpolationVariableType.Unit, unit: Slinger},
+        {type: InterpolationVariableType.Unit, unit: EagleWarrior},
+      ],
+    },
+    effects: [
+      {
+        teamBonus: false,
+        units: u => isKamayuk(u) || isSlinger(u) || isEagleWarriorLine(u),
+        armorBonus: AllAge({melee: 1, pierce: 2}),
+      },
+    ],
   },
 };
 const Shatagni: UniqueTechnology = {
@@ -951,11 +1087,14 @@ const Shatagni: UniqueTechnology = {
   building: Castle,
   id: 'Shatagni',
   englishName: 'Shatagni',
-  frenchName: '',
+  frenchName: 'Shatagni',
   cost: {food: 500, gold: 300},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: 'Les %1 ont +1 de portée.',
+      variables: [{type: InterpolationVariableType.Unit, unit: HandCannoneer}],
+    },
+    effects: [{teamBonus: false, units: isHandCannoneer, rangeBonus: AllAge(1)}],
   },
 };
 const SilkRoad: UniqueTechnology = {
@@ -965,11 +1104,19 @@ const SilkRoad: UniqueTechnology = {
   building: Castle,
   id: 'SilkRoad',
   englishName: 'Silk Road',
-  frenchName: '',
+  frenchName: 'Route de la soie.',
   cost: {food: 500, gold: 250},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: 'Les %1 et %2 coutent 2x fois moins.',
+      variables: [
+        {type: InterpolationVariableType.Unit, unit: TradeCart},
+        {type: InterpolationVariableType.Unit, unit: TradeCog},
+      ],
+    },
+    effects: [
+      {teamBonus: false, units: u => isTradeCart(u) || isTradeCog(u), costBonus: AllAge(0.5)},
+    ],
   },
 };
 const Kataparuto: UniqueTechnology = {
@@ -979,11 +1126,14 @@ const Kataparuto: UniqueTechnology = {
   building: Castle,
   id: 'Kataparuto',
   englishName: 'Kataparuto',
-  frenchName: '',
+  frenchName: 'Kataparuto',
   cost: {wood: 750, gold: 400},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: 'Les %1 se montent et démontent 4x plus vite et tirent 33% plus vite.',
+      variables: [{type: InterpolationVariableType.Unit, unit: TrebuchetUnpacked}],
+    },
+    effects: [{teamBonus: false, units: isTrebuchetUnpacked, rateOfFireBonus: AllAge(0.33)}],
   },
 };
 const DoubleCrossbow: UniqueTechnology = {
@@ -993,11 +1143,18 @@ const DoubleCrossbow: UniqueTechnology = {
   building: Castle,
   id: 'DoubleCrossbow',
   englishName: 'Double Crossbow',
-  frenchName: '',
+  frenchName: 'Double arbalète',
   cost: {food: 700, gold: 400},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template:
+        'Les Élephant à arbalète et %1 tire 2 projectiles (le 2ème projectiles à des dommages et une zone de dégat légèrement plus faible).',
+      variables: [
+        // {type: InterpolationVariableType.Unit, unit: BallistaElephant},
+        {type: InterpolationVariableType.Unit, unit: Scorpion},
+      ],
+    },
+    effects: [{teamBonus: false, units: u => isScorpionLine(u) || isBallistaElephantLine(u)}],
   },
 };
 const Shinkichon: UniqueTechnology = {
@@ -1007,11 +1164,14 @@ const Shinkichon: UniqueTechnology = {
   building: Castle,
   id: 'Shinkichon',
   englishName: 'Shinkichon',
-  frenchName: '',
+  frenchName: 'Shinkichon',
   cost: {wood: 800, gold: 500},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: 'Les %1 ont +1 de portée.',
+      variables: [{type: InterpolationVariableType.Unit, unit: Mangonel}],
+    },
+    effects: [{teamBonus: false, units: isMangonelLine, rangeBonus: AllAge(1)}],
   },
 };
 const TowerShields: UniqueTechnology = {
@@ -1021,11 +1181,23 @@ const TowerShields: UniqueTechnology = {
   building: Castle,
   id: 'TowerShields',
   englishName: 'Tower Shields',
-  frenchName: '',
+  frenchName: 'Boucliers rectangulaires',
   cost: {food: 800, gold: 200},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: 'Les %1 et %2 ont +1 de protection perçage.',
+      variables: [
+        {type: InterpolationVariableType.Unit, unit: Spearman},
+        {type: InterpolationVariableType.Unit, unit: Skirmisher},
+      ],
+    },
+    effects: [
+      {
+        teamBonus: false,
+        units: u => isSpearmanLine(u) || isSkirmisherLine(u),
+        armorBonus: AllAge({melee: 0, pierce: 1}),
+      },
+    ],
   },
 };
 const RecurveBow: UniqueTechnology = {
@@ -1035,11 +1207,17 @@ const RecurveBow: UniqueTechnology = {
   building: Castle,
   id: 'RecurveBow',
   englishName: 'Recurve Bow',
-  frenchName: '',
+  frenchName: 'Arc recourbé',
   cost: {wood: 600, gold: 400},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: "Les %1 ont +1 d'attaque et +1 de portée.",
+      variables: [{type: InterpolationVariableType.Unit, unit: CavalryArcher}],
+    },
+    effects: [
+      {teamBonus: false, units: isCavalryArcherLine, attackBonus: AllAge(1)},
+      {teamBonus: false, units: isCavalryArcherLine, rangeBonus: AllAge(1)},
+    ],
   },
 };
 const ForcedLevy: UniqueTechnology = {
@@ -1049,11 +1227,21 @@ const ForcedLevy: UniqueTechnology = {
   building: Castle,
   id: 'ForcedLevy',
   englishName: 'Forced Levy',
-  frenchName: '',
+  frenchName: 'Enrolement de force',
   cost: {food: 1000, gold: 600},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: 'Change le cout en or des %1 en nourriture.',
+      variables: [{type: InterpolationVariableType.Unit, unit: Militia}],
+    },
+    effects: [
+      {
+        teamBonus: false,
+        units: isMilitiaLine,
+        goldCostBonus: AllAge(20),
+        foodCostBonus: AllAge(-20),
+      },
+    ],
   },
 };
 const Farimba: UniqueTechnology = {
@@ -1063,11 +1251,24 @@ const Farimba: UniqueTechnology = {
   building: Castle,
   id: 'Farimba',
   englishName: 'Farimba',
-  frenchName: '',
+  frenchName: 'Farimba',
   cost: {food: 650, gold: 400},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: "Les %1, %2 et %3 ont +5 d'attaque.",
+      variables: [
+        {type: InterpolationVariableType.Unit, unit: CamelRider},
+        {type: InterpolationVariableType.Unit, unit: Knight},
+        {type: InterpolationVariableType.Unit, unit: LightCavalry},
+      ],
+    },
+    effects: [
+      {
+        teamBonus: false,
+        units: u => isCamelRiderLine(u) || isKnightLine(u) || isScoutCavalryLine(u),
+        attackBonus: AllAge(5),
+      },
+    ],
   },
 };
 const ElDorado: UniqueTechnology = {
@@ -1077,11 +1278,14 @@ const ElDorado: UniqueTechnology = {
   building: Castle,
   id: 'ElDorado',
   englishName: 'El Dorado',
-  frenchName: '',
+  frenchName: 'El Dorado',
   cost: {food: 750, gold: 450},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: 'Les %1 ont +40 PDV.',
+      variables: [{type: InterpolationVariableType.Unit, unit: EagleWarrior}],
+    },
+    effects: [{teamBonus: false, units: isEagleWarriorLine, healthFixedBonus: AllAge(40)}],
   },
 };
 const Drill: UniqueTechnology = {
@@ -1091,11 +1295,14 @@ const Drill: UniqueTechnology = {
   building: Castle,
   id: 'Drill',
   englishName: 'Drill',
-  frenchName: '',
+  frenchName: 'Manoeuvres',
   cost: {food: 500, gold: 450},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: 'Les unités de %1 se déplacent 50% plus vite.',
+      variables: [{type: InterpolationVariableType.Building, building: SiegeWorkshop}],
+    },
+    effects: [{teamBonus: false, units: isInSiegeWorkshop, speedBonus: AllAge(0.5)}],
   },
 };
 const Mahouts: UniqueTechnology = {
@@ -1105,11 +1312,16 @@ const Mahouts: UniqueTechnology = {
   building: Castle,
   id: 'Mahouts',
   englishName: 'Mahouts',
-  frenchName: '',
+  frenchName: 'Cornacs',
   cost: {food: 300, gold: 300},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: 'Les Éléphants de guerre se déplacent 30% plus vite.',
+      variables: [
+        //   {type: InterpolationVariableType.Unit, unit: WarElephant}
+      ],
+    },
+    effects: [{teamBonus: false, units: isWarElephantLine, speedBonus: AllAge(0.3)}],
   },
 };
 const Arquebus: UniqueTechnology = {
@@ -1119,11 +1331,26 @@ const Arquebus: UniqueTechnology = {
   building: Castle,
   id: 'Arquebus',
   englishName: 'Arquebus',
-  frenchName: '',
+  frenchName: 'Arquebuse',
   cost: {food: 700, gold: 400},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template:
+        'Les %1 tirent avec plus de précision sur les cibles mobiles. Les %2, %3 et tours de bombardes on +0.2 en vitesse de projectiles.',
+      variables: [
+        {type: InterpolationVariableType.UnitType, unitType: UnitType.GunpowderUnit},
+        {type: InterpolationVariableType.Unit, unit: BombardCanon},
+        {type: InterpolationVariableType.Unit, unit: CannonGalleon},
+      ],
+    },
+    effects: [
+      {teamBonus: false, units: isGunpowderUnit},
+      {
+        teamBonus: false,
+        units: u => isBombardCanon(u) || isCannonGalleonLine(u),
+        projectileSpeedBonus: AllAge(0.2),
+      },
+    ],
   },
 };
 const Zealotry: UniqueTechnology = {
@@ -1133,11 +1360,14 @@ const Zealotry: UniqueTechnology = {
   building: Castle,
   id: 'Zealotry',
   englishName: 'Zealotry',
-  frenchName: '',
+  frenchName: 'Fanatisme',
   cost: {food: 750, gold: 800},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: 'Les %1 ont +30 de PDV.',
+      variables: [{type: InterpolationVariableType.ArmorType, armorType: ArmorType.Camel}],
+    },
+    effects: [{teamBonus: false, units: isCamel, healthFixedBonus: AllAge(30)}],
   },
 };
 const Druzhina: UniqueTechnology = {
@@ -1147,11 +1377,14 @@ const Druzhina: UniqueTechnology = {
   building: Castle,
   id: 'Druzhina',
   englishName: 'Druzhina',
-  frenchName: '',
+  frenchName: 'Druzhina',
   cost: {food: 1200, gold: 500},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: "L'%1 infligent 5 dommages (non affecté par l'armure) de zone (rayon 0.5).",
+      variables: [{type: InterpolationVariableType.UnitType, unitType: UnitType.Infantry}],
+    },
+    effects: [{teamBonus: false, units: isInfantry, areaOfDamageBonus: AllAge(0.5)}],
   },
 };
 const Supremacy: UniqueTechnology = {
@@ -1161,11 +1394,18 @@ const Supremacy: UniqueTechnology = {
   building: Castle,
   id: 'Supremacy',
   englishName: 'Supremacy',
-  frenchName: '',
+  frenchName: 'Suprématie',
   cost: {food: 450, gold: 250},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: "Les %1 ont +6 d'attaque, +2 d'armure, +2 de protection perçage et +40 PDV.",
+      variables: [{type: InterpolationVariableType.Unit, unit: Villager}],
+    },
+    effects: [
+      {teamBonus: false, units: isVillager, attackBonus: AllAge(6)},
+      {teamBonus: false, units: isVillager, armorBonus: AllAge({melee: 2, pierce: 2})},
+      {teamBonus: false, units: isVillager, healthFixedBonus: AllAge(40)},
+    ],
   },
 };
 const TimuridSiegecraft: UniqueTechnology = {
@@ -1175,11 +1415,14 @@ const TimuridSiegecraft: UniqueTechnology = {
   building: Castle,
   id: 'TimuridSiegecraft',
   englishName: 'Timurid Siegecraft',
-  frenchName: '',
+  frenchName: 'Arme de siège timuride',
   cost: {wood: 400, gold: 500},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: 'Les %1 ont +1 de portée.',
+      variables: [{type: InterpolationVariableType.Unit, unit: TrebuchetUnpacked}],
+    },
+    effects: [{teamBonus: false, units: isTrebuchetUnpacked, rangeBonus: AllAge(1)}],
   },
 };
 const Crenellations: UniqueTechnology = {
@@ -1189,11 +1432,17 @@ const Crenellations: UniqueTechnology = {
   building: Castle,
   id: 'Crenellations',
   englishName: 'Crenellations',
-  frenchName: '',
+  frenchName: 'Crénelures',
   cost: {food: 600, stone: 400},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: "Les %1 ont +3 de portée et l'%1 en garnison peut tirer des flèches.",
+      variables: [
+        {type: InterpolationVariableType.Unit, unit: TrebuchetUnpacked},
+        {type: InterpolationVariableType.Building, building: Castle},
+      ],
+    },
+    effects: [],
   },
 };
 const Artillery: UniqueTechnology = {
@@ -1203,11 +1452,17 @@ const Artillery: UniqueTechnology = {
   building: Castle,
   id: 'Artillery',
   englishName: 'Artillery',
-  frenchName: '',
+  frenchName: 'Artillerie',
   cost: {gold: 500, stone: 450},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: 'Les %1, %2 et tours de bombardent ont +2 de portée.',
+      variables: [
+        {type: InterpolationVariableType.Unit, unit: BombardCanon},
+        {type: InterpolationVariableType.Unit, unit: CannonGalleon},
+      ],
+    },
+    effects: [{teamBonus: false, units: u => isBombardCanon(u) || isCannonGalleonLine(u)}],
   },
 };
 const PaperMoney: UniqueTechnology = {
@@ -1217,11 +1472,11 @@ const PaperMoney: UniqueTechnology = {
   building: Castle,
   id: 'PaperMoney',
   englishName: 'Paper Money',
-  frenchName: '',
+  frenchName: 'Monnaie de papier',
   cost: {food: 800, gold: 200},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {template: "Chaque membre de l'équipe reçoit 500 d'or.", variables: []},
+    effects: [{teamBonus: true, units: noUnits}],
   },
 };
 const Berserkergang: UniqueTechnology = {
@@ -1231,11 +1486,16 @@ const Berserkergang: UniqueTechnology = {
   building: Castle,
   id: 'Berserkergang',
   englishName: 'Berserkergang',
-  frenchName: '',
+  frenchName: 'Gang de fou',
   cost: {food: 850, gold: 400},
   bonus: {
-    description: {template: '', variables: []},
-    effects: [{teamBonus: false, units: noUnits}],
+    description: {
+      template: 'Les Fou de guerre se regénèrent 2x plus vite.',
+      variables: [
+        // {type: InterpolationVariableType.Unit, unit: Berserk},
+      ],
+    },
+    effects: [{teamBonus: false, units: isBerzerkLine}],
   },
 };
 

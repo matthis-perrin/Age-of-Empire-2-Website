@@ -8,7 +8,8 @@ import * as DockUnits from '../units/dock';
 import * as SiegeWorkshopUnits from '../units/siege_workshop';
 import {Villager} from '../units/town_center';
 import {ArmorType, AttackType} from '../damage';
-import {Petard} from '../units/castle';
+import {Petard, TrebuchetUnpacked} from '../units/castle';
+import {TradeCart} from '../units/market';
 
 export function isSiegeUnit(unit: Unit): boolean {
   return unit.type.indexOf(UnitType.SiegeUnit) !== -1;
@@ -24,6 +25,16 @@ export function isInSiegeWorkshop(unit: Unit): boolean {
 
 export function isMangonel(unit: Unit): boolean {
   return unit.id === SiegeWorkshopUnits.Mangonel.id;
+}
+
+export function isMangonelLine(unit: Unit): boolean {
+  return (
+    [
+      SiegeWorkshopUnits.Mangonel.id,
+      SiegeWorkshopUnits.Onager.id,
+      SiegeWorkshopUnits.SiegeOnager.id,
+    ].indexOf(unit.id) !== -1
+  );
 }
 
 export function isScorpionLine(unit: Unit): boolean {
@@ -85,6 +96,10 @@ export function isTransportShip(unit: Unit): boolean {
   return unit.id === DockUnits.TransportShip.id;
 }
 
+export function isCannonGalleonLine(unit: Unit): boolean {
+  return [DockUnits.CannonGalleon.id, DockUnits.EliteCannonGalleon.id].indexOf(unit.id) !== -1;
+}
+
 export function isShip(unit: Unit): boolean {
   return unit.type.indexOf(UnitType.NavalVessel) !== -1;
 }
@@ -99,11 +114,35 @@ export function isInfantry(unit: Unit): boolean {
   return unit.type.indexOf(UnitType.Infantry) !== -1;
 }
 
+export function isMilitiaLine(unit: Unit): boolean {
+  return (
+    [
+      BarrackUnits.Militia.id,
+      BarrackUnits.ManAtArms.id,
+      BarrackUnits.LongSwordsman.id,
+      BarrackUnits.TwoHandedSwordsman.id,
+      BarrackUnits.Champion.id,
+    ].indexOf(unit.id) !== -1
+  );
+}
+
 export function isSpearmanLine(unit: Unit): boolean {
   return (
     [BarrackUnits.Spearman.id, BarrackUnits.Pikeman.id, BarrackUnits.Halberdier.id].indexOf(
       unit.id
     ) !== -1
+  );
+}
+
+export function isEagleWarriorLine(unit: Unit): boolean {
+  return (
+    [
+      BarrackUnits.EagleScout.id,
+      BarrackUnits.EagleScoutFeudalAge.id,
+      BarrackUnits.EagleScoutCastleAge.id,
+      BarrackUnits.EagleWarrior.id,
+      BarrackUnits.EilteEagleWarrior.id,
+    ].indexOf(unit.id) !== -1
   );
 }
 
@@ -270,6 +309,26 @@ export function isKipchakLine(unit: Unit): boolean {
   return false;
 }
 
+export function isArambai(unit: Unit): boolean {
+  return false;
+}
+
+export function isCataphract(unit: Unit): boolean {
+  return false;
+}
+
+export function isThrowingAxemen(unit: Unit): boolean {
+  return false;
+}
+
+export function isKamayuk(unit: Unit): boolean {
+  return false;
+}
+
+export function isBallistaElephantLine(unit: Unit): boolean {
+  return false;
+}
+
 export function isSlinger(unit: Unit): boolean {
   return unit.id === ArcheryUnits.Slinger.id;
 }
@@ -302,12 +361,24 @@ export function isVillager(unit: Unit): boolean {
   return unit.id === Villager.id;
 }
 
+export function isTradeCart(unit: Unit): boolean {
+  return unit.id === TradeCart.id;
+}
+
+export function isTradeCog(unit: Unit): boolean {
+  return unit.id === DockUnits.TradeCog.id;
+}
+
 export function isGunpowderUnit(unit: Unit): boolean {
   return unit.type.indexOf(UnitType.GunpowderUnit) !== -1;
 }
 
 export function isPetard(unit: Unit): boolean {
   return unit.id === Petard.id;
+}
+
+export function isTrebuchetUnpacked(unit: Unit): boolean {
+  return unit.id === TrebuchetUnpacked.id;
 }
 
 export function isInCastle(unit: Unit): boolean {
@@ -327,6 +398,14 @@ export function isHuskarlLine(unit: Unit): boolean {
 }
 
 export function isTarkanLine(unit: Unit): boolean {
+  return false;
+}
+
+export function isWarElephantLine(unit: Unit): boolean {
+  return false;
+}
+
+export function isBerzerkLine(unit: Unit): boolean {
   return false;
 }
 
