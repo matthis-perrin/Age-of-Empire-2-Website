@@ -913,7 +913,7 @@ export const Ballistics: Technology = {
   bonus: {
     description: {
       template:
-        'Les %1, %2, %3, %4, and towers tirent avec plus de précision sur les cibles mobiles.',
+        'Les %1, %2, %3, %4, et tours tirent avec plus de précision sur les cibles mobiles.',
       variables: [
         {type: InterpolationVariableType.UnitType, unitType: UnitType.Archer},
         {type: InterpolationVariableType.UnitType, unitType: UnitType.Ship},

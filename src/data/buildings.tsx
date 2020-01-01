@@ -1,9 +1,9 @@
 /* eslint-disable no-magic-numbers */
 import {Age} from './ages/core';
 import {Cost} from './resource';
-import {Civilization, Cumans} from './civilizations/registry';
 import {ArmorType, RangeAttack, Armor, AttackType} from './damage';
 import {Ageable, AllAge, makeAgeable} from './core';
+import {CivilizationId, Ids} from './civilizations/ids';
 
 export enum BuildingType {
   Economic,
@@ -44,7 +44,7 @@ export enum BuildingAbility {
 
 export interface Overridable<T> {
   default: T;
-  overrides?: Map<Civilization, T>;
+  overrides?: Map<CivilizationId, T>;
 }
 
 export interface Building {
@@ -70,7 +70,7 @@ export const TownCenter: Building = {
   types: [BuildingType.Economic],
   age: {
     default: Age.CastleAge,
-    overrides: new Map([[Cumans, Age.FeudalAge]]),
+    overrides: new Map([[Ids.CumansId, Age.FeudalAge]]),
   },
   population: 5,
   use: [
@@ -84,7 +84,7 @@ export const TownCenter: Building = {
   },
   constructionTime: {
     default: 150,
-    overrides: new Map([[Cumans, 275]]),
+    overrides: new Map([[Ids.CumansId, 275]]),
   },
   size: [4, 4],
   health: AllAge(2400),
@@ -203,7 +203,7 @@ export const SiegeWorkshop: Building = {
   id: 'siege-workshop',
   name: 'Atelier de siège',
   types: [BuildingType.Military],
-  age: {default: Age.CastleAge, overrides: new Map([[Cumans, Age.FeudalAge]])},
+  age: {default: Age.CastleAge, overrides: new Map([[Ids.CumansId, Age.FeudalAge]])},
   use: [BuildingAbility.TrainAndImproveSiegeUnits],
   cost: {
     wood: 200,

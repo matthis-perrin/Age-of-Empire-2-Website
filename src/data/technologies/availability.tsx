@@ -1,5 +1,4 @@
 import {
-  Civilization,
   Aztecs,
   Berbers,
   Britons,
@@ -35,6 +34,7 @@ import {
   Turks,
   Vietnamese,
   Vikings,
+  Civilization,
 } from '../civilizations/registry';
 
 import {Technology} from './core';
@@ -107,7 +107,7 @@ import {
   Sappers,
 } from './registry';
 
-export const CivilizationToTechnologies = new Map<Civilization, Map<Technology, boolean>>([
+export const civilizationToTechnologies = new Map<Civilization, Map<Technology, boolean>>([
   [
     Aztecs,
     new Map<Technology, boolean>([

@@ -1,41 +1,4 @@
 /* eslint-disable no-magic-numbers */
-import {
-  Aztecs,
-  Berbers,
-  Britons,
-  Bulgarians,
-  Burmese,
-  Byzantines,
-  Celts,
-  Chinese,
-  Cumans,
-  Ethiopians,
-  Franks,
-  Goths,
-  Huns,
-  Incas,
-  Indians,
-  Italians,
-  Japanese,
-  Khmer,
-  Koreans,
-  Lithuanians,
-  Magyars,
-  Malay,
-  Malians,
-  Mayans,
-  Mongols,
-  Persians,
-  Portuguese,
-  Saracens,
-  Slavs,
-  Spanish,
-  Tatars,
-  Teutons,
-  Turks,
-  Vietnamese,
-  Vikings,
-} from '../civilizations/registry';
 import {Age} from '../ages/core';
 import {Castle, Stable, Barrack, TownCenter, Dock, SiegeWorkshop} from '../buildings';
 import {
@@ -120,10 +83,11 @@ import {TradeCart} from '../units/market';
 import {Villager} from '../units/town_center';
 
 import {TechnologyType, UniqueTechnology} from './core';
+import { Ids } from '../civilizations/ids';
 
-const Atlatl: UniqueTechnology = {
+export const Atlatl: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Aztecs,
+  civilization: Ids.AztecsId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Atlatl',
@@ -148,9 +112,9 @@ const Atlatl: UniqueTechnology = {
     ],
   },
 };
-const Kasbah: UniqueTechnology = {
+export const Kasbah: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Berbers,
+  civilization: Ids.BerbersId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Kasbah',
@@ -165,9 +129,9 @@ const Kasbah: UniqueTechnology = {
     effects: [{teamBonus: true, units: isInCastle, trainingSpeedBonus: AllAge(0.25)}],
   },
 };
-const Yeomen: UniqueTechnology = {
+export const Yeomen: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Britons,
+  civilization: Ids.BritonsId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Yeomen',
@@ -182,9 +146,9 @@ const Yeomen: UniqueTechnology = {
     effects: [{teamBonus: false, units: isByFootArcher, rangeBonus: AllAge(1)}],
   },
 };
-const Stirrups: UniqueTechnology = {
+export const Stirrups: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Bulgarians,
+  civilization: Ids.BulgariansId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Stirrups',
@@ -208,9 +172,9 @@ const Stirrups: UniqueTechnology = {
     ],
   },
 };
-const Howdah: UniqueTechnology = {
+export const Howdah: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Burmese,
+  civilization: Ids.BurmeseId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Howdah',
@@ -227,9 +191,9 @@ const Howdah: UniqueTechnology = {
     ],
   },
 };
-const GreekFire: UniqueTechnology = {
+export const GreekFire: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Byzantines,
+  civilization: Ids.ByzantinesId,
   age: Age.CastleAge,
   building: Castle,
   id: 'GreekFire',
@@ -244,9 +208,9 @@ const GreekFire: UniqueTechnology = {
     effects: [{teamBonus: false, units: isFireGalleyLine, rangeBonus: AllAge(1)}],
   },
 };
-const Stronghold: UniqueTechnology = {
+export const Stronghold: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Celts,
+  civilization: Ids.CeltsId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Stronghold',
@@ -261,9 +225,9 @@ const Stronghold: UniqueTechnology = {
     effects: [],
   },
 };
-const GreatWall: UniqueTechnology = {
+export const GreatWall: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Chinese,
+  civilization: Ids.ChineseId,
   age: Age.CastleAge,
   building: Castle,
   id: 'GreatWall',
@@ -275,9 +239,9 @@ const GreatWall: UniqueTechnology = {
     effects: [],
   },
 };
-const SteppeHusbandry: UniqueTechnology = {
+export const SteppeHusbandry: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Cumans,
+  civilization: Ids.CumansId,
   age: Age.CastleAge,
   building: Castle,
   id: 'SteppeHusbandry',
@@ -302,9 +266,9 @@ const SteppeHusbandry: UniqueTechnology = {
     ],
   },
 };
-const RoyalHeirs: UniqueTechnology = {
+export const RoyalHeirs: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Ethiopians,
+  civilization: Ids.EthiopiansId,
   age: Age.CastleAge,
   building: Castle,
   id: 'RoyalHeirs',
@@ -316,9 +280,9 @@ const RoyalHeirs: UniqueTechnology = {
     effects: [{teamBonus: false, units: isShotelWarriorLine, trainingSpeedBonus: AllAge(1)}],
   },
 };
-const Chivalry: UniqueTechnology = {
+export const Chivalry: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Franks,
+  civilization: Ids.FranksId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Chivalry',
@@ -333,9 +297,9 @@ const Chivalry: UniqueTechnology = {
     effects: [{teamBonus: false, units: isInStable, trainingSpeedBonus: AllAge(0.4)}],
   },
 };
-const Anarchy: UniqueTechnology = {
+export const Anarchy: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Goths,
+  civilization: Ids.GothsId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Anarchy',
@@ -350,9 +314,9 @@ const Anarchy: UniqueTechnology = {
     effects: [{teamBonus: false, units: isHuskarlLine}],
   },
 };
-const Marauders: UniqueTechnology = {
+export const Marauders: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Huns,
+  civilization: Ids.HunsId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Marauders',
@@ -367,9 +331,9 @@ const Marauders: UniqueTechnology = {
     effects: [{teamBonus: false, units: isTarkanLine}],
   },
 };
-const AndeanSling: UniqueTechnology = {
+export const AndeanSling: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Incas,
+  civilization: Ids.IncasId,
   age: Age.CastleAge,
   building: Castle,
   id: 'AndeanSling',
@@ -394,9 +358,9 @@ const AndeanSling: UniqueTechnology = {
     ],
   },
 };
-const Sultans: UniqueTechnology = {
+export const Sultans: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Indians,
+  civilization: Ids.IndiansId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Sultans',
@@ -411,9 +375,9 @@ const Sultans: UniqueTechnology = {
     effects: [],
   },
 };
-const Pavise: UniqueTechnology = {
+export const Pavise: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Italians,
+  civilization: Ids.ItaliansId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Pavise',
@@ -428,9 +392,9 @@ const Pavise: UniqueTechnology = {
     effects: [{teamBonus: false, units: isByFootArcher, armorBonus: AllAge({melee: 1, pierce: 1})}],
   },
 };
-const Yasama: UniqueTechnology = {
+export const Yasama: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Japanese,
+  civilization: Ids.JapaneseId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Yasama',
@@ -442,9 +406,9 @@ const Yasama: UniqueTechnology = {
     effects: [],
   },
 };
-const TuskSwords: UniqueTechnology = {
+export const TuskSwords: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Khmer,
+  civilization: Ids.KhmerId,
   age: Age.CastleAge,
   building: Castle,
   id: 'TuskSwords',
@@ -459,9 +423,9 @@ const TuskSwords: UniqueTechnology = {
     effects: [{teamBonus: false, units: isBattleElephantLine, attackBonus: AllAge(3)}],
   },
 };
-const Panokseon: UniqueTechnology = {
+export const Panokseon: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Koreans,
+  civilization: Ids.KoreansId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Panokseon',
@@ -476,9 +440,9 @@ const Panokseon: UniqueTechnology = {
     effects: [{teamBonus: false, units: isTurtleShip, speedBonus: AllAge(0.15)}],
   },
 };
-const HillForts: UniqueTechnology = {
+export const HillForts: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Lithuanians,
+  civilization: Ids.LithuaniansId,
   age: Age.CastleAge,
   building: Castle,
   id: 'HillForts',
@@ -493,9 +457,9 @@ const HillForts: UniqueTechnology = {
     effects: [],
   },
 };
-const Mercenaries: UniqueTechnology = {
+export const Mercenaries: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Magyars,
+  civilization: Ids.MagyarsId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Mercenaries',
@@ -510,9 +474,9 @@ const Mercenaries: UniqueTechnology = {
     effects: [{teamBonus: false, units: isHuskarlLine, goldCostBonus: AllAge(10)}],
   },
 };
-const Thalassocracy: UniqueTechnology = {
+export const Thalassocracy: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Malay,
+  civilization: Ids.MalayId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Thalassocracy',
@@ -530,9 +494,9 @@ const Thalassocracy: UniqueTechnology = {
     effects: [],
   },
 };
-const Tigui: UniqueTechnology = {
+export const Tigui: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Malians,
+  civilization: Ids.MaliansId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Tigui',
@@ -547,9 +511,9 @@ const Tigui: UniqueTechnology = {
     effects: [{teamBonus: false, units: noUnits}],
   },
 };
-const ObsidianArrows: UniqueTechnology = {
+export const ObsidianArrows: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Mayans,
+  civilization: Ids.MayansId,
   age: Age.CastleAge,
   building: Castle,
   id: 'ObsidianArrows',
@@ -570,9 +534,9 @@ const ObsidianArrows: UniqueTechnology = {
     ],
   },
 };
-const Nomads: UniqueTechnology = {
+export const Nomads: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Mongols,
+  civilization: Ids.MongolsId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Nomads',
@@ -587,9 +551,9 @@ const Nomads: UniqueTechnology = {
     effects: [],
   },
 };
-const Kamandaran: UniqueTechnology = {
+export const Kamandaran: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Persians,
+  civilization: Ids.PersiansId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Kamandaran',
@@ -611,9 +575,9 @@ const Kamandaran: UniqueTechnology = {
     ],
   },
 };
-const Carrack: UniqueTechnology = {
+export const Carrack: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Portuguese,
+  civilization: Ids.PortugueseId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Carrack',
@@ -628,9 +592,9 @@ const Carrack: UniqueTechnology = {
     effects: [{teamBonus: false, units: isShip, armorBonus: AllAge({melee: 1, pierce: 1})}],
   },
 };
-const Madrasah: UniqueTechnology = {
+export const Madrasah: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Saracens,
+  civilization: Ids.SaracensId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Madrasah',
@@ -645,9 +609,9 @@ const Madrasah: UniqueTechnology = {
     effects: [{teamBonus: false, units: isMonk}],
   },
 };
-const Orthodoxy: UniqueTechnology = {
+export const Orthodoxy: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Slavs,
+  civilization: Ids.SlavsId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Orthodoxy',
@@ -662,9 +626,9 @@ const Orthodoxy: UniqueTechnology = {
     effects: [{teamBonus: false, units: isMonk, armorBonus: AllAge({melee: 3, pierce: 3})}],
   },
 };
-const Inquisition: UniqueTechnology = {
+export const Inquisition: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Spanish,
+  civilization: Ids.SpanishId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Inquisition',
@@ -680,9 +644,9 @@ const Inquisition: UniqueTechnology = {
     effects: [{teamBonus: false, units: isMonk}],
   },
 };
-const SilkArmor: UniqueTechnology = {
+export const SilkArmor: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Tatars,
+  civilization: Ids.TatarsId,
   age: Age.CastleAge,
   building: Castle,
   id: 'SilkArmor',
@@ -709,9 +673,9 @@ const SilkArmor: UniqueTechnology = {
     ],
   },
 };
-const Ironclad: UniqueTechnology = {
+export const Ironclad: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Teutons,
+  civilization: Ids.TeutonsId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Ironclad',
@@ -726,9 +690,9 @@ const Ironclad: UniqueTechnology = {
     effects: [{teamBonus: false, units: isSiegeUnit, armorBonus: AllAge({melee: 4, pierce: 0})}],
   },
 };
-const Sipahi: UniqueTechnology = {
+export const Sipahi: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Turks,
+  civilization: Ids.TurksId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Sipahi',
@@ -752,9 +716,9 @@ const Sipahi: UniqueTechnology = {
     ],
   },
 };
-const Chatras: UniqueTechnology = {
+export const Chatras: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Vietnamese,
+  civilization: Ids.VietnameseId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Chatras',
@@ -769,9 +733,9 @@ const Chatras: UniqueTechnology = {
     effects: [{teamBonus: false, units: isBattleElephantLine, healthFixedBonus: AllAge(50)}],
   },
 };
-const Chieftains: UniqueTechnology = {
+export const Chieftains: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Vikings,
+  civilization: Ids.VikingsId,
   age: Age.CastleAge,
   building: Castle,
   id: 'Chieftains',
@@ -794,9 +758,9 @@ const Chieftains: UniqueTechnology = {
   },
 };
 
-const GarlandWars: UniqueTechnology = {
+export const GarlandWars: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Aztecs,
+  civilization: Ids.AztecsId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'GarlandWars',
@@ -811,9 +775,9 @@ const GarlandWars: UniqueTechnology = {
     effects: [{teamBonus: false, units: isInfantry, attackBonus: AllAge(4)}],
   },
 };
-const MaghrabiCamels: UniqueTechnology = {
+export const MaghrabiCamels: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Berbers,
+  civilization: Ids.BerbersId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'MaghrabiCamels',
@@ -831,9 +795,9 @@ const MaghrabiCamels: UniqueTechnology = {
     effects: [{teamBonus: false, units: u => isCamelRiderLine(u) || isCamelArcherLine(u)}],
   },
 };
-const Warwolf: UniqueTechnology = {
+export const Warwolf: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Britons,
+  civilization: Ids.BritonsId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'Warwolf',
@@ -849,9 +813,9 @@ const Warwolf: UniqueTechnology = {
     effects: [{teamBonus: false, units: isTrebuchetUnpacked, areaOfDamageBonus: AllAge(0.5)}],
   },
 };
-const Bagains: UniqueTechnology = {
+export const Bagains: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Bulgarians,
+  civilization: Ids.BulgariansId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'Bagains',
@@ -866,9 +830,9 @@ const Bagains: UniqueTechnology = {
     effects: [{teamBonus: false, units: isMilitiaLine, armorBonus: AllAge({melee: 5, pierce: 0})}],
   },
 };
-const ManipurCavalry: UniqueTechnology = {
+export const ManipurCavalry: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Burmese,
+  civilization: Ids.BurmeseId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'ManipurCavalry',
@@ -899,9 +863,9 @@ const ManipurCavalry: UniqueTechnology = {
     ],
   },
 };
-const Logistica: UniqueTechnology = {
+export const Logistica: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Byzantines,
+  civilization: Ids.ByzantinesId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'Logistica',
@@ -919,9 +883,9 @@ const Logistica: UniqueTechnology = {
     effects: [{teamBonus: false, units: isCataphract}],
   },
 };
-const FurorCeltica: UniqueTechnology = {
+export const FurorCeltica: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Celts,
+  civilization: Ids.CeltsId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'FurorCeltica',
@@ -936,9 +900,9 @@ const FurorCeltica: UniqueTechnology = {
     effects: [{teamBonus: false, units: isInSiegeWorkshop, healthBonus: AllAge(0.4)}],
   },
 };
-const Rocketry: UniqueTechnology = {
+export const Rocketry: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Chinese,
+  civilization: Ids.ChineseId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'Rocketry',
@@ -959,9 +923,9 @@ const Rocketry: UniqueTechnology = {
     ],
   },
 };
-const CumanMercenaries: UniqueTechnology = {
+export const CumanMercenaries: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Cumans,
+  civilization: Ids.CumansId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'CumanMercenaries',
@@ -976,9 +940,9 @@ const CumanMercenaries: UniqueTechnology = {
     effects: [{teamBonus: true, units: isKipchakLine}],
   },
 };
-const TorsionEngines: UniqueTechnology = {
+export const TorsionEngines: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Ethiopians,
+  civilization: Ids.EthiopiansId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'TorsionEngines',
@@ -996,9 +960,9 @@ const TorsionEngines: UniqueTechnology = {
     effects: [{teamBonus: false, units: u => isSiegeUnit(u) && !isBatteringRam(u)}],
   },
 };
-const BeardedAxe: UniqueTechnology = {
+export const BeardedAxe: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Franks,
+  civilization: Ids.FranksId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'BeardedAxe',
@@ -1015,9 +979,9 @@ const BeardedAxe: UniqueTechnology = {
     effects: [{teamBonus: false, units: isThrowingAxemen, rangeBonus: AllAge(1)}],
   },
 };
-const Perfusion: UniqueTechnology = {
+export const Perfusion: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Goths,
+  civilization: Ids.GothsId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'Perfusion',
@@ -1032,9 +996,9 @@ const Perfusion: UniqueTechnology = {
     effects: [{teamBonus: false, units: isInBarrack, trainingSpeedBonus: AllAge(1)}],
   },
 };
-const Atheism: UniqueTechnology = {
+export const Atheism: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Huns,
+  civilization: Ids.HunsId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'Atheism',
@@ -1053,9 +1017,9 @@ const Atheism: UniqueTechnology = {
     effects: [{teamBonus: false, units: noUnits}],
   },
 };
-const Couriers: UniqueTechnology = {
+export const Couriers: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Incas,
+  civilization: Ids.IncasId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'Couriers',
@@ -1080,9 +1044,9 @@ const Couriers: UniqueTechnology = {
     ],
   },
 };
-const Shatagni: UniqueTechnology = {
+export const Shatagni: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Indians,
+  civilization: Ids.IndiansId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'Shatagni',
@@ -1097,9 +1061,9 @@ const Shatagni: UniqueTechnology = {
     effects: [{teamBonus: false, units: isHandCannoneer, rangeBonus: AllAge(1)}],
   },
 };
-const SilkRoad: UniqueTechnology = {
+export const SilkRoad: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Italians,
+  civilization: Ids.ItaliansId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'SilkRoad',
@@ -1119,9 +1083,9 @@ const SilkRoad: UniqueTechnology = {
     ],
   },
 };
-const Kataparuto: UniqueTechnology = {
+export const Kataparuto: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Japanese,
+  civilization: Ids.JapaneseId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'Kataparuto',
@@ -1136,9 +1100,9 @@ const Kataparuto: UniqueTechnology = {
     effects: [{teamBonus: false, units: isTrebuchetUnpacked, rateOfFireBonus: AllAge(0.33)}],
   },
 };
-const DoubleCrossbow: UniqueTechnology = {
+export const DoubleCrossbow: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Khmer,
+  civilization: Ids.KhmerId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'DoubleCrossbow',
@@ -1157,9 +1121,9 @@ const DoubleCrossbow: UniqueTechnology = {
     effects: [{teamBonus: false, units: u => isScorpionLine(u) || isBallistaElephantLine(u)}],
   },
 };
-const Shinkichon: UniqueTechnology = {
+export const Shinkichon: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Koreans,
+  civilization: Ids.KoreansId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'Shinkichon',
@@ -1174,9 +1138,9 @@ const Shinkichon: UniqueTechnology = {
     effects: [{teamBonus: false, units: isMangonelLine, rangeBonus: AllAge(1)}],
   },
 };
-const TowerShields: UniqueTechnology = {
+export const TowerShields: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Lithuanians,
+  civilization: Ids.LithuaniansId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'TowerShields',
@@ -1200,9 +1164,9 @@ const TowerShields: UniqueTechnology = {
     ],
   },
 };
-const RecurveBow: UniqueTechnology = {
+export const RecurveBow: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Magyars,
+  civilization: Ids.MagyarsId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'RecurveBow',
@@ -1220,9 +1184,9 @@ const RecurveBow: UniqueTechnology = {
     ],
   },
 };
-const ForcedLevy: UniqueTechnology = {
+export const ForcedLevy: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Malay,
+  civilization: Ids.MalayId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'ForcedLevy',
@@ -1244,9 +1208,9 @@ const ForcedLevy: UniqueTechnology = {
     ],
   },
 };
-const Farimba: UniqueTechnology = {
+export const Farimba: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Malians,
+  civilization: Ids.MaliansId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'Farimba',
@@ -1271,9 +1235,9 @@ const Farimba: UniqueTechnology = {
     ],
   },
 };
-const ElDorado: UniqueTechnology = {
+export const ElDorado: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Mayans,
+  civilization: Ids.MayansId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'ElDorado',
@@ -1288,9 +1252,9 @@ const ElDorado: UniqueTechnology = {
     effects: [{teamBonus: false, units: isEagleWarriorLine, healthFixedBonus: AllAge(40)}],
   },
 };
-const Drill: UniqueTechnology = {
+export const Drill: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Mongols,
+  civilization: Ids.MongolsId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'Drill',
@@ -1305,9 +1269,9 @@ const Drill: UniqueTechnology = {
     effects: [{teamBonus: false, units: isInSiegeWorkshop, speedBonus: AllAge(0.5)}],
   },
 };
-const Mahouts: UniqueTechnology = {
+export const Mahouts: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Persians,
+  civilization: Ids.PersiansId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'Mahouts',
@@ -1324,9 +1288,9 @@ const Mahouts: UniqueTechnology = {
     effects: [{teamBonus: false, units: isWarElephantLine, speedBonus: AllAge(0.3)}],
   },
 };
-const Arquebus: UniqueTechnology = {
+export const Arquebus: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Portuguese,
+  civilization: Ids.PortugueseId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'Arquebus',
@@ -1353,9 +1317,9 @@ const Arquebus: UniqueTechnology = {
     ],
   },
 };
-const Zealotry: UniqueTechnology = {
+export const Zealotry: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Saracens,
+  civilization: Ids.SaracensId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'Zealotry',
@@ -1370,9 +1334,9 @@ const Zealotry: UniqueTechnology = {
     effects: [{teamBonus: false, units: isCamel, healthFixedBonus: AllAge(30)}],
   },
 };
-const Druzhina: UniqueTechnology = {
+export const Druzhina: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Slavs,
+  civilization: Ids.SlavsId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'Druzhina',
@@ -1387,9 +1351,9 @@ const Druzhina: UniqueTechnology = {
     effects: [{teamBonus: false, units: isInfantry, areaOfDamageBonus: AllAge(0.5)}],
   },
 };
-const Supremacy: UniqueTechnology = {
+export const Supremacy: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Spanish,
+  civilization: Ids.SpanishId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'Supremacy',
@@ -1408,9 +1372,9 @@ const Supremacy: UniqueTechnology = {
     ],
   },
 };
-const TimuridSiegecraft: UniqueTechnology = {
+export const TimuridSiegecraft: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Tatars,
+  civilization: Ids.TatarsId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'TimuridSiegecraft',
@@ -1425,9 +1389,9 @@ const TimuridSiegecraft: UniqueTechnology = {
     effects: [{teamBonus: false, units: isTrebuchetUnpacked, rangeBonus: AllAge(1)}],
   },
 };
-const Crenellations: UniqueTechnology = {
+export const Crenellations: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Teutons,
+  civilization: Ids.TeutonsId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'Crenellations',
@@ -1445,9 +1409,9 @@ const Crenellations: UniqueTechnology = {
     effects: [],
   },
 };
-const Artillery: UniqueTechnology = {
+export const Artillery: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Turks,
+  civilization: Ids.TurksId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'Artillery',
@@ -1465,9 +1429,9 @@ const Artillery: UniqueTechnology = {
     effects: [{teamBonus: false, units: u => isBombardCanon(u) || isCannonGalleonLine(u)}],
   },
 };
-const PaperMoney: UniqueTechnology = {
+export const PaperMoney: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Vietnamese,
+  civilization: Ids.VietnameseId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'PaperMoney',
@@ -1479,9 +1443,9 @@ const PaperMoney: UniqueTechnology = {
     effects: [{teamBonus: true, units: noUnits}],
   },
 };
-const Berserkergang: UniqueTechnology = {
+export const Berserkergang: UniqueTechnology = {
   type: TechnologyType.Unique,
-  civilization: Vikings,
+  civilization: Ids.VikingsId,
   age: Age.ImperialAge,
   building: Castle,
   id: 'Berserkergang',

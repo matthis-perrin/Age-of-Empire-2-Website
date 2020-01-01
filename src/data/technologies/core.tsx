@@ -2,7 +2,7 @@ import {Age} from '../ages/core';
 import {Building} from '../buildings';
 import {Cost} from '../resource';
 import {Bonus} from '../core';
-import {Civilization} from '../civilizations/registry';
+import {CivilizationId} from '../civilizations/ids';
 
 export enum TechnologyType {
   Building,
@@ -29,5 +29,5 @@ export interface Technology {
 
 export interface UniqueTechnology extends Technology {
   type: TechnologyType.Unique;
-  civilization: Civilization;
+  civilization: CivilizationId;
 }

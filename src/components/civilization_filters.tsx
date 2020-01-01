@@ -7,7 +7,7 @@ import {CivilizationStrength, getStrengthLabel} from '../data/civilizations/stre
 import {Palette} from './theme';
 import {Checkbox} from './checkbox';
 
-export type CivilizationFilter = (Civilization: Civilization) => boolean;
+export type CivilizationFilter = (civilization: Civilization) => boolean;
 export const noopFilter: CivilizationFilter = () => true;
 
 export function CivilizationStrengthFilter(props: {

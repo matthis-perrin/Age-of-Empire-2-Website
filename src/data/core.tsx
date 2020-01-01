@@ -4,6 +4,7 @@ import {ArmorType} from './damage';
 import {UnitType, Unit} from './units/core';
 import {Age} from './ages/core';
 import {Building} from './buildings';
+import {CivilizationId} from './civilizations/ids';
 
 export interface InterpolationString {
   template: string;
@@ -132,4 +133,10 @@ export interface Bonus {
     fullAccuracyBonus?: Ageable<boolean>;
     ageAvailability?: Age;
   }[];
+}
+
+export interface CivilizationBonus {
+  id: string;
+  civilization: CivilizationId;
+  bonus: Bonus;
 }

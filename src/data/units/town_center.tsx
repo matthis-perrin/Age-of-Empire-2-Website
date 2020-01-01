@@ -1,7 +1,7 @@
-import {allCivilizations} from '../civilizations/registry';
 import {Age} from '../ages/core';
 import {TownCenter} from '../buildings';
 import {ArmorType, AttackType} from '../damage';
+import {allCivilizations} from '../civilizations/ids';
 
 import {Unit, UnitAbility, UnitType} from './core';
 

@@ -82,11 +82,11 @@ export const unitRegistry: UnitInfo[] = [
   SiegeWorkshopUnits.HeavyScorpion,
   SiegeWorkshopUnits.BombardCanon,
 
-  StableUnits.ScoutCavalryDarkAge,
+  StableUnits.ScoutCavalry,
   StableUnits.ScoutCavalryFeudalAge,
   StableUnits.ScoutCavalryCastleAge,
   StableUnits.ScoutCavalryImperialAge,
-  StableUnits.LightCavalryCastleAge,
+  StableUnits.LightCavalry,
   StableUnits.LightCavalryImperialAge,
   StableUnits.Hussar,
   StableUnits.Knight,

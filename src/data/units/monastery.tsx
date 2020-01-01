@@ -1,9 +1,9 @@
 /* eslint-disable no-magic-numbers */
-import {allCivilizations, onlyCivilizations, Spanish} from '../civilizations/registry';
 import {Age} from '../ages/core';
 import {Monastery} from '../buildings';
 import {ArmorType, AttackType} from '../damage';
 import {InterpolationVariableType} from '../core';
+import {onlyCivilizations, allCivilizations, Ids} from '../civilizations/ids';
 
 import {Unit, UnitType, UnitAbility} from './core';
 import {BatteringRam} from './siege_workshop';
@@ -48,7 +48,7 @@ export const Missionary: Unit = {
   name: 'Missionnaire',
   type: [UnitType.Cavalry, UnitType.Monk, UnitType.Healer],
   wikiUrl: 'https://ageofempires.fandom.com/wiki/Missionary_(Age_of_Empires_II)',
-  civilizations: onlyCivilizations([Spanish]),
+  civilizations: onlyCivilizations([Ids.SpanishId]),
   age: Age.CastleAge,
   abilities: [UnitAbility.HealUnits, UnitAbility.ConvertUnits],
   training: [{building: Monastery, time: 51}],

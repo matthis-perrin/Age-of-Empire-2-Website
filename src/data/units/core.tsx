@@ -1,9 +1,9 @@
-import {CivilizationRange} from '../civilizations/registry';
 import {Age} from '../ages/core';
 import {Building} from '../buildings';
 import {Cost} from '../resource';
 import {Attack, Armor} from '../damage';
 import {InterpolationString} from '../core';
+import {CivilizationRange} from '../civilizations/ids';
 
 export enum UnitType {
   Civilian,
@@ -33,14 +33,7 @@ export enum UnitAbility {
   GenerateGoldByTrading,
 }
 
-export interface Unit {
-  id: string;
-  name: string;
-  type: UnitType[];
-  wikiUrl: string;
-  civilizations: CivilizationRange;
-  sharedUnit?: boolean;
-  age: Age;
+export interface UnitCarac {
   abilities: UnitAbility[];
   training: UnitTraining[];
   cost: Cost;
@@ -52,6 +45,16 @@ export interface Unit {
   garrison?: number;
   lineOfSight: number;
   comments: InterpolationString[];
+}
+
+export interface Unit extends UnitCarac {
+  id: string;
+  name: string;
+  type: UnitType[];
+  wikiUrl: string;
+  civilizations: CivilizationRange;
+  sharedUnit?: boolean;
+  age: Age;
 }
 
 export interface UnitTraining {
