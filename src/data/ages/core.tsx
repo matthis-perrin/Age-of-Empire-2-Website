@@ -1,10 +1,10 @@
 import {Bonus} from '../core';
 
 export enum Age {
-  DarkAge,
-  FeudalAge,
-  CastleAge,
-  ImperialAge,
+  DarkAge = 1,
+  FeudalAge = 2,
+  CastleAge = 3,
+  ImperialAge = 4,
 }
 
 export interface AgeBonus {

@@ -1,4 +1,6 @@
-import {UnitWithBonuses, AggregatedUnitWithBonus} from './core';
+import {uniq} from 'lodash-es';
+
+import {UnitWithBonuses, AggregatedUnitWithBonus, getUnitWithBonusesHash} from './core';
 
 export function aggregateByCivilization(
   unitWithBonuses: UnitWithBonuses[]
@@ -16,20 +18,15 @@ export function aggregateByCivilization(
 
   return Array.from(byHash.values()).map(unitArr => ({
     unit: unitArr[0].unit,
+    allies: uniq(
+      unitArr[0].alliesCivilizationBonuses
+        .map(b => b.ally)
+        .concat(unitArr[0].alliesCivilizationBonuses.map(b => b.ally))
+    ),
     civilizations: unitArr.map(unit => unit.civilization),
-    allies: unitArr[0].allies,
     civilizationBonuses: unitArr[0].civilizationBonuses,
     alliesCivilizationBonuses: unitArr[0].alliesCivilizationBonuses,
     technologies: unitArr[0].technologies,
     alliesTechnologies: unitArr[0].alliesTechnologies,
   }));
-}
-
-function getUnitWithBonusesHash(unitWithBonuses: UnitWithBonuses): string {
-  return unitWithBonuses.civilizationBonuses
-    .map(b => b.id)
-    .concat(unitWithBonuses.alliesCivilizationBonuses.map(b => b.id))
-    .concat(unitWithBonuses.technologies.map(t => t.id))
-    .concat(unitWithBonuses.alliesTechnologies.map(t => t.id))
-    .join('');
 }

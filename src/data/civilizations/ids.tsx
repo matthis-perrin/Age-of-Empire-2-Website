@@ -1,4 +1,4 @@
-export type Brand<Type, Name> = Type & {__brand: Name};
+import {Brand} from '../../lib/utils/type_utils';
 
 export type CivilizationId = Brand<string, 'civilization-id'>;
 

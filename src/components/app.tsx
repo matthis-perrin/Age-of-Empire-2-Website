@@ -1,14 +1,25 @@
 import React from 'react';
 
+import {generateUnitsWithBonuses} from '../lib/unit_with_bonuses/generation';
+import {aggregateByCivilization} from '../lib/unit_with_bonuses/aggregation';
+import {Age} from '../data/ages/core';
+
 import {CSSReset} from './css_reset';
 import {CivilizationPage} from './civilization_page';
 import {Search} from './search-bar/search';
+import {UnitTable} from './units/unit_table';
 
 export function App(): JSX.Element {
+  const unitWithBonuses = generateUnitsWithBonuses({
+    alliesCount: 4,
+    includeTechnologies: true,
+  });
+
   return (
     <React.Fragment>
       <CSSReset />
-      <Search />
+      <UnitTable unitWithBonuses={unitWithBonuses} age={Age.ImperialAge} />
+      {/* <Search /> */}
       {/* <CivilizationPage /> */}
     </React.Fragment>
   );

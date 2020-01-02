@@ -5,19 +5,27 @@ import {Technology} from '../../data/technologies/core';
 
 export interface UnitBonuses {
   civilizationBonuses: CivilizationBonus[];
-  alliesCivilizationBonuses: CivilizationBonus[];
+  alliesCivilizationBonuses: {ally: Civilization; value: CivilizationBonus}[];
   technologies: Technology[];
-  alliesTechnologies: Technology[];
+  alliesTechnologies: {ally: Civilization; value: Technology}[];
 }
 
 export interface UnitWithBonuses extends UnitBonuses {
   unit: Unit;
   civilization: Civilization;
-  allies: Civilization[];
 }
 
 export interface AggregatedUnitWithBonus extends UnitBonuses {
   unit: Unit;
   civilizations: Civilization[];
   allies: Civilization[];
+}
+
+export function getUnitWithBonusesHash(unitWithBonuses: UnitWithBonuses): string {
+  return [unitWithBonuses.unit.id]
+    .concat(unitWithBonuses.civilizationBonuses.map(b => b.id))
+    .concat(unitWithBonuses.alliesCivilizationBonuses.map(b => b.value.id))
+    .concat(unitWithBonuses.technologies.map(t => t.id))
+    .concat(unitWithBonuses.alliesTechnologies.map(t => t.value.id))
+    .join('_');
 }

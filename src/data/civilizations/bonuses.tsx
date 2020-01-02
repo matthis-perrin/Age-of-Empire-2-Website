@@ -529,7 +529,7 @@ export const HunsBonuses: CivilizationBonus[] = [
         {
           teamBonus: false,
           units: isCavalryArcherLine,
-          trainingSpeedBonus: makeAgeable(undefined, undefined, 0.1, 0.2),
+          costBonus: makeAgeable(undefined, undefined, 0.1, 0.2),
         },
       ],
     },

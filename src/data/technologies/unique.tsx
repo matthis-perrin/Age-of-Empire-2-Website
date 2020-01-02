@@ -471,7 +471,7 @@ export const Mercenaries: UniqueTechnology = {
       template: "Les %1 ne coutent plus d'or.",
       variables: [{type: InterpolationVariableType.Unit, unit: Hussar}],
     },
-    effects: [{teamBonus: false, units: isHuskarlLine, goldCostBonus: AllAge(10)}],
+    effects: [{teamBonus: false, units: isHuskarlLine, goldCostBonus: AllAge(1)}],
   },
 };
 export const Thalassocracy: UniqueTechnology = {
@@ -569,8 +569,8 @@ export const Kamandaran: UniqueTechnology = {
       {
         teamBonus: false,
         units: isArcherLine,
-        goldCostBonus: AllAge(45),
-        woodCostBonus: AllAge(-45),
+        goldCostBonus: AllAge(1),
+        woodCostFixedBonus: AllAge(-45),
       },
     ],
   },
@@ -1202,8 +1202,8 @@ export const ForcedLevy: UniqueTechnology = {
       {
         teamBonus: false,
         units: isMilitiaLine,
-        goldCostBonus: AllAge(20),
-        foodCostBonus: AllAge(-20),
+        goldCostBonus: AllAge(1),
+        foodCostFixedBonus: AllAge(-20),
       },
     ],
   },

@@ -97,42 +97,98 @@ export function makeAgeable<T>(
   };
 }
 
+export function mergeAgeable2<T1, T2, Res>(
+  ageable1: Ageable<T1> | undefined,
+  ageable2: Ageable<T2> | undefined,
+  merger: (v1: T1 | undefined, v2: T2 | undefined) => Res
+): Ageable<Res> {
+  return {
+    [Age.DarkAge]: merger(ageable1 && ageable1[Age.DarkAge], ageable2 && ageable2[Age.DarkAge]),
+    [Age.FeudalAge]: merger(
+      ageable1 && ageable1[Age.FeudalAge],
+      ageable2 && ageable2[Age.FeudalAge]
+    ),
+    [Age.CastleAge]: merger(
+      ageable1 && ageable1[Age.CastleAge],
+      ageable2 && ageable2[Age.CastleAge]
+    ),
+    [Age.ImperialAge]: merger(
+      ageable1 && ageable1[Age.ImperialAge],
+      ageable2 && ageable2[Age.ImperialAge]
+    ),
+  };
+}
+
+export function mergeAgeable3<T1, T2, T3, Res>(
+  ageable1: Ageable<T1> | undefined,
+  ageable2: Ageable<T2> | undefined,
+  ageable3: Ageable<T3> | undefined,
+  merger: (v1: T1 | undefined, v2: T2 | undefined, v3: T3 | undefined) => Res
+): Ageable<Res> {
+  return {
+    [Age.DarkAge]: merger(
+      ageable1 && ageable1[Age.DarkAge],
+      ageable2 && ageable2[Age.DarkAge],
+      ageable3 && ageable3[Age.DarkAge]
+    ),
+    [Age.FeudalAge]: merger(
+      ageable1 && ageable1[Age.FeudalAge],
+      ageable2 && ageable2[Age.FeudalAge],
+      ageable3 && ageable3[Age.FeudalAge]
+    ),
+    [Age.CastleAge]: merger(
+      ageable1 && ageable1[Age.CastleAge],
+      ageable2 && ageable2[Age.CastleAge],
+      ageable3 && ageable3[Age.CastleAge]
+    ),
+    [Age.ImperialAge]: merger(
+      ageable1 && ageable1[Age.ImperialAge],
+      ageable2 && ageable2[Age.ImperialAge],
+      ageable3 && ageable3[Age.ImperialAge]
+    ),
+  };
+}
+
 export enum BonusConstraint {
   AllMonasteryTechResearched,
   AtLeast5RelicGarrisoned,
 }
 
+export interface BonusEffect {
+  teamBonus: boolean;
+  units(unit: Unit): boolean;
+  extraConstraint?: BonusConstraint;
+  rangeBonus?: Ageable<number>;
+  trainingSpeedBonus?: Ageable<number>;
+  costBonus?: Ageable<number>;
+  goldCostBonus?: Ageable<number>;
+  woodCostBonus?: Ageable<number>;
+  foodCostBonus?: Ageable<number>;
+  woodCostFixedBonus?: Ageable<number>;
+  foodCostFixedBonus?: Ageable<number>;
+  rateOfFireBonus?: Ageable<number>;
+  speedBonus?: Ageable<number>;
+  healthBonus?: Ageable<number>;
+  healthFixedBonus?: Ageable<number>;
+  lineOfSightBonus?: Ageable<number>;
+  lineOfSightPercentBonus?: Ageable<number>;
+  attackBonus?: Ageable<number>;
+  attackBonusBonus?: Ageable<[ArmorType, number]>;
+  armorBonus?: Ageable<{melee: number; pierce: number}>;
+  garrisonBonus?: Ageable<number>;
+  healingRangeBonus?: Ageable<number>;
+  minimumRangeBonus?: Ageable<number>;
+  removeMinimumRange?: Ageable<boolean>;
+  conversionRangeBonus?: Ageable<number>;
+  areaOfDamageBonus?: Ageable<number>;
+  projectileSpeedBonus?: Ageable<number>;
+  fullAccuracyBonus?: Ageable<boolean>;
+  ageAvailability?: Age;
+}
+
 export interface Bonus {
   description: InterpolationString;
-  effects: {
-    teamBonus: boolean;
-    units(unit: Unit): boolean;
-    extraConstraint?: BonusConstraint;
-    rangeBonus?: Ageable<number>;
-    trainingSpeedBonus?: Ageable<number>;
-    costBonus?: Ageable<number>;
-    goldCostBonus?: Ageable<number>;
-    woodCostBonus?: Ageable<number>;
-    foodCostBonus?: Ageable<number>;
-    rateOfFireBonus?: Ageable<number>;
-    speedBonus?: Ageable<number>;
-    healthBonus?: Ageable<number>;
-    healthFixedBonus?: Ageable<number>;
-    lineOfSightBonus?: Ageable<number>;
-    lineOfSightPercentBonus?: Ageable<number>;
-    attackBonus?: Ageable<number>;
-    attackBonusBonus?: Ageable<[ArmorType, number]>;
-    armorBonus?: Ageable<{melee: number; pierce: number}>;
-    garrisonBonus?: Ageable<number>;
-    healingRangeBonus?: Ageable<number>;
-    minimumRangeBonus?: Ageable<number>;
-    removeMinimumRange?: Ageable<boolean>;
-    conversionRangeBonus?: Ageable<number>;
-    areaOfDamageBonus?: Ageable<number>;
-    projectileSpeedBonus?: Ageable<number>;
-    fullAccuracyBonus?: Ageable<boolean>;
-    ageAvailability?: Age;
-  }[];
+  effects: BonusEffect[];
 }
 
 export interface CivilizationBonus {

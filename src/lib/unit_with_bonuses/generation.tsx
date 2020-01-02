@@ -68,20 +68,24 @@ function computeBonuses(
   return {
     unit,
     civilization,
-    allies,
-
     civilizationBonuses: civilization.bonuses.filter(cb =>
       bonusAppliesToUnit(cb.bonus, unit, false)
     ),
     alliesCivilizationBonuses: allies
-      .map(ally => ally.bonuses.filter(cb => bonusAppliesToUnit(cb.bonus, unit, true)))
+      .map(ally =>
+        ally.bonuses
+          .filter(cb => bonusAppliesToUnit(cb.bonus, unit, true))
+          .map(b => ({ally, value: b}))
+      )
       .reduce((acc, curr) => acc.concat(curr), []),
     technologies: getCivilizationTechnologies(civilization).filter(t =>
       bonusAppliesToUnit(t.bonus, unit, false)
     ),
     alliesTechnologies: allies
       .map(ally =>
-        getCivilizationTechnologies(ally).filter(cb => bonusAppliesToUnit(cb.bonus, unit, true))
+        getCivilizationTechnologies(ally)
+          .filter(cb => bonusAppliesToUnit(cb.bonus, unit, true))
+          .map(b => ({ally, value: b}))
       )
       .reduce((acc, curr) => acc.concat(curr), []),
   };
