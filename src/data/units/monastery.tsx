@@ -4,11 +4,11 @@ import {Monastery} from '../buildings';
 import {ArmorType, AttackType} from '../damage';
 import {InterpolationVariableType} from '../core';
 import {onlyCivilizations, allCivilizations, Ids} from '../civilizations/ids';
+import {Resource} from '../resource';
 
 import {Unit, UnitType, UnitAbility} from './core';
 import {BatteringRam} from './siege_workshop';
 import {TrebuchetPacked, TrebuchetUnpacked} from './castle';
-import { Resource } from '../resource';
 
 export const Monk: Unit = {
   id: 'monk',

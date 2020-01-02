@@ -1,7 +1,8 @@
 import * as React from 'react';
-import styled from 'styled-components';
 
 import {UnitType} from '../../data/units/core';
+
+import {Linky} from './linky';
 
 export function UnitTypeName(props: {unitType: UnitType}): JSX.Element {
   let label = 'Inconnu';
@@ -28,11 +29,6 @@ export function UnitTypeName(props: {unitType: UnitType}): JSX.Element {
   } else if (props.unitType === UnitType.SuicideUnit) {
     label = 'Unités kamikaze';
   }
-  return <Wrapper>{label}</Wrapper>;
+  return <Linky text={label} />;
 }
 UnitTypeName.displayName = 'UnitTypeName';
-
-const Wrapper = styled.a`
-  color: blue;
-  padding: 0 4px;
-`;

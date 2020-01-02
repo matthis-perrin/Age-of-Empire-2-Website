@@ -9,6 +9,9 @@ import {generateUnitsWithBonuses} from '../../lib/unit_with_bonuses/generation';
 
 import {allUnitCaracColumns} from './unit_carac_columns';
 import {UnitCaracView} from './unit_carac_view';
+import {arrayJoin} from '../../lib/utils/array_utils';
+import {CivilizationName} from '../core/civilization_name';
+import {UnitName} from '../core/unit_name';
 
 export function UnitTable(): JSX.Element {
   const unitWithBonuses = generateUnitsWithBonuses({
@@ -18,9 +21,7 @@ export function UnitTable(): JSX.Element {
   const age = Age.ImperialAge;
   const filtered = filterUnitsWithBonusesForAge(unitWithBonuses, age);
   const aggregated = aggregateByCivilization(filtered);
-  const sorted = aggregated
-    .sort((a1, a2) => a1.unit.name.localeCompare(a2.unit.name))
-    .slice(0, 100);
+  const sorted = aggregated.sort((a1, a2) => a1.unit.name.localeCompare(a2.unit.name));
 
   // headers
 
@@ -48,12 +49,22 @@ export function UnitTable(): JSX.Element {
               .join('-')}`}
           >
             <Cell>
-              {u.civilizations.length > 4
+              {u.civilizations.length > 3
                 ? `${u.civilizations.length} civilizations`
-                : u.civilizations.map(c => c.name).join(', ')}
+                : arrayJoin(
+                    u.civilizations.map(c => <CivilizationName civilizationId={c.id} />),
+                    <span>, </span>
+                  )}
             </Cell>
-            <Cell>{u.allies.map(c => c.name).join(', ')}</Cell>
-            <Cell>{u.unit.name}</Cell>
+            <Cell>
+              {arrayJoin(
+                u.allies.map(c => <CivilizationName civilizationId={c.id} />),
+                <span>, </span>
+              )}
+            </Cell>
+            <Cell>
+              <UnitName unit={u.unit} />
+            </Cell>
             <React.Fragment>
               {allUnitCaracColumns.map(column => (
                 <Cell key={column.id}>
@@ -69,7 +80,9 @@ export function UnitTable(): JSX.Element {
 }
 UnitTable.displayName = 'UnitTable';
 
-const Table = styled.table``;
+const Table = styled.table`
+  min-height: 100vh;
+`;
 const TBody = styled.tbody``;
 const THead = styled.thead``;
 const Line = styled.tr`
@@ -81,6 +94,7 @@ const Cell = styled.td`
   padding: 4px 8px;
   border-left: solid 1px black;
   text-align: center;
+  white-space: nowrap;
 `;
 const HeaderCell = styled.th`
   padding: 4px 8px;

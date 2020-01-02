@@ -81,10 +81,10 @@ import {Militia, EagleWarrior, Spearman} from '../units/barrack';
 import {Scorpion, BatteringRam, Mangonel, BombardCanon} from '../units/siege_workshop';
 import {TradeCart} from '../units/market';
 import {Villager} from '../units/town_center';
+import {Ids} from '../civilizations/ids';
+import {Resource} from '../resource';
 
 import {TechnologyType, UniqueTechnology} from './core';
-import { Ids } from '../civilizations/ids';
-import { Resource } from '../resource';
 
 export const Atlatl: UniqueTechnology = {
   type: TechnologyType.Unique,

@@ -9,9 +9,9 @@ import {
   allCivilizations,
   onlyCivilizations,
 } from '../civilizations/ids';
+import {Resource} from '../resource';
 
 import {Unit, UnitType, UnitAbility} from './core';
-import { Resource } from '../resource';
 
 export const BatteringRam: Unit = {
   id: 'battering-ram',

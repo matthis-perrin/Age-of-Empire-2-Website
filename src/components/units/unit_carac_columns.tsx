@@ -95,7 +95,7 @@ export const StoneCostCarac = makeCostCarac(Resource.Stone, 'StoneCost', 'Pierre
 export const RateOfFireCarac: UnitCaracColumn<number> = {
   id: 'RateOfFire',
   name: 'Délais entre 2 attaques',
-  digits: 0,
+  digits: 2,
   effectExtractor: e => e.rateOfFireBonus,
   caracModifier: (carac, bonus) => ({
     ...carac,

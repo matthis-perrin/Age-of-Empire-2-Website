@@ -1,7 +1,8 @@
 import * as React from 'react';
-import styled from 'styled-components';
 
 import {ArmorType} from '../../data/damage';
+
+import {Linky} from './linky';
 
 export function ArmorTypeName(props: {armorType: ArmorType}): JSX.Element {
   let label = 'Inconnu';
@@ -52,11 +53,6 @@ export function ArmorTypeName(props: {armorType: ArmorType}): JSX.Element {
   } else if (props.armorType === ArmorType.WarElephant) {
     label = 'Éléphant de guerre';
   }
-  return <Wrapper>{label}</Wrapper>;
+  return <Linky text={label} />;
 }
 ArmorTypeName.displayName = 'ArmorTypeName';
-
-const Wrapper = styled.a`
-  color: blue;
-  padding: 0 4px;
-`;

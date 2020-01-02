@@ -2,9 +2,9 @@ import {Age} from '../ages/core';
 import {Market} from '../buildings';
 import {AttackType} from '../damage';
 import {allCivilizations} from '../civilizations/ids';
+import {Resource} from '../resource';
 
 import {Unit, UnitAbility, UnitType} from './core';
-import { Resource } from '../resource';
 
 export const TradeCart: Unit = {
   id: 'trade-cart',

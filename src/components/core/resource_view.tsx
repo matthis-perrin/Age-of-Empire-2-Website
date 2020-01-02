@@ -1,7 +1,8 @@
 import * as React from 'react';
-import styled from 'styled-components';
 
 import {Resource} from '../../data/resource';
+
+import {Linky} from './linky';
 
 export function ResourceView(props: {quantity: number; resource: Resource}): JSX.Element {
   let label = 'inconnu';
@@ -14,10 +15,6 @@ export function ResourceView(props: {quantity: number; resource: Resource}): JSX
   } else if (props.resource === Resource.Stone) {
     label = 'pierre';
   }
-  return <Wrapper>{`${props.quantity} ${label}`}</Wrapper>;
+  return <Linky text={`${props.quantity} ${label}`} />;
 }
 ResourceView.displayName = 'ResourceView';
-
-const Wrapper = styled.span`
-  padding: 0 4px;
-`;

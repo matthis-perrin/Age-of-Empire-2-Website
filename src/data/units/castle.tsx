@@ -3,9 +3,9 @@ import {Age} from '../ages/core';
 import {Castle} from '../buildings';
 import {ArmorType, AttackType} from '../damage';
 import {allCivilizations} from '../civilizations/ids';
+import {Resource} from '../resource';
 
 import {Unit, UnitType} from './core';
-import { Resource } from '../resource';
 
 export const Petard: Unit = {
   id: 'petard',

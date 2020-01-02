@@ -14,6 +14,7 @@ import {TechnologyName} from './technology_name';
 import {UnitName} from './unit_name';
 import {UnitTypeName} from './unit_type_name';
 import {CostView} from './cost_view';
+import {CivilizationName} from './civilization_name';
 
 export function InterpolationStringView(props: {
   interpolationString: InterpolationString;
@@ -30,20 +31,28 @@ export function InterpolationStringView(props: {
       current = '';
     } else {
       if (variableIndex > 0) {
-        elements.push(<PlainText>{current.slice(0, variableIndex)}</PlainText>);
+        elements.push(<PlainText key={index}>{current.slice(0, variableIndex)}</PlainText>);
         index++;
       }
       const variableValue = parseFloat(current.slice(variableIndex + 1, variableIndex + 2));
       if (!isNaN(variableValue)) {
         const variable = variables[variableValue - 1] as InterpolationVariable | undefined;
         if (variable !== undefined) {
-          elements.push(<InterpolationVariableView variable={variable} />);
+          elements.push(<InterpolationVariableView key={index} variable={variable} />);
           index++;
         } else {
-          console.error('No variable associated with the index', variableValue, props.interpolationString)
+          console.error(
+            'No variable associated with the index',
+            variableValue,
+            props.interpolationString
+          );
         }
       } else {
-        console.error('Invalid interpolation variable index', variableValue, props.interpolationString)
+        console.error(
+          'Invalid interpolation variable index',
+          variableValue,
+          props.interpolationString
+        );
       }
       current = current.substring(variableIndex + 2);
     }
@@ -76,6 +85,9 @@ export function InterpolationVariableView(props: {variable: InterpolationVariabl
   }
   if (variable.type === InterpolationVariableType.UnitType) {
     return <UnitTypeName unitType={variable.unitType} />;
+  }
+  if (variable.type === InterpolationVariableType.Civilization) {
+    return <CivilizationName civilizationId={variable.civilizationId} />;
   }
   return <React.Fragment />;
 }

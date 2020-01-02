@@ -1,15 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {CivilizationBonus, Bonus} from '../../data/core';
+import {CivilizationBonus, Bonus, InterpolationVariableType} from '../../data/core';
 import {Technology} from '../../data/technologies/core';
+import {FontWeight} from '../theme';
+import {Unit, UnitCarac} from '../../data/units/core';
+import {InterpolationStringView} from '../core/interpolation_string_view';
+import {TechnologyName} from '../core/technology_name';
 
 import {UnitCaracColumn} from './unit_carac_columns';
-import {FontWeight} from '../theme';
-import {AggregatedUnitWithBonus} from '../../lib/unit_with_bonuses/core';
-import {Unit, UnitCarac} from '../../data/units/core';
-import { getById } from '../../data/civilizations/registry';
-import { InterpolationStringView } from '../core/interpolation_string_view';
 
 export function UnitCaracDetails<CaracBonus>(props: {
   unit: Unit;
@@ -21,32 +20,34 @@ export function UnitCaracDetails<CaracBonus>(props: {
 }): JSX.Element {
   return (
     <Wrapper>
-      <CivilizationBonusGroup
-        unit={props.unit}
-        column={props.column}
-        bonuses={props.civilizationBonuses}
-      />
-      <AlliesCivilizationBonusGroup
-        unit={props.unit}
-        column={props.column}
-        bonuses={props.alliesCivilizationBonuses}
-      />
-      <TechnologyBonusGroup
-        unit={props.unit}
-        column={props.column}
-        bonuses={props.technologyBonuses}
-      />
-      <AlliesTechnologyBonusGroup
-        unit={props.unit}
-        column={props.column}
-        bonuses={props.alliesTechnologyBonuses}
-      />
+      <tbody>
+        <TechnologyBonusGroup
+          unit={props.unit}
+          column={props.column}
+          bonuses={props.technologyBonuses}
+        />
+        <AlliesTechnologyBonusGroup
+          unit={props.unit}
+          column={props.column}
+          bonuses={props.alliesTechnologyBonuses}
+        />
+        <CivilizationBonusGroup
+          unit={props.unit}
+          column={props.column}
+          bonuses={props.civilizationBonuses}
+        />
+        <AlliesCivilizationBonusGroup
+          unit={props.unit}
+          column={props.column}
+          bonuses={props.alliesCivilizationBonuses}
+        />
+      </tbody>
     </Wrapper>
   );
 }
 UnitCaracDetails.displayName = 'UnitCaracDetails';
 
-const Wrapper = styled.div``;
+const Wrapper = styled.table``;
 
 function CivilizationBonusGroup<CaracBonus>(props: {
   unit: Unit;
@@ -57,18 +58,33 @@ function CivilizationBonusGroup<CaracBonus>(props: {
     return <React.Fragment />;
   }
   return (
-    <Group>
-      <GroupTitle>Bonus de civilization</GroupTitle>
-      {props.bonuses.map(g => (
+    <React.Fragment>
+      <tr>
+        <GroupTitle colSpan={2}>Bonus de civilization</GroupTitle>
+      </tr>
+      {props.bonuses.map((g, i) => (
         <UnitCaracBonus
+          key={i}
           unit={props.unit}
           column={props.column}
           caracBonus={g.value}
-          name={`Bonus de civilization des ${getById(g.source.civilization).name}`}
+          name={
+            <InterpolationStringView
+              interpolationString={{
+                template: `(Bonus des %1)`,
+                variables: [
+                  {
+                    type: InterpolationVariableType.Civilization,
+                    civilizationId: g.source.civilization,
+                  },
+                ],
+              }}
+            />
+          }
           source={g.source.bonus}
         />
       ))}
-    </Group>
+    </React.Fragment>
   );
 }
 CivilizationBonusGroup.displayName = 'CivilizationBonusGroup';
@@ -82,18 +98,33 @@ function AlliesCivilizationBonusGroup<CaracBonus>(props: {
     return <React.Fragment />;
   }
   return (
-    <Group>
-      <GroupTitle>Bonus de civilization des alliés</GroupTitle>
-      {props.bonuses.map(g => (
+    <React.Fragment>
+      <tr>
+        <GroupTitle colSpan={2}>Bonus de civilization des alliés</GroupTitle>
+      </tr>
+      {props.bonuses.map((g, i) => (
         <UnitCaracBonus
+          key={i}
           unit={props.unit}
           column={props.column}
           caracBonus={g.value}
-          name={`Bonus de civilization d'équipe des ${getById(g.source.civilization).name}`}
+          name={
+            <InterpolationStringView
+              interpolationString={{
+                template: `(Bonus d'équipe des %1)`,
+                variables: [
+                  {
+                    type: InterpolationVariableType.Civilization,
+                    civilizationId: g.source.civilization,
+                  },
+                ],
+              }}
+            />
+          }
           source={g.source.bonus}
         />
       ))}
-    </Group>
+    </React.Fragment>
   );
 }
 AlliesCivilizationBonusGroup.displayName = 'AlliesCivilizationBonusGroup';
@@ -107,18 +138,33 @@ function TechnologyBonusGroup<CaracBonus>(props: {
     return <React.Fragment />;
   }
   return (
-    <Group>
-      <GroupTitle>Technologies</GroupTitle>
-      {props.bonuses.map(g => (
+    <React.Fragment>
+      <tr>
+        <GroupTitle colSpan={2}>Technologies</GroupTitle>
+      </tr>
+      {props.bonuses.map((g, i) => (
         <UnitCaracBonus
+          key={i}
           unit={props.unit}
           column={props.column}
           caracBonus={g.value}
-          name={g.source.frenchName}
+          name={
+            <InterpolationStringView
+              interpolationString={{
+                template: `(%1)`,
+                variables: [
+                  {
+                    type: InterpolationVariableType.Technology,
+                    technology: g.source,
+                  },
+                ],
+              }}
+            />
+          }
           source={g.source.bonus}
         />
       ))}
-    </Group>
+    </React.Fragment>
   );
 }
 TechnologyBonusGroup.displayName = 'TechnologyBonusGroup';
@@ -132,35 +178,47 @@ function AlliesTechnologyBonusGroup<CaracBonus>(props: {
     return <React.Fragment />;
   }
   return (
-    <Group>
-      <GroupTitle>Technologies des alliés</GroupTitle>
-      {props.bonuses.map(g => (
+    <React.Fragment>
+      <tr>
+        <GroupTitle colSpan={2}>Technologies des alliés</GroupTitle>
+      </tr>
+      {props.bonuses.map((g, i) => (
         <UnitCaracBonus
+          key={i}
           unit={props.unit}
           column={props.column}
           caracBonus={g.value}
-          name={g.source.frenchName}
+          name={
+            <InterpolationStringView
+              interpolationString={{
+                template: `(%1)`,
+                variables: [
+                  {
+                    type: InterpolationVariableType.Technology,
+                    technology: g.source,
+                  },
+                ],
+              }}
+            />
+          }
           source={g.source.bonus}
         />
       ))}
-    </Group>
+    </React.Fragment>
   );
 }
 AlliesTechnologyBonusGroup.displayName = 'AlliesTechnologyBonusGroup';
 
-const Group = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const GroupTitle = styled.div`
+const GroupTitle = styled.td`
   font-weight: ${FontWeight.SemiBold};
+  padding: 4px 0 2px 0;
 `;
 
 function UnitCaracBonus<CaracBonus>(props: {
   unit: Unit;
   column: UnitCaracColumn<CaracBonus>;
   caracBonus: CaracBonus;
-  name: string;
+  name: JSX.Element;
   source: Bonus;
 }): JSX.Element {
   const {unit, column, caracBonus, name, source} = props;
@@ -182,12 +240,26 @@ function UnitCaracBonus<CaracBonus>(props: {
 
   return (
     <GroupLine>
-      {caracChange}
-      {name}
-      <InterpolationStringView interpolationString={source.description} />
+      <Cell>{caracChange}</Cell>
+      <Cell>
+        <InterpolationStringView
+          interpolationString={source.description}
+        />
+        <CellSeparator />
+        {name}
+      </Cell>
     </GroupLine>
   );
 }
 UnitCaracBonus.displayName = 'UnitCaracBonus';
 
-const GroupLine = styled.div``;
+const GroupLine = styled.tr``;
+
+const Cell = styled.td`
+  padding: 2px 4px;
+`;
+
+const CellSeparator = styled.div`
+  width: 4px;
+  display: inline-block;
+`;

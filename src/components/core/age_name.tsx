@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import {Age} from '../../data/ages/core';
 
+import {Linky} from './linky';
+
 export function AgeName(props: {age: Age}): JSX.Element {
   let label = 'Inconnu';
   if (props.age === Age.DarkAge) {
@@ -14,11 +16,6 @@ export function AgeName(props: {age: Age}): JSX.Element {
   } else if (props.age === Age.ImperialAge) {
     label = 'Age impérial';
   }
-  return <Wrapper>{label}</Wrapper>;
+  return <Linky text={label} />;
 }
 AgeName.displayName = 'AgeName';
-
-const Wrapper = styled.a`
-  color: blue;
-  padding: 0 4px;
-`;

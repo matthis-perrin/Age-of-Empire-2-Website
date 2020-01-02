@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Manager, Reference, Popper} from 'react-popper';
+import styled from 'styled-components';
 
 import {AggregatedUnitWithBonus} from '../../lib/unit_with_bonuses/core';
 import {CivilizationBonus} from '../../data/core';
@@ -11,7 +12,6 @@ import {FontWeight} from '../theme';
 
 import {UnitCaracColumn} from './unit_carac_columns';
 import {UnitCaracDetails} from './unit_carac_details';
-import styled from 'styled-components';
 
 export function UnitCaracView<CaracBonus>(props: {
   column: UnitCaracColumn<CaracBonus>;
@@ -114,23 +114,23 @@ export function UnitCaracView<CaracBonus>(props: {
           value.toLocaleString(undefined, {minimumIntegerDigits: 1, maximumFractionDigits: digits});
         if (oldValue !== newValue) {
           return (
-            <Manager>
-              <Reference>
+            <Manager key={i}>
+              <Reference key="reference">
                 {({ref}) => (
                   <span
                     onMouseEnter={() => setPopoverShown(true)}
                     onMouseLeave={() => setPopoverShown(false)}
                     ref={ref}
-                    style={{color: 'blue', fontWeight: FontWeight.SemiBold}}
+                    style={{fontWeight: FontWeight.SemiBold}}
                   >{`${formatNumber(newValue)} (${operator}${formatNumber(diff)})`}</span>
                 )}
               </Reference>
               {popoverShown ? (
-                <Popper placement="top">
+                <Popper placement="top" key="popper">
                   {({ref, style, placement, arrowProps}) => (
                     <PopperContent ref={ref} style={style} data-placement={placement}>
                       <UnitCaracDetails
-                      unit={unit}
+                        unit={unit}
                         column={props.column}
                         civilizationBonuses={civilizationBonuses}
                         alliesCivilizationBonuses={alliesCivilizationBonuses}
@@ -141,12 +141,12 @@ export function UnitCaracView<CaracBonus>(props: {
                   )}
                 </Popper>
               ) : (
-                <React.Fragment />
+                <React.Fragment key="no-popper" />
               )}
             </Manager>
           );
         }
-        return <React.Fragment>{newValue}</React.Fragment>;
+        return <React.Fragment key={i}>{newValue}</React.Fragment>;
       })}
     </React.Fragment>
   );

@@ -62,9 +62,9 @@ import {UnitType} from '../units/core';
 import {Pikeman} from '../units/barrack';
 import {BatteringRam} from '../units/siege_workshop';
 import {Petard} from '../units/castle';
+import {Resource} from '../resource';
 
 import {TechnologyType, Technology} from './core';
-import { Resource } from '../resource';
 
 export const TownWatch: Technology = {
   type: TechnologyType.Building,

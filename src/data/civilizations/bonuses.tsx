@@ -1,15 +1,12 @@
 /* eslint-disable no-magic-numbers */
 import {
-  InterpolationString,
   InterpolationVariableType,
   makeAgeable,
-  Ageable,
   AllAge,
-  Bonus,
   BonusConstraint,
   CivilizationBonus,
 } from '../core';
-import {Unit, UnitType} from '../units/core';
+import {UnitType} from '../units/core';
 import {Archery, SiegeWorkshop, Barrack, Stable, Monastery} from '../buildings';
 import {Skirmisher, CavalryArcher, HandCannoneer} from '../units/archery';
 import {Age} from '../ages/core';

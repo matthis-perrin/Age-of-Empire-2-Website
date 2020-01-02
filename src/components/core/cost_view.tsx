@@ -27,8 +27,6 @@ export function CostView(props: {cost: Cost}): JSX.Element {
 }
 CostView.displayName = 'CostView';
 
-const Wrapper = styled.span`
-  padding: 0 4px;
-`;
+const Wrapper = styled.span``;
 
 const Separator = styled.span``;

@@ -1,14 +1,10 @@
 import * as React from 'react';
-import styled from 'styled-components';
 
 import {Unit} from '../../data/units/core';
 
+import {Linky} from './linky';
+
 export function UnitName(props: {unit: Unit}): JSX.Element {
-  return <Wrapper>{props.unit.name}</Wrapper>;
+  return <Linky text={props.unit.name} />;
 }
 UnitName.displayName = 'UnitName';
-
-const Wrapper = styled.a`
-  color: blue;
-  padding: 0 4px;
-`;

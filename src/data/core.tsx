@@ -5,6 +5,7 @@ import {UnitType, Unit} from './units/core';
 import {Age} from './ages/core';
 import {Building} from './buildings';
 import {CivilizationId} from './civilizations/ids';
+import {Civilization} from './civilizations/registry';
 
 export interface InterpolationString {
   template: string;
@@ -19,6 +20,7 @@ export enum InterpolationVariableType {
   Unit,
   Age,
   Building,
+  Civilization,
 }
 
 interface InterpolationVariableBase {
@@ -60,6 +62,11 @@ interface InterpolationVariableBuilding extends InterpolationVariableBase {
   building: Building;
 }
 
+interface InterpolationVariableCivilization extends InterpolationVariableBase {
+  type: InterpolationVariableType.Civilization;
+  civilizationId: CivilizationId;
+}
+
 export type InterpolationVariable =
   | InterpolationVariableCost
   | InterpolationVariableTechnology
@@ -67,7 +74,8 @@ export type InterpolationVariable =
   | InterpolationVariableUnitType
   | InterpolationVariableUnit
   | InterpolationVariableAge
-  | InterpolationVariableBuilding;
+  | InterpolationVariableBuilding
+  | InterpolationVariableCivilization;
 
 export interface Ageable<T> {
   [Age.DarkAge]?: T;

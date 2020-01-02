@@ -8,9 +8,9 @@ import {
   allCivilizationsWithout,
   onlyCivilizations,
 } from '../civilizations/ids';
+import {Resource} from '../resource';
 
 import {Unit, UnitType} from './core';
-import { Resource } from '../resource';
 
 export const Archer: Unit = {
   id: 'archer',

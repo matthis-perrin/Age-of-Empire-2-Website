@@ -3,9 +3,9 @@ import {Age} from '../ages/core';
 import {Castle, Stable} from '../buildings';
 import {ArmorType, AttackType} from '../damage';
 import {allCivilizationsWithout, Ids, onlyCivilizations} from '../civilizations/ids';
+import {Resource} from '../resource';
 
 import {Unit, UnitType} from './core';
-import { Resource } from '../resource';
 
 export const ScoutCavalry: Unit = {
   id: 'scout-cavalry-dark-age',

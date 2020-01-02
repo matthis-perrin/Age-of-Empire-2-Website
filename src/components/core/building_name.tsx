@@ -1,14 +1,10 @@
 import * as React from 'react';
-import styled from 'styled-components';
 
 import {Building} from '../../data/buildings';
 
+import {Linky} from './linky';
+
 export function BuildingName(props: {building: Building}): JSX.Element {
-  return <Wrapper>{props.building.name}</Wrapper>;
+  return <Linky text={props.building.name} />;
 }
 BuildingName.displayName = 'BuildingName';
-
-const Wrapper = styled.a`
-  color: blue;
-  padding: 0 4px;
-`;
