@@ -21,7 +21,7 @@ export function aggregateByCivilization(
     allies: uniq(
       unitArr[0].alliesCivilizationBonuses
         .map(b => b.ally)
-        .concat(unitArr[0].alliesCivilizationBonuses.map(b => b.ally))
+        .concat(unitArr[0].alliesTechnologies.map(b => b.ally))
     ),
     civilizations: unitArr.map(unit => unit.civilization),
     civilizationBonuses: unitArr[0].civilizationBonuses,

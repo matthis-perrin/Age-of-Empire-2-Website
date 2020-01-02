@@ -278,7 +278,7 @@ export const RoyalHeirs: UniqueTechnology = {
   cost: {[Resource.Food]: 300, [Resource.Gold]: 300},
   bonus: {
     description: {template: 'Les Guerrier à shotel sont créés 2x plus vite.', variables: []},
-    effects: [{teamBonus: false, units: isShotelWarriorLine, trainingSpeedBonus: AllAge(1)}],
+    effects: [{teamBonus: false, units: isShotelWarriorLine, trainingSpeedBonus: AllAge(0.5)}],
   },
 };
 export const Chivalry: UniqueTechnology = {
@@ -994,7 +994,7 @@ export const Perfusion: UniqueTechnology = {
       template: 'Les %1 fonctionnent 2x plus vite.',
       variables: [{type: InterpolationVariableType.Building, building: Barrack}],
     },
-    effects: [{teamBonus: false, units: isInBarrack, trainingSpeedBonus: AllAge(1)}],
+    effects: [{teamBonus: false, units: isInBarrack, trainingSpeedBonus: AllAge(0.5)}],
   },
 };
 export const Atheism: UniqueTechnology = {

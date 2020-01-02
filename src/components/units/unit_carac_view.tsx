@@ -20,85 +20,17 @@ export function UnitCaracView<CaracBonus>(props: {
 }): JSX.Element {
   const [popoverShown, setPopoverShown] = useState(false);
 
-  const {effectExtractor, caracModifier, getCaracValues, digits} = props.column;
+  const {caracModifier, getCaracValues, digits} = props.column;
   const unitWithBonuses = props.unit;
   const unit = unitWithBonuses.unit;
 
-  let civilizationBonuses: {value: CaracBonus; source: CivilizationBonus}[] = [];
-  let alliesCivilizationBonuses: {value: CaracBonus; source: CivilizationBonus}[] = [];
-  let technologyBonuses: {value: CaracBonus; source: Technology}[] = [];
-  let alliesTechnologyBonuses: {value: CaracBonus; source: Technology}[] = [];
-
-  let allCaracBonuses: CaracBonus[] = [];
-
-  for (const source of unitWithBonuses.alliesTechnologies) {
-    const effects = source.value.bonus.effects;
-    const caracBonuses = extractBonusEffects<CaracBonus>(
-      unit,
-      props.age,
-      effects,
-      effectExtractor,
-      true
-    );
-    allCaracBonuses = allCaracBonuses.concat(caracBonuses);
-    alliesTechnologyBonuses = alliesTechnologyBonuses.concat(
-      caracBonuses.map(value => ({
-        value,
-        source: source.value,
-      }))
-    );
-  }
-  for (const source of unitWithBonuses.technologies) {
-    const effects = source.bonus.effects;
-    const caracBonuses = extractBonusEffects<CaracBonus>(
-      unit,
-      props.age,
-      effects,
-      effectExtractor,
-      false
-    );
-    allCaracBonuses = allCaracBonuses.concat(caracBonuses);
-    technologyBonuses = technologyBonuses.concat(
-      caracBonuses.map(value => ({
-        value,
-        source,
-      }))
-    );
-  }
-  for (const source of unitWithBonuses.alliesCivilizationBonuses) {
-    const effects = source.value.bonus.effects;
-    const caracBonuses = extractBonusEffects<CaracBonus>(
-      unit,
-      props.age,
-      effects,
-      effectExtractor,
-      true
-    );
-    allCaracBonuses = allCaracBonuses.concat(caracBonuses);
-    alliesCivilizationBonuses = alliesCivilizationBonuses.concat(
-      caracBonuses.map(value => ({
-        value,
-        source: source.value,
-      }))
-    );
-  }
-  for (const source of unitWithBonuses.civilizationBonuses) {
-    const effects = source.bonus.effects;
-    const caracBonuses = extractBonusEffects<CaracBonus>(
-      unit,
-      props.age,
-      effects,
-      effectExtractor,
-      false
-    );
-    allCaracBonuses = allCaracBonuses.concat(caracBonuses);
-    civilizationBonuses = civilizationBonuses.concat(
-      caracBonuses.map(value => ({
-        value,
-        source,
-      }))
-    );
-  }
+  const {
+    civilizationBonuses,
+    alliesCivilizationBonuses,
+    technologyBonuses,
+    alliesTechnologyBonuses,
+    allCaracBonuses,
+  } = getColumnBonuses(props.column, unitWithBonuses, props.age);
 
   const newCaracs = allCaracBonuses.reduce(caracModifier, unit as UnitCarac);
   const oldValues = getCaracValues(unit);
@@ -160,3 +92,92 @@ const PopperContent = styled.div`
   border-radius: 3px;
   text-align: left;
 `;
+
+interface ColumnBonuses<CaracBonus> {
+  civilizationBonuses: {value: CaracBonus; source: CivilizationBonus}[];
+  alliesCivilizationBonuses: {value: CaracBonus; source: CivilizationBonus}[];
+  technologyBonuses: {value: CaracBonus; source: Technology}[];
+  alliesTechnologyBonuses: {value: CaracBonus; source: Technology}[];
+  allCaracBonuses: CaracBonus[];
+}
+
+export function getColumnBonuses<CaracBonus>(
+  column: UnitCaracColumn<CaracBonus>,
+  unitWithBonuses: AggregatedUnitWithBonus,
+  age: Age
+): ColumnBonuses<CaracBonus> {
+  const {effectExtractor} = column;
+  const unit = unitWithBonuses.unit;
+
+  let civilizationBonuses: {value: CaracBonus; source: CivilizationBonus}[] = [];
+  let alliesCivilizationBonuses: {value: CaracBonus; source: CivilizationBonus}[] = [];
+  let technologyBonuses: {value: CaracBonus; source: Technology}[] = [];
+  let alliesTechnologyBonuses: {value: CaracBonus; source: Technology}[] = [];
+
+  let allCaracBonuses: CaracBonus[] = [];
+
+  for (const source of unitWithBonuses.alliesTechnologies) {
+    const effects = source.value.bonus.effects;
+    const caracBonuses = extractBonusEffects<CaracBonus>(unit, age, effects, effectExtractor, true);
+    allCaracBonuses = allCaracBonuses.concat(caracBonuses);
+    alliesTechnologyBonuses = alliesTechnologyBonuses.concat(
+      caracBonuses.map(value => ({
+        value,
+        source: source.value,
+      }))
+    );
+  }
+  for (const source of unitWithBonuses.technologies) {
+    const effects = source.bonus.effects;
+    const caracBonuses = extractBonusEffects<CaracBonus>(
+      unit,
+      age,
+      effects,
+      effectExtractor,
+      false
+    );
+    allCaracBonuses = allCaracBonuses.concat(caracBonuses);
+    technologyBonuses = technologyBonuses.concat(
+      caracBonuses.map(value => ({
+        value,
+        source,
+      }))
+    );
+  }
+  for (const source of unitWithBonuses.alliesCivilizationBonuses) {
+    const effects = source.value.bonus.effects;
+    const caracBonuses = extractBonusEffects<CaracBonus>(unit, age, effects, effectExtractor, true);
+    allCaracBonuses = allCaracBonuses.concat(caracBonuses);
+    alliesCivilizationBonuses = alliesCivilizationBonuses.concat(
+      caracBonuses.map(value => ({
+        value,
+        source: source.value,
+      }))
+    );
+  }
+  for (const source of unitWithBonuses.civilizationBonuses) {
+    const effects = source.bonus.effects;
+    const caracBonuses = extractBonusEffects<CaracBonus>(
+      unit,
+      age,
+      effects,
+      effectExtractor,
+      false
+    );
+    allCaracBonuses = allCaracBonuses.concat(caracBonuses);
+    civilizationBonuses = civilizationBonuses.concat(
+      caracBonuses.map(value => ({
+        value,
+        source,
+      }))
+    );
+  }
+
+  return {
+    civilizationBonuses,
+    alliesCivilizationBonuses,
+    technologyBonuses,
+    alliesTechnologyBonuses,
+    allCaracBonuses,
+  };
+}
