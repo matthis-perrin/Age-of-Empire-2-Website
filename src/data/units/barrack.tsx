@@ -10,6 +10,7 @@ import {
 } from '../civilizations/ids';
 
 import {Unit, UnitType} from './core';
+import { Resource } from '../resource';
 
 export const Militia: Unit = {
   id: 'militia',
@@ -21,8 +22,8 @@ export const Militia: Unit = {
   abilities: [],
   training: [{building: Barrack, time: 21}],
   cost: {
-    food: 60,
-    gold: 20,
+    [Resource.Food]: 60,
+    [Resource.Gold]: 20,
   },
   health: 40,
   attack: {
@@ -47,8 +48,8 @@ export const ManAtArms: Unit = {
   abilities: [],
   training: [{building: Barrack, time: 21}],
   cost: {
-    food: 60,
-    gold: 20,
+    [Resource.Food]: 60,
+    [Resource.Gold]: 20,
   },
   health: 45,
   attack: {
@@ -76,8 +77,8 @@ export const LongSwordsman: Unit = {
   abilities: [],
   training: [{building: Barrack, time: 21}],
   cost: {
-    food: 60,
-    gold: 20,
+    [Resource.Food]: 60,
+    [Resource.Gold]: 20,
   },
   health: 60,
   attack: {
@@ -105,8 +106,8 @@ export const TwoHandedSwordsman: Unit = {
   abilities: [],
   training: [{building: Barrack, time: 21}],
   cost: {
-    food: 60,
-    gold: 20,
+    [Resource.Food]: 60,
+    [Resource.Gold]: 20,
   },
   health: 60,
   attack: {
@@ -143,8 +144,8 @@ export const Champion: Unit = {
   abilities: [],
   training: [{building: Barrack, time: 21}],
   cost: {
-    food: 60,
-    gold: 20,
+    [Resource.Food]: 60,
+    [Resource.Gold]: 20,
   },
   health: 70,
   attack: {
@@ -172,8 +173,8 @@ export const Spearman: Unit = {
   abilities: [],
   training: [{building: Barrack, time: 22}],
   cost: {
-    wood: 35,
-    gold: 25,
+    [Resource.Wood]: 35,
+    [Resource.Gold]: 25,
   },
   health: 45,
   attack: {
@@ -207,8 +208,8 @@ export const Pikeman: Unit = {
   abilities: [],
   training: [{building: Barrack, time: 22}],
   cost: {
-    wood: 35,
-    gold: 25,
+    [Resource.Wood]: 35,
+    [Resource.Gold]: 25,
   },
   health: 55,
   attack: {
@@ -252,8 +253,8 @@ export const Halberdier: Unit = {
   abilities: [],
   training: [{building: Barrack, time: 22}],
   cost: {
-    wood: 35,
-    gold: 25,
+    [Resource.Wood]: 35,
+    [Resource.Gold]: 25,
   },
   health: 60,
   attack: {
@@ -287,8 +288,8 @@ export const EagleScout: Unit = {
   abilities: [],
   training: [{building: Barrack, time: 60}],
   cost: {
-    food: 20,
-    gold: 50,
+    [Resource.Food]: 20,
+    [Resource.Gold]: 50,
   },
   health: 50,
   attack: {
@@ -346,8 +347,8 @@ export const EagleWarrior: Unit = {
   abilities: [],
   training: [{building: Barrack, time: 35}],
   cost: {
-    food: 20,
-    gold: 50,
+    [Resource.Food]: 20,
+    [Resource.Gold]: 50,
   },
   health: 55,
   attack: {
@@ -379,8 +380,8 @@ export const EilteEagleWarrior: Unit = {
   abilities: [],
   training: [{building: Barrack, time: 20}],
   cost: {
-    food: 20,
-    gold: 50,
+    [Resource.Food]: 20,
+    [Resource.Gold]: 50,
   },
   health: 60,
   attack: {
@@ -413,8 +414,8 @@ export const Condottiero: Unit = {
   abilities: [],
   training: [{building: Barrack, time: 18}],
   cost: {
-    food: 50,
-    gold: 35,
+    [Resource.Food]: 50,
+    [Resource.Gold]: 35,
   },
   health: 80,
   attack: {
@@ -450,8 +451,8 @@ export const Huskarl: Unit = {
     {building: Barrack, time: 13},
   ],
   cost: {
-    food: 52,
-    gold: 26,
+    [Resource.Food]: 52,
+    [Resource.Gold]: 26,
   },
   health: 60,
   attack: {
@@ -487,8 +488,8 @@ export const EliteHuskarl: Unit = {
     {building: Barrack, time: 13},
   ],
   cost: {
-    food: 52,
-    gold: 26,
+    [Resource.Food]: 52,
+    [Resource.Gold]: 26,
   },
   health: 70,
   attack: {

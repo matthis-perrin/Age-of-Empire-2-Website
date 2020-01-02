@@ -8,7 +8,7 @@ import {CivilizationId} from './civilizations/ids';
 
 export interface InterpolationString {
   template: string;
-  variables: InterpolationVariables[];
+  variables: InterpolationVariable[];
 }
 
 export enum InterpolationVariableType {
@@ -60,7 +60,7 @@ interface InterpolationVariableBuilding extends InterpolationVariableBase {
   building: Building;
 }
 
-type InterpolationVariables =
+export type InterpolationVariable =
   | InterpolationVariableCost
   | InterpolationVariableTechnology
   | InterpolationVariableArmorType

@@ -11,6 +11,7 @@ import {
 } from '../civilizations/ids';
 
 import {Unit, UnitType, UnitAbility} from './core';
+import { Resource } from '../resource';
 
 export const BatteringRam: Unit = {
   id: 'battering-ram',
@@ -22,8 +23,8 @@ export const BatteringRam: Unit = {
   abilities: [],
   training: [{building: SiegeWorkshop, time: 36}],
   cost: {
-    wood: 160,
-    gold: 75,
+    [Resource.Wood]: 160,
+    [Resource.Gold]: 75,
   },
   health: 175,
   attack: {
@@ -64,8 +65,8 @@ export const CappedRam: Unit = {
   abilities: [],
   training: [{building: SiegeWorkshop, time: 36}],
   cost: {
-    wood: 160,
-    gold: 75,
+    [Resource.Wood]: 160,
+    [Resource.Gold]: 75,
   },
   health: 200,
   attack: {
@@ -128,8 +129,8 @@ export const SiegeRam: Unit = {
   abilities: [],
   training: [{building: SiegeWorkshop, time: 36}],
   cost: {
-    wood: 160,
-    gold: 75,
+    [Resource.Wood]: 160,
+    [Resource.Gold]: 75,
   },
   health: 270,
   attack: {
@@ -176,8 +177,8 @@ export const Mangonel: Unit = {
   abilities: [],
   training: [{building: SiegeWorkshop, time: 46}],
   cost: {
-    wood: 160,
-    gold: 135,
+    [Resource.Wood]: 160,
+    [Resource.Gold]: 135,
   },
   health: 50,
   attack: {
@@ -210,8 +211,8 @@ export const Onager: Unit = {
   abilities: [UnitAbility.KillTree],
   training: [{building: SiegeWorkshop, time: 46}],
   cost: {
-    wood: 160,
-    gold: 135,
+    [Resource.Wood]: 160,
+    [Resource.Gold]: 135,
   },
   health: 60,
   attack: {
@@ -256,8 +257,8 @@ export const SiegeOnager: Unit = {
   abilities: [UnitAbility.KillTree],
   training: [{building: SiegeWorkshop, time: 46}],
   cost: {
-    wood: 160,
-    gold: 135,
+    [Resource.Wood]: 160,
+    [Resource.Gold]: 135,
   },
   health: 70,
   attack: {
@@ -290,8 +291,8 @@ export const Scorpion: Unit = {
   abilities: [],
   training: [{building: SiegeWorkshop, time: 30}],
   cost: {
-    wood: 75,
-    gold: 75,
+    [Resource.Wood]: 75,
+    [Resource.Gold]: 75,
   },
   health: 40,
   attack: {
@@ -339,8 +340,8 @@ export const HeavyScorpion: Unit = {
   abilities: [],
   training: [{building: SiegeWorkshop, time: 30}],
   cost: {
-    wood: 75,
-    gold: 75,
+    [Resource.Wood]: 75,
+    [Resource.Gold]: 75,
   },
   health: 50,
   attack: {
@@ -390,8 +391,8 @@ export const BombardCanon: Unit = {
   abilities: [],
   training: [{building: SiegeWorkshop, time: 56}],
   cost: {
-    wood: 225,
-    gold: 225,
+    [Resource.Wood]: 225,
+    [Resource.Gold]: 225,
   },
   health: 80,
   attack: {

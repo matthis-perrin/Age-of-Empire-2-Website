@@ -155,7 +155,7 @@ export const BerbersBonuses: CivilizationBonus[] = [
     bonus: {
       description: {
         template: 'Les %1 se déplacent 10% plus vite.',
-        variables: [{type: InterpolationVariableType.UnitType, unitType: UnitType.Ship}],
+        variables: [{type: InterpolationVariableType.UnitType, unitType: UnitType.NavalVessel}],
       },
       effects: [
         {
@@ -1045,7 +1045,7 @@ export const PortugueseBonuses: CivilizationBonus[] = [
     bonus: {
       description: {
         template: 'Tout les %1 ont 10% plus de PDV.',
-        variables: [{type: InterpolationVariableType.UnitType, unitType: UnitType.Ship}],
+        variables: [{type: InterpolationVariableType.UnitType, unitType: UnitType.NavalVessel}],
       },
       effects: [
         {

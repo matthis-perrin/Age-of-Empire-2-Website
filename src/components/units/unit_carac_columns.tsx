@@ -1,6 +1,6 @@
 import {BonusEffect, mergeAgeable2, Ageable, mergeAgeable3} from '../../data/core';
 import {UnitCarac} from '../../data/units/core';
-import {Cost} from '../../data/resource';
+import {Cost, Resource} from '../../data/resource';
 import {AttackType} from '../../data/damage';
 
 export interface UnitCaracColumn<CaracBonus> {
@@ -48,19 +48,19 @@ function makeCostCarac(
   name: string
 ): UnitCaracColumn<{fixed: number; percent: number}> {
   const percent = (effect: BonusEffect) => {
-    if (resource === 'wood') {
+    if (resource === Resource.Wood) {
       return effect.woodCostBonus;
-    } else if (resource === 'food') {
+    } else if (resource === Resource.Food) {
       return effect.foodCostBonus;
-    } else if (resource === 'gold') {
+    } else if (resource === Resource.Gold) {
       return effect.goldCostBonus;
     }
     return undefined;
   };
   const fixed = (effect: BonusEffect) => {
-    if (resource === 'wood') {
+    if (resource === Resource.Wood) {
       return effect.woodCostFixedBonus;
-    } else if (resource === 'food') {
+    } else if (resource === Resource.Food) {
       return effect.foodCostFixedBonus;
     }
     return undefined;
@@ -87,10 +87,10 @@ function makeCostCarac(
   };
 }
 
-export const WoodCostCarac = makeCostCarac('wood', 'WoodCost', 'Bois');
-export const FoodCostCarac = makeCostCarac('food', 'FoodCost', 'Nourriture');
-export const GoldCostCarac = makeCostCarac('gold', 'GoldCost', 'Or');
-export const StoneCostCarac = makeCostCarac('stone', 'StoneCost', 'Pierre');
+export const WoodCostCarac = makeCostCarac(Resource.Wood, 'WoodCost', 'Bois');
+export const FoodCostCarac = makeCostCarac(Resource.Food, 'FoodCost', 'Nourriture');
+export const GoldCostCarac = makeCostCarac(Resource.Gold, 'GoldCost', 'Or');
+export const StoneCostCarac = makeCostCarac(Resource.Stone, 'StoneCost', 'Pierre');
 
 export const RateOfFireCarac: UnitCaracColumn<number> = {
   id: 'RateOfFire',

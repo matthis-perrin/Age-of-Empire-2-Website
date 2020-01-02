@@ -64,6 +64,7 @@ import {BatteringRam} from '../units/siege_workshop';
 import {Petard} from '../units/castle';
 
 import {TechnologyType, Technology} from './core';
+import { Resource } from '../resource';
 
 export const TownWatch: Technology = {
   type: TechnologyType.Building,
@@ -72,7 +73,7 @@ export const TownWatch: Technology = {
   frenchName: 'Tour de guet',
   age: Age.FeudalAge,
   building: TownCenter,
-  cost: {food: 75},
+  cost: {[Resource.Food]: 75},
   bonus: {
     description: {template: 'Les batiments ont +4 de ligne de vue.', variables: []},
     effects: [{teamBonus: false, units: noUnits}],
@@ -85,7 +86,7 @@ export const TownPatrol: Technology = {
   frenchName: 'Patrouille de ville',
   age: Age.CastleAge,
   building: TownCenter,
-  cost: {food: 300, gold: 100},
+  cost: {[Resource.Food]: 300, [Resource.Gold]: 100},
   bonus: {
     description: {template: 'Les batiments ont +4 de ligne de vue.', variables: []},
     effects: [{teamBonus: false, units: noUnits}],
@@ -98,7 +99,7 @@ export const TreadmillCrane: Technology = {
   frenchName: 'Grue à poulie',
   age: Age.CastleAge,
   building: University,
-  cost: {food: 300, wood: 200},
+  cost: {[Resource.Food]: 300, [Resource.Wood]: 200},
   bonus: {
     description: {
       template: 'Les %1 sont créés 20% plus vite.',
@@ -114,7 +115,7 @@ export const Masonry: Technology = {
   frenchName: 'Maçonnerie',
   age: Age.CastleAge,
   building: University,
-  cost: {food: 150, wood: 175},
+  cost: {[Resource.Food]: 150, [Resource.Wood]: 175},
   bonus: {
     description: {template: "Les batiments ont +10% de PDV et +1/+1 d'armure", variables: []},
     effects: [{teamBonus: false, units: noUnits}],
@@ -127,7 +128,7 @@ export const Architecture: Technology = {
   frenchName: 'Architecture',
   age: Age.ImperialAge,
   building: University,
-  cost: {food: 300, wood: 200},
+  cost: {[Resource.Food]: 300, [Resource.Wood]: 200},
   bonus: {
     description: {template: "Les batiments ont +10% de PDV et +1/+1 d'armure", variables: []},
     effects: [{teamBonus: false, units: noUnits}],
@@ -140,7 +141,7 @@ export const Hoardings: Technology = {
   frenchName: 'Palissades',
   age: Age.ImperialAge,
   building: Castle,
-  cost: {food: 400, wood: 400},
+  cost: {[Resource.Food]: 400, [Resource.Wood]: 400},
   bonus: {
     description: {
       template: 'Les %1 ont +21% de PDV.',
@@ -156,7 +157,7 @@ export const Conscription: Technology = {
   frenchName: 'Conscription',
   age: Age.ImperialAge,
   building: Castle,
-  cost: {food: 150, gold: 150},
+  cost: {[Resource.Food]: 150, [Resource.Gold]: 150},
   bonus: {
     description: {
       template: 'Les %1, %2, %3, et %4 fonctionnent 33% plus vite.',
@@ -183,7 +184,7 @@ export const Wheelbarrow: Technology = {
   frenchName: 'Brouette',
   age: Age.FeudalAge,
   building: TownCenter,
-  cost: {food: 175, wood: 50},
+  cost: {[Resource.Food]: 175, [Resource.Wood]: 50},
   bonus: {
     description: {
       template: 'Les %1 se déplacent +10% plus vite et transportent 25% plus de ressources.',
@@ -199,7 +200,7 @@ export const HandCart: Technology = {
   frenchName: 'Charrette à bras',
   age: Age.CastleAge,
   building: TownCenter,
-  cost: {food: 300, wood: 200},
+  cost: {[Resource.Food]: 300, [Resource.Wood]: 200},
   bonus: {
     description: {
       template: 'Les %1 se déplacent +10% plus vite et transportent 50% plus de ressources.',
@@ -215,7 +216,7 @@ export const DoubleBitAxe: Technology = {
   frenchName: 'Hache à double tranchant',
   age: Age.FeudalAge,
   building: LumberCamp,
-  cost: {food: 100, wood: 50},
+  cost: {[Resource.Food]: 100, [Resource.Wood]: 50},
   bonus: {
     description: {
       template: 'Les %1 coupent du bois 20% plus rapidement.',
@@ -231,7 +232,7 @@ export const BowSaw: Technology = {
   frenchName: 'Scie à archer',
   age: Age.CastleAge,
   building: LumberCamp,
-  cost: {food: 150, wood: 100},
+  cost: {[Resource.Food]: 150, [Resource.Wood]: 100},
   bonus: {
     description: {
       template: 'Les %1 coupent du bois 20% plus rapidement.',
@@ -247,7 +248,7 @@ export const TwoManSaw: Technology = {
   frenchName: 'Scie à deux bras',
   age: Age.ImperialAge,
   building: LumberCamp,
-  cost: {food: 300, wood: 200},
+  cost: {[Resource.Food]: 300, [Resource.Wood]: 200},
   bonus: {
     description: {
       template: 'Les %1 coupent du bois 10% plus rapidement.',
@@ -263,7 +264,7 @@ export const HorseCollar: Technology = {
   frenchName: 'Harnais de cheval',
   age: Age.FeudalAge,
   building: Mill,
-  cost: {food: 75, wood: 75},
+  cost: {[Resource.Food]: 75, [Resource.Wood]: 75},
   bonus: {
     description: {template: 'Les fermes ont +75 de nourriture.', variables: []},
     effects: [{teamBonus: false, units: noUnits}],
@@ -276,7 +277,7 @@ export const HeavyPlow: Technology = {
   frenchName: 'Labourage lourd',
   age: Age.CastleAge,
   building: Mill,
-  cost: {food: 125, wood: 125},
+  cost: {[Resource.Food]: 125, [Resource.Wood]: 125},
   bonus: {
     description: {
       template: 'Les fermes ont +125 de nourriture et les %1 transportent +1 de nourriture.',
@@ -292,7 +293,7 @@ export const CropRotation: Technology = {
   frenchName: 'Alternance des cultures',
   age: Age.ImperialAge,
   building: Mill,
-  cost: {food: 250, wood: 250},
+  cost: {[Resource.Food]: 250, [Resource.Wood]: 250},
   bonus: {
     description: {template: 'Les fermes ont +175 de nourriture.', variables: []},
     effects: [{teamBonus: false, units: noUnits}],
@@ -305,7 +306,7 @@ export const GoldMining: Technology = {
   frenchName: "Mine d'or",
   age: Age.FeudalAge,
   building: MiningCamp,
-  cost: {food: 100, wood: 75},
+  cost: {[Resource.Food]: 100, [Resource.Wood]: 75},
   bonus: {
     description: {
       template: "Les %1 extraient l'or 15% plus rapidement",
@@ -321,7 +322,7 @@ export const GoldShaftMining: Technology = {
   frenchName: "Puits de forage d'or",
   age: Age.CastleAge,
   building: MiningCamp,
-  cost: {food: 200, wood: 150},
+  cost: {[Resource.Food]: 200, [Resource.Wood]: 150},
   bonus: {
     description: {
       template: "Les %1 extraient l'or 15% plus rapidement",
@@ -337,7 +338,7 @@ export const StoneMining: Technology = {
   frenchName: 'Carrière',
   age: Age.FeudalAge,
   building: MiningCamp,
-  cost: {food: 100, wood: 75},
+  cost: {[Resource.Food]: 100, [Resource.Wood]: 75},
   bonus: {
     description: {
       template: 'Les %1 extraient la pierre 15% plus rapidement',
@@ -353,7 +354,7 @@ export const ShaftMiningStone: Technology = {
   frenchName: 'Puits de forage de pierre',
   age: Age.CastleAge,
   building: MiningCamp,
-  cost: {food: 200, wood: 150},
+  cost: {[Resource.Food]: 200, [Resource.Wood]: 150},
   bonus: {
     description: {
       template: 'Les %1 extraient la pierre 15% plus rapidement',
@@ -369,7 +370,7 @@ export const Caravan: Technology = {
   frenchName: 'Caravane',
   age: Age.CastleAge,
   building: Market,
-  cost: {food: 200, gold: 200},
+  cost: {[Resource.Food]: 200, [Resource.Gold]: 200},
   bonus: {
     description: {
       template: 'Les %1 et %2 se délacent 50% plus rapidement',
@@ -388,7 +389,7 @@ export const Coinage: Technology = {
   frenchName: 'Frappe de monnaie',
   age: Age.CastleAge,
   building: Market,
-  cost: {food: 200, gold: 100},
+  cost: {[Resource.Food]: 200, [Resource.Gold]: 100},
   bonus: {
     description: {template: 'Réduit les taxes pour les tributs à 20%.', variables: []},
     effects: [{teamBonus: false, units: noUnits}],
@@ -401,7 +402,7 @@ export const Banking: Technology = {
   frenchName: 'Banque',
   age: Age.ImperialAge,
   building: Market,
-  cost: {food: 300, gold: 200},
+  cost: {[Resource.Food]: 300, [Resource.Gold]: 200},
   bonus: {
     description: {template: 'Pas de tributs à payer.', variables: []},
     effects: [{teamBonus: false, units: noUnits}],
@@ -414,7 +415,7 @@ export const Guilds: Technology = {
   frenchName: 'Guildes',
   age: Age.ImperialAge,
   building: Market,
-  cost: {food: 300, gold: 200},
+  cost: {[Resource.Food]: 300, [Resource.Gold]: 200},
   bonus: {
     description: {template: "Réduit la taxe d'échange de marchandises de 15%.", variables: []},
     effects: [{teamBonus: false, units: noUnits}],
@@ -427,7 +428,7 @@ export const Gillnets: Technology = {
   frenchName: 'Filets maillants',
   age: Age.CastleAge,
   building: Dock,
-  cost: {food: 150, gold: 200},
+  cost: {[Resource.Food]: 150, [Resource.Gold]: 200},
   bonus: {
     description: {
       template: 'Les %1 travaillent 25% plus vite.',
@@ -443,7 +444,7 @@ export const Redemption: Technology = {
   frenchName: 'Redemption',
   age: Age.CastleAge,
   building: Monastery,
-  cost: {gold: 475},
+  cost: {[Resource.Gold]: 475},
   bonus: {
     description: {
       template: '%1 peuvent convertir la plupart des batiments ennemis et les %2.',
@@ -462,7 +463,7 @@ export const Atonement: Technology = {
   frenchName: 'Expiation',
   age: Age.CastleAge,
   building: Monastery,
-  cost: {gold: 325},
+  cost: {[Resource.Gold]: 325},
   bonus: {
     description: {
       template: 'Les %1 peuvent convertir les autres %1.',
@@ -478,7 +479,7 @@ export const HerbalMedicine: Technology = {
   frenchName: 'Plantes médicinales',
   age: Age.CastleAge,
   building: Monastery,
-  cost: {gold: 350},
+  cost: {[Resource.Gold]: 350},
   bonus: {
     description: {
       template: 'Les unités de garnison dans les batiments guérissent 6x plus vite.',
@@ -494,7 +495,7 @@ export const Heresy: Technology = {
   frenchName: 'Hérésie',
   age: Age.CastleAge,
   building: Monastery,
-  cost: {gold: 1000},
+  cost: {[Resource.Gold]: 1000},
   bonus: {
     description: {
       template:
@@ -514,7 +515,7 @@ export const Sanctity: Technology = {
   frenchName: 'Sainteté',
   age: Age.CastleAge,
   building: Monastery,
-  cost: {gold: 120},
+  cost: {[Resource.Gold]: 120},
   bonus: {
     description: {
       template: 'Les %1 ont +15 de PDV.',
@@ -530,7 +531,7 @@ export const Fervor: Technology = {
   frenchName: 'Ferveur',
   age: Age.CastleAge,
   building: Monastery,
-  cost: {gold: 140},
+  cost: {[Resource.Gold]: 140},
   bonus: {
     description: {
       template: 'Les %1 se déplacent +15% plus vite.',
@@ -546,7 +547,7 @@ export const Faith: Technology = {
   frenchName: 'Foi',
   age: Age.ImperialAge,
   building: Monastery,
-  cost: {food: 750, gold: 1000},
+  cost: {[Resource.Food]: 750, [Resource.Gold]: 1000},
   bonus: {
     description: {
       template: 'Les unités sont 50% plus difficiles à convertir par les %1 ennemis.',
@@ -562,7 +563,7 @@ export const Illumination: Technology = {
   frenchName: 'Illumination',
   age: Age.ImperialAge,
   building: Monastery,
-  cost: {gold: 120},
+  cost: {[Resource.Gold]: 120},
   bonus: {
     description: {
       template: 'Les %1 récupèrent leur foi 50% plus vite après une conversion réussie.',
@@ -578,7 +579,7 @@ export const BlockPrinting: Technology = {
   frenchName: 'Imprimerie',
   age: Age.ImperialAge,
   building: Monastery,
-  cost: {gold: 200},
+  cost: {[Resource.Gold]: 200},
   bonus: {
     description: {
       template: 'Les %1 on +3 de portée de conversion.',
@@ -594,7 +595,7 @@ export const Theocracy: Technology = {
   frenchName: 'Théocratie',
   age: Age.ImperialAge,
   building: Monastery,
-  cost: {gold: 200},
+  cost: {[Resource.Gold]: 200},
   bonus: {
     description: {
       template:
@@ -611,7 +612,7 @@ export const Squires: Technology = {
   frenchName: 'Écuyers',
   age: Age.CastleAge,
   building: Barrack,
-  cost: {food: 100},
+  cost: {[Resource.Food]: 100},
   bonus: {
     description: {
       template: "L'%1 se déplacent +10% plus rapidement",
@@ -627,7 +628,7 @@ export const Arson: Technology = {
   frenchName: 'Brasier',
   age: Age.CastleAge,
   building: Barrack,
-  cost: {food: 150, gold: 50},
+  cost: {[Resource.Food]: 150, [Resource.Gold]: 50},
   bonus: {
     description: {
       template: "L'%1 a +2 d'attaque contre les batiments.",
@@ -645,7 +646,7 @@ export const ScaleMailArmor: Technology = {
   frenchName: 'Cotte de mailles écaillée',
   age: Age.FeudalAge,
   building: Blacksmith,
-  cost: {food: 100},
+  cost: {[Resource.Food]: 100},
   bonus: {
     description: {
       template: "L'%1 gagne +1 d'armure et +1 de protection perçage",
@@ -661,7 +662,7 @@ export const ChainMailArmor: Technology = {
   frenchName: 'Cotte de mailles chainée',
   age: Age.CastleAge,
   building: Blacksmith,
-  cost: {food: 200, gold: 100},
+  cost: {[Resource.Food]: 200, [Resource.Gold]: 100},
   bonus: {
     description: {
       template: "L'%1 gagne +1 d'armure et +1 de protection perçage",
@@ -677,7 +678,7 @@ export const PlateMailArmor: Technology = {
   frenchName: 'Cotte de maiiles plaquées',
   age: Age.ImperialAge,
   building: Blacksmith,
-  cost: {food: 300, gold: 150},
+  cost: {[Resource.Food]: 300, [Resource.Gold]: 150},
   bonus: {
     description: {
       template: "L'%1 gagne +1 d'armure et +1 de protection perçage",
@@ -693,7 +694,7 @@ export const ThumbRing: Technology = {
   frenchName: 'Bague de pouce',
   age: Age.CastleAge,
   building: Archery,
-  cost: {food: 300, wood: 250},
+  cost: {[Resource.Food]: 300, [Resource.Wood]: 250},
   bonus: {
     description: {
       template: 'Les %1 tire plus vite avec une précision de 100%',
@@ -745,7 +746,7 @@ export const ParthianTactics: Technology = {
   frenchName: 'Tactiques parthes',
   age: Age.ImperialAge,
   building: Archery,
-  cost: {food: 200, gold: 250},
+  cost: {[Resource.Food]: 200, [Resource.Gold]: 250},
   bonus: {
     description: {
       template:
@@ -774,7 +775,7 @@ export const Fletching: Technology = {
   frenchName: 'Empennage',
   age: Age.FeudalAge,
   building: Blacksmith,
-  cost: {food: 100, gold: 50},
+  cost: {[Resource.Food]: 100, [Resource.Gold]: 50},
   bonus: {
     description: {
       template: "Les %1, %2, %3, %4, %5 et tours ont +1 d'attaque et +1 de portée (sauf %4).",
@@ -803,7 +804,7 @@ export const BodkinArrow: Technology = {
   frenchName: 'Flèche à poinçon',
   age: Age.CastleAge,
   building: Blacksmith,
-  cost: {food: 200, gold: 100},
+  cost: {[Resource.Food]: 200, [Resource.Gold]: 100},
   bonus: {
     description: {
       template: "Les %1, %2, %3, %4, %5 et tours ont +1 d'attaque et +1 de portée (sauf %4).",
@@ -832,7 +833,7 @@ export const Bracer: Technology = {
   frenchName: 'Brassard',
   age: Age.ImperialAge,
   building: Blacksmith,
-  cost: {food: 300, gold: 200},
+  cost: {[Resource.Food]: 300, [Resource.Gold]: 200},
   bonus: {
     description: {
       template: "Les %1, %2, %3, %4, %5 et tours ont +1 d'attaque et +1 de portée (sauf %4).",
@@ -861,7 +862,7 @@ export const PaddedArcherArmor: Technology = {
   frenchName: "Armure d'archer matelassée",
   age: Age.FeudalAge,
   building: Blacksmith,
-  cost: {food: 100},
+  cost: {[Resource.Food]: 100},
   bonus: {
     description: {
       template: "Les %1 ont +1 d'armure et +1 de protection perçage.",
@@ -877,7 +878,7 @@ export const LeatherArcherArmor: Technology = {
   frenchName: "Armure d'archer en cuir",
   age: Age.CastleAge,
   building: Blacksmith,
-  cost: {food: 150, gold: 150},
+  cost: {[Resource.Food]: 150, [Resource.Gold]: 150},
   bonus: {
     description: {
       template: "Les %1 ont +1 d'armure et +1 de protection perçage.",
@@ -893,7 +894,7 @@ export const RingArcherArmor: Technology = {
   frenchName: "Armure d'archer chainée",
   age: Age.ImperialAge,
   building: Blacksmith,
-  cost: {food: 250, gold: 250},
+  cost: {[Resource.Food]: 250, [Resource.Gold]: 250},
   bonus: {
     description: {
       template: "Les %1 ont +1 d'armure et +2 de protection perçage.",
@@ -909,14 +910,14 @@ export const Ballistics: Technology = {
   frenchName: 'Balistique',
   age: Age.CastleAge,
   building: University,
-  cost: {wood: 300, gold: 175},
+  cost: {[Resource.Wood]: 300, [Resource.Gold]: 175},
   bonus: {
     description: {
       template:
         'Les %1, %2, %3, %4, et tours tirent avec plus de précision sur les cibles mobiles.',
       variables: [
         {type: InterpolationVariableType.UnitType, unitType: UnitType.Archer},
-        {type: InterpolationVariableType.UnitType, unitType: UnitType.Ship},
+        {type: InterpolationVariableType.UnitType, unitType: UnitType.NavalVessel},
         {type: InterpolationVariableType.Building, building: Castle},
         {type: InterpolationVariableType.Building, building: TownCenter},
       ],
@@ -931,13 +932,13 @@ export const HeatedShot: Technology = {
   frenchName: 'Projectiles en feu',
   age: Age.CastleAge,
   building: University,
-  cost: {food: 350, gold: 100},
+  cost: {[Resource.Food]: 350, [Resource.Gold]: 100},
   bonus: {
     description: {
       template:
         "Les tours ont +125% d'attaque contre les %1. Les %2, Capitainerie et Krepost ont +4 d'attaque contre les %1.",
       variables: [
-        {type: InterpolationVariableType.UnitType, unitType: UnitType.Ship},
+        {type: InterpolationVariableType.UnitType, unitType: UnitType.NavalVessel},
         {type: InterpolationVariableType.Building, building: Castle},
       ],
     },
@@ -951,7 +952,7 @@ export const MurderHoles: Technology = {
   frenchName: 'Meurtrières',
   age: Age.CastleAge,
   building: University,
-  cost: {food: 200, stone: 100},
+  cost: {[Resource.Food]: 200, [Resource.Stone]: 100},
   bonus: {
     description: {
       template: 'Élimine la portée minimum des structure défensive.',
@@ -967,7 +968,7 @@ export const Arrowslits: Technology = {
   frenchName: 'Archières',
   age: Age.ImperialAge,
   building: University,
-  cost: {food: 250, wood: 250},
+  cost: {[Resource.Food]: 250, [Resource.Wood]: 250},
   bonus: {
     description: {
       template: "Les Tour de guet ont +1 d'attaque, les Tour de guarde + 2 et les Donjon +3.",
@@ -983,7 +984,7 @@ export const Chemistry: Technology = {
   frenchName: 'Chimie',
   age: Age.ImperialAge,
   building: University,
-  cost: {food: 300, gold: 200},
+  cost: {[Resource.Food]: 300, [Resource.Gold]: 200},
   bonus: {
     description: {
       template: "Les attaques à distance (sauf les attaques des %1) ont +1 d'attaque.",
@@ -999,7 +1000,7 @@ export const Engineers: Technology = {
   frenchName: 'Ingénieurs de siège',
   age: Age.ImperialAge,
   building: University,
-  cost: {food: 500, wood: 600},
+  cost: {[Resource.Food]: 500, [Resource.Wood]: 600},
   bonus: {
     description: {
       template:
@@ -1036,7 +1037,7 @@ export const Bloodlines: Technology = {
   frenchName: 'Lignes de sang',
   age: Age.FeudalAge,
   building: Stable,
-  cost: {food: 150, gold: 100},
+  cost: {[Resource.Food]: 150, [Resource.Gold]: 100},
   bonus: {
     description: {template: 'Les unités montées ont +20 PDV.', variables: []},
     effects: [{teamBonus: false, units: isMounted, healthFixedBonus: AllAge(20)}],
@@ -1049,7 +1050,7 @@ export const Husbandry: Technology = {
   frenchName: 'Husbandry',
   age: Age.CastleAge,
   building: Stable,
-  cost: {food: 150},
+  cost: {[Resource.Food]: 150},
   bonus: {
     description: {
       template: 'Les %1 se déplacent 10% plus vite.',
@@ -1065,7 +1066,7 @@ export const Forging: Technology = {
   frenchName: 'Forge',
   age: Age.FeudalAge,
   building: Blacksmith,
-  cost: {food: 150},
+  cost: {[Resource.Food]: 150},
   bonus: {
     description: {
       template: "L'%1 et la %2 ont un bonus d'attaque de +1.",
@@ -1090,7 +1091,7 @@ export const IronCasting: Technology = {
   frenchName: 'Fonderie',
   age: Age.CastleAge,
   building: Blacksmith,
-  cost: {food: 220, gold: 120},
+  cost: {[Resource.Food]: 220, [Resource.Gold]: 120},
   bonus: {
     description: {
       template: "L'%1 et la %2 ont un bonus d'attaque de +1.",
@@ -1115,7 +1116,7 @@ export const BlastFurnace: Technology = {
   frenchName: 'Haut fourneau',
   age: Age.ImperialAge,
   building: Blacksmith,
-  cost: {food: 275, gold: 225},
+  cost: {[Resource.Food]: 275, [Resource.Gold]: 225},
   bonus: {
     description: {
       template: "L'%1 et la %2 ont un bonus d'attaque de +2.",
@@ -1140,7 +1141,7 @@ export const ScaleBardingArmor: Technology = {
   frenchName: 'Barde écaillée',
   age: Age.FeudalAge,
   building: Blacksmith,
-  cost: {food: 150},
+  cost: {[Resource.Food]: 150},
   bonus: {
     description: {
       template: "La %1 a +1 d'armure et +1 de protection perçage.",
@@ -1162,7 +1163,7 @@ export const ChainBardingArmor: Technology = {
   frenchName: 'Barde chainée',
   age: Age.CastleAge,
   building: Blacksmith,
-  cost: {food: 250, gold: 150},
+  cost: {[Resource.Food]: 250, [Resource.Gold]: 150},
   bonus: {
     description: {
       template: "La %1 a +1 d'armure et +1 de protection perçage.",
@@ -1184,7 +1185,7 @@ export const PlateBardingArmor: Technology = {
   frenchName: 'Barde plaquée',
   age: Age.ImperialAge,
   building: Blacksmith,
-  cost: {food: 350, gold: 200},
+  cost: {[Resource.Food]: 350, [Resource.Gold]: 200},
   bonus: {
     description: {
       template: "La %1 a +1 d'armure et +2 de protection perçage.",
@@ -1206,12 +1207,12 @@ export const Careening: Technology = {
   frenchName: 'Carénage',
   age: Age.CastleAge,
   building: Dock,
-  cost: {food: 250, gold: 150},
+  cost: {[Resource.Food]: 250, [Resource.Gold]: 150},
   bonus: {
     description: {
       template: 'Les %1 ont +1 de protection perçage. Les %2 ont +5 de capacité de transport.',
       variables: [
-        {type: InterpolationVariableType.UnitType, unitType: UnitType.Ship},
+        {type: InterpolationVariableType.UnitType, unitType: UnitType.NavalVessel},
         {type: InterpolationVariableType.Unit, unit: TransportShip},
       ],
     },
@@ -1228,12 +1229,12 @@ export const DryDock: Technology = {
   frenchName: 'Cale sèche',
   age: Age.ImperialAge,
   building: Dock,
-  cost: {food: 600, gold: 400},
+  cost: {[Resource.Food]: 600, [Resource.Gold]: 400},
   bonus: {
     description: {
       template: 'Les %1 se déplacent 15% plus vite. Les %2 ont +10 de capacité de transport.',
       variables: [
-        {type: InterpolationVariableType.UnitType, unitType: UnitType.Ship},
+        {type: InterpolationVariableType.UnitType, unitType: UnitType.NavalVessel},
         {type: InterpolationVariableType.Unit, unit: TransportShip},
       ],
     },
@@ -1250,11 +1251,11 @@ export const Shipwright: Technology = {
   frenchName: 'Shipwright',
   age: Age.ImperialAge,
   building: Dock,
-  cost: {food: 1000, gold: 300},
+  cost: {[Resource.Food]: 1000, [Resource.Gold]: 300},
   bonus: {
     description: {
       template: 'Les %1 coutent 20% de moins de bois et sont crées 35% plus vite.',
-      variables: [{type: InterpolationVariableType.UnitType, unitType: UnitType.Ship}],
+      variables: [{type: InterpolationVariableType.UnitType, unitType: UnitType.NavalVessel}],
     },
     effects: [
       {
@@ -1273,7 +1274,7 @@ export const Loom: Technology = {
   frenchName: 'Métier à tisser',
   age: Age.DarkAge,
   building: TownCenter,
-  cost: {gold: 50},
+  cost: {[Resource.Gold]: 50},
   bonus: {
     description: {
       template: "Les %1 ont +15 PDV, +1 d'armure et +2 de protection perçage.",
@@ -1296,7 +1297,7 @@ export const Sappers: Technology = {
   frenchName: 'Artificiers',
   age: Age.ImperialAge,
   building: Castle,
-  cost: {food: 400, gold: 200},
+  cost: {[Resource.Food]: 400, [Resource.Gold]: 200},
   bonus: {
     description: {
       template: "Les %1 ont un bonus d'attaque de +15 contre les %2",

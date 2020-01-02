@@ -84,6 +84,7 @@ import {Villager} from '../units/town_center';
 
 import {TechnologyType, UniqueTechnology} from './core';
 import { Ids } from '../civilizations/ids';
+import { Resource } from '../resource';
 
 export const Atlatl: UniqueTechnology = {
   type: TechnologyType.Unique,
@@ -93,7 +94,7 @@ export const Atlatl: UniqueTechnology = {
   id: 'Atlatl',
   englishName: 'Atlatl',
   frenchName: 'Propulseur',
-  cost: {food: 400, gold: 350},
+  cost: {[Resource.Food]: 400, [Resource.Gold]: 350},
   bonus: {
     description: {
       template: "Les %1 et %2 ont +1 de portée et +1 d'attaque.",
@@ -120,7 +121,7 @@ export const Kasbah: UniqueTechnology = {
   id: 'Kasbah',
   englishName: 'Kasbah',
   frenchName: 'Kasbah',
-  cost: {food: 250, gold: 250},
+  cost: {[Resource.Food]: 250, [Resource.Gold]: 250},
   bonus: {
     description: {
       template: 'Les %1 fonctionnent 25% plus vite.',
@@ -137,7 +138,7 @@ export const Yeomen: UniqueTechnology = {
   id: 'Yeomen',
   englishName: 'Yeomen',
   frenchName: 'Yeomen',
-  cost: {wood: 750, gold: 450},
+  cost: {[Resource.Wood]: 750, [Resource.Gold]: 450},
   bonus: {
     description: {
       template: "Les archers à pied ont +1 de portée. Les tours ont +2 d'attaque.",
@@ -154,7 +155,7 @@ export const Stirrups: UniqueTechnology = {
   id: 'Stirrups',
   englishName: 'Stirrups',
   frenchName: 'Étriers',
-  cost: {food: 400, gold: 200},
+  cost: {[Resource.Food]: 400, [Resource.Gold]: 200},
   bonus: {
     description: {
       template: 'Les %1 et Konniks attaquent 25% plus vite.',
@@ -180,7 +181,7 @@ export const Howdah: UniqueTechnology = {
   id: 'Howdah',
   englishName: 'Howdah',
   frenchName: 'Howdah',
-  cost: {food: 400, wood: 300},
+  cost: {[Resource.Food]: 400, [Resource.Wood]: 300},
   bonus: {
     description: {
       template: "Les %1 ont +1 d'armure et +1 de protection perçage.",
@@ -199,7 +200,7 @@ export const GreekFire: UniqueTechnology = {
   id: 'GreekFire',
   englishName: 'Greek Fire',
   frenchName: 'Feu grégeois',
-  cost: {food: 250, gold: 300},
+  cost: {[Resource.Food]: 250, [Resource.Gold]: 300},
   bonus: {
     description: {
       template: 'Les %1 ont +1 de portée.',
@@ -216,7 +217,7 @@ export const Stronghold: UniqueTechnology = {
   id: 'Stronghold',
   englishName: 'Stronghold',
   frenchName: 'Citadelle',
-  cost: {food: 250, gold: 200},
+  cost: {[Resource.Food]: 250, [Resource.Gold]: 200},
   bonus: {
     description: {
       template: 'Les %1 et tours tirent 25% plus vite.',
@@ -233,7 +234,7 @@ export const GreatWall: UniqueTechnology = {
   id: 'GreatWall',
   englishName: 'Great Wall',
   frenchName: 'Grande muraille',
-  cost: {wood: 400, stone: 200},
+  cost: {[Resource.Wood]: 400, [Resource.Stone]: 200},
   bonus: {
     description: {template: 'Les murs et tours ont +30% de PDV.', variables: []},
     effects: [],
@@ -247,7 +248,7 @@ export const SteppeHusbandry: UniqueTechnology = {
   id: 'SteppeHusbandry',
   englishName: 'Steppe Husbandry',
   frenchName: 'Élevage des steppes',
-  cost: {food: 200, wood: 300},
+  cost: {[Resource.Food]: 200, [Resource.Wood]: 300},
   bonus: {
     description: {
       template: 'Les %1, %2 et Kipchak sont créés 80% plus vite.',
@@ -274,7 +275,7 @@ export const RoyalHeirs: UniqueTechnology = {
   id: 'RoyalHeirs',
   englishName: 'Royal Heirs',
   frenchName: 'Héritiers royaux',
-  cost: {food: 300, gold: 300},
+  cost: {[Resource.Food]: 300, [Resource.Gold]: 300},
   bonus: {
     description: {template: 'Les Guerrier à shotel sont créés 2x plus vite.', variables: []},
     effects: [{teamBonus: false, units: isShotelWarriorLine, trainingSpeedBonus: AllAge(1)}],
@@ -288,7 +289,7 @@ export const Chivalry: UniqueTechnology = {
   id: 'Chivalry',
   englishName: 'Chivalry',
   frenchName: 'Chevalerie',
-  cost: {wood: 400, gold: 400},
+  cost: {[Resource.Wood]: 400, [Resource.Gold]: 400},
   bonus: {
     description: {
       template: 'Les %1 fonctionnent 40% plus vite',
@@ -305,7 +306,7 @@ export const Anarchy: UniqueTechnology = {
   id: 'Anarchy',
   englishName: 'Anarchy',
   frenchName: 'Anarchie',
-  cost: {food: 450, gold: 250},
+  cost: {[Resource.Food]: 450, [Resource.Gold]: 250},
   bonus: {
     description: {
       template: 'Les Huskarls peuvent être créés dans %1',
@@ -322,7 +323,7 @@ export const Marauders: UniqueTechnology = {
   id: 'Marauders',
   englishName: 'Marauders',
   frenchName: 'Maraudeurs',
-  cost: {wood: 300, gold: 200},
+  cost: {[Resource.Wood]: 300, [Resource.Gold]: 200},
   bonus: {
     description: {
       template: 'Les Tarkans peuvent être créés dans %1',
@@ -339,7 +340,7 @@ export const AndeanSling: UniqueTechnology = {
   id: 'AndeanSling',
   englishName: 'Andean Sling',
   frenchName: 'Fronde des Andes',
-  cost: {food: 200, gold: 300},
+  cost: {[Resource.Food]: 200, [Resource.Gold]: 300},
   bonus: {
     description: {
       template: "Les %1, %2 et %3 n'ont plus de portée minimum.",
@@ -366,7 +367,7 @@ export const Sultans: UniqueTechnology = {
   id: 'Sultans',
   englishName: 'Sultans',
   frenchName: 'Sultans',
-  cost: {food: 400, wood: 400},
+  cost: {[Resource.Food]: 400, [Resource.Wood]: 400},
   bonus: {
     description: {
       template: "Augmentent tout les revenus d'or (mine, commerce et reliques) de 10%",
@@ -383,7 +384,7 @@ export const Pavise: UniqueTechnology = {
   id: 'Pavise',
   englishName: 'Pavise',
   frenchName: 'Pavois',
-  cost: {food: 300, gold: 150},
+  cost: {[Resource.Food]: 300, [Resource.Gold]: 150},
   bonus: {
     description: {
       template: "Les archers à pied ont +1 d'armure et +1 de protection perçage.",
@@ -400,7 +401,7 @@ export const Yasama: UniqueTechnology = {
   id: 'Yasama',
   englishName: 'Yasama',
   frenchName: 'Yasama',
-  cost: {food: 300, wood: 300},
+  cost: {[Resource.Food]: 300, [Resource.Wood]: 300},
   bonus: {
     description: {template: 'Les tours tirent 2 flèches de plus.', variables: []},
     effects: [],
@@ -414,7 +415,7 @@ export const TuskSwords: UniqueTechnology = {
   id: 'TuskSwords',
   englishName: 'Tusk Swords',
   frenchName: 'Épées de défenses',
-  cost: {wood: 200, gold: 300},
+  cost: {[Resource.Wood]: 200, [Resource.Gold]: 300},
   bonus: {
     description: {
       template: "Les %1 ont +3 d'attaque.",
@@ -431,7 +432,7 @@ export const Panokseon: UniqueTechnology = {
   id: 'Panokseon',
   englishName: 'Panokseon',
   frenchName: 'Panokseon',
-  cost: {food: 300, wood: 300},
+  cost: {[Resource.Food]: 300, [Resource.Wood]: 300},
   bonus: {
     description: {
       template: 'Les %1 se déplacent 15% plus vite.',
@@ -448,7 +449,7 @@ export const HillForts: UniqueTechnology = {
   id: 'HillForts',
   englishName: 'Hill Forts',
   frenchName: 'Collines fortifiées',
-  cost: {food: 250, gold: 250},
+  cost: {[Resource.Food]: 250, [Resource.Gold]: 250},
   bonus: {
     description: {
       template: 'Les %1 ont +3 de portée.',
@@ -465,7 +466,7 @@ export const Mercenaries: UniqueTechnology = {
   id: 'Mercenaries',
   englishName: 'Mercenaries',
   frenchName: 'Armée corvinienne',
-  cost: {food: 200, gold: 300},
+  cost: {[Resource.Food]: 200, [Resource.Gold]: 300},
   bonus: {
     description: {
       template: "Les %1 ne coutent plus d'or.",
@@ -482,7 +483,7 @@ export const Thalassocracy: UniqueTechnology = {
   id: 'Thalassocracy',
   englishName: 'Thalassocracy',
   frenchName: 'Thalassocratie',
-  cost: {food: 300, gold: 300},
+  cost: {[Resource.Food]: 300, [Resource.Gold]: 300},
   bonus: {
     description: {
       template: 'Transforme les %1 en Harbor.',
@@ -502,7 +503,7 @@ export const Tigui: UniqueTechnology = {
   id: 'Tigui',
   englishName: 'Tigui',
   frenchName: 'Tigui',
-  cost: {food: 200, wood: 300},
+  cost: {[Resource.Food]: 200, [Resource.Wood]: 300},
   bonus: {
     description: {
       template: 'Les %1 peuvent tirer des flèches sans unités en garnison.',
@@ -519,7 +520,7 @@ export const ObsidianArrows: UniqueTechnology = {
   id: 'ObsidianArrows',
   englishName: 'Obsidian Arrows',
   frenchName: "Flècge d'obsidienne",
-  cost: {food: 300, gold: 300},
+  cost: {[Resource.Food]: 300, [Resource.Gold]: 300},
   bonus: {
     description: {
       template: "Les %1 ont un bonuse d'attaque de +6 contre les %1 et %2.",
@@ -542,7 +543,7 @@ export const Nomads: UniqueTechnology = {
   id: 'Nomads',
   englishName: 'Nomads',
   frenchName: 'Nomades',
-  cost: {wood: 300, gold: 150},
+  cost: {[Resource.Wood]: 300, [Resource.Gold]: 150},
   bonus: {
     description: {
       template: "Les habitations perdues n'influent pas sur la limite de population.",
@@ -559,7 +560,7 @@ export const Kamandaran: UniqueTechnology = {
   id: 'Kamandaran',
   englishName: 'Kamandaran',
   frenchName: 'Kamandaran',
-  cost: {wood: 200, stone: 100},
+  cost: {[Resource.Wood]: 200, [Resource.Stone]: 100},
   bonus: {
     description: {
       template: 'Change le cout en or des %1 en bois.',
@@ -583,11 +584,11 @@ export const Carrack: UniqueTechnology = {
   id: 'Carrack',
   englishName: 'Carrack',
   frenchName: 'Carraque',
-  cost: {wood: 200, gold: 300},
+  cost: {[Resource.Wood]: 200, [Resource.Gold]: 300},
   bonus: {
     description: {
       template: "Les %1 ont +1 d'armure et +1 de protection perçage.",
-      variables: [{type: InterpolationVariableType.UnitType, unitType: UnitType.Ship}],
+      variables: [{type: InterpolationVariableType.UnitType, unitType: UnitType.NavalVessel}],
     },
     effects: [{teamBonus: false, units: isShip, armorBonus: AllAge({melee: 1, pierce: 1})}],
   },
@@ -600,7 +601,7 @@ export const Madrasah: UniqueTechnology = {
   id: 'Madrasah',
   englishName: 'Madrasah',
   frenchName: 'Madrasa',
-  cost: {food: 200, gold: 100},
+  cost: {[Resource.Food]: 200, [Resource.Gold]: 100},
   bonus: {
     description: {
       template: 'Lorsque un %1 est tué, 33% du cout en or revient au joueur.',
@@ -617,7 +618,7 @@ export const Orthodoxy: UniqueTechnology = {
   id: 'Orthodoxy',
   englishName: 'Orthodoxy',
   frenchName: 'Orthodoxie',
-  cost: {food: 200, gold: 300},
+  cost: {[Resource.Food]: 200, [Resource.Gold]: 300},
   bonus: {
     description: {
       template: "Les %1 ont +3 d'armure et +3 de protection perçage.",
@@ -634,7 +635,7 @@ export const Inquisition: UniqueTechnology = {
   id: 'Inquisition',
   englishName: 'Inquisition',
   frenchName: 'Inquisition',
-  cost: {food: 100, gold: 300},
+  cost: {[Resource.Food]: 100, [Resource.Gold]: 300},
   bonus: {
     description: {
       template:
@@ -652,7 +653,7 @@ export const SilkArmor: UniqueTechnology = {
   id: 'SilkArmor',
   englishName: 'Silk Armor',
   frenchName: 'Armure de soie',
-  cost: {wood: 400, gold: 300},
+  cost: {[Resource.Wood]: 400, [Resource.Gold]: 300},
   bonus: {
     description: {
       template: 'Les %1, %2, %3 et Kipchak on +1 de protection perçage.',
@@ -681,7 +682,7 @@ export const Ironclad: UniqueTechnology = {
   id: 'Ironclad',
   englishName: 'Ironclad',
   frenchName: 'Cuirasse',
-  cost: {wood: 400, gold: 350},
+  cost: {[Resource.Wood]: 400, [Resource.Gold]: 350},
   bonus: {
     description: {
       template: "Les %1 ont +4 d'armure",
@@ -698,7 +699,7 @@ export const Sipahi: UniqueTechnology = {
   id: 'Sipahi',
   englishName: 'Sipahi',
   frenchName: 'Sipahi',
-  cost: {food: 350, gold: 150},
+  cost: {[Resource.Food]: 350, [Resource.Gold]: 150},
   bonus: {
     description: {
       template: 'Les %1 et %2 ont +20 de PDV.',
@@ -724,7 +725,7 @@ export const Chatras: UniqueTechnology = {
   id: 'Chatras',
   englishName: 'Chatras',
   frenchName: 'Chatras',
-  cost: {food: 250, gold: 250},
+  cost: {[Resource.Food]: 250, [Resource.Gold]: 250},
   bonus: {
     description: {
       template: 'Les %1 ont +50 de PDV.',
@@ -741,7 +742,7 @@ export const Chieftains: UniqueTechnology = {
   id: 'Chieftains',
   englishName: 'Chieftains',
   frenchName: 'Chefs de tribu',
-  cost: {food: 400, gold: 300},
+  cost: {[Resource.Food]: 400, [Resource.Gold]: 300},
   bonus: {
     description: {
       template: "L'%1 a un bonus d'attaque de +5 contre la %2 et de +4 contre les %3",
@@ -766,7 +767,7 @@ export const GarlandWars: UniqueTechnology = {
   id: 'GarlandWars',
   englishName: 'Garland Wars',
   frenchName: 'Guerres glorieuses',
-  cost: {food: 450, gold: 750},
+  cost: {[Resource.Food]: 450, [Resource.Gold]: 750},
   bonus: {
     description: {
       template: "L'%1 a +4 d'attaque.",
@@ -783,7 +784,7 @@ export const MaghrabiCamels: UniqueTechnology = {
   id: 'MaghrabiCamels',
   englishName: 'Maghrabi Camels',
   frenchName: 'Chameaux du Maghreb',
-  cost: {food: 700, gold: 300},
+  cost: {[Resource.Food]: 700, [Resource.Gold]: 300},
   bonus: {
     description: {
       template: 'Les %1 et les Archer de chamellerie se regénèrent 10 PDV par minute.',
@@ -803,7 +804,7 @@ export const Warwolf: UniqueTechnology = {
   id: 'Warwolf',
   englishName: 'Warwolf',
   frenchName: 'Loup de guerre',
-  cost: {wood: 500, gold: 250},
+  cost: {[Resource.Wood]: 500, [Resource.Gold]: 250},
   bonus: {
     description: {
       template:
@@ -821,7 +822,7 @@ export const Bagains: UniqueTechnology = {
   id: 'Bagains',
   englishName: 'Bagains',
   frenchName: 'Bagains',
-  cost: {food: 900, gold: 450},
+  cost: {[Resource.Food]: 900, [Resource.Gold]: 450},
   bonus: {
     description: {
       template: "Les %1 ont +5 d'armure",
@@ -838,7 +839,7 @@ export const ManipurCavalry: UniqueTechnology = {
   id: 'ManipurCavalry',
   englishName: 'Manipur Cavalry',
   frenchName: 'Cavalerie du Manipur',
-  cost: {food: 650, gold: 400},
+  cost: {[Resource.Food]: 650, [Resource.Gold]: 400},
   bonus: {
     description: {
       template: "Les Arambai et la %2 ont +3 d'attaque contre les %1 et %2",
@@ -871,7 +872,7 @@ export const Logistica: UniqueTechnology = {
   id: 'Logistica',
   englishName: 'Logistica',
   frenchName: 'Logistique',
-  cost: {food: 1000, gold: 600},
+  cost: {[Resource.Food]: 1000, [Resource.Gold]: 600},
   bonus: {
     description: {
       template: "Les Cataphract font des dégats de piétinement et ont +6 d'attaque contre %1.",
@@ -891,7 +892,7 @@ export const FurorCeltica: UniqueTechnology = {
   id: 'FurorCeltica',
   englishName: 'Furor Celtica',
   frenchName: 'Fureur celte',
-  cost: {food: 750, gold: 450},
+  cost: {[Resource.Food]: 750, [Resource.Gold]: 450},
   bonus: {
     description: {
       template: 'Les unités de %1 ont +40% de PDV.',
@@ -908,7 +909,7 @@ export const Rocketry: UniqueTechnology = {
   id: 'Rocketry',
   englishName: 'Rocketry',
   frenchName: 'Propulsion',
-  cost: {wood: 600, gold: 600},
+  cost: {[Resource.Wood]: 600, [Resource.Gold]: 600},
   bonus: {
     description: {
       template: "Les Chu Ko Nu ont +2 d'attaque et les %1 ont +4 d'attaque",
@@ -931,7 +932,7 @@ export const CumanMercenaries: UniqueTechnology = {
   id: 'CumanMercenaries',
   englishName: 'Cuman Mercenaries',
   frenchName: 'Mercenaires coumans',
-  cost: {food: 650, gold: 400},
+  cost: {[Resource.Food]: 650, [Resource.Gold]: 400},
   bonus: {
     description: {
       template: "Les membres de l'équipe peuvent créer 10 Kipchaks d'élite gratuits au chateau",
@@ -948,7 +949,7 @@ export const TorsionEngines: UniqueTechnology = {
   id: 'TorsionEngines',
   englishName: 'Torsion Engines',
   frenchName: 'Mécanique à torsion',
-  cost: {food: 1000, gold: 600},
+  cost: {[Resource.Food]: 1000, [Resource.Gold]: 600},
   bonus: {
     description: {
       template: 'Les %1 ont une zone de dégats augmenté (sauf les tour de siège et %2).',
@@ -968,7 +969,7 @@ export const BeardedAxe: UniqueTechnology = {
   id: 'BeardedAxe',
   englishName: 'Bearded Axe',
   frenchName: 'Hache francisque',
-  cost: {food: 400, gold: 400},
+  cost: {[Resource.Food]: 400, [Resource.Gold]: 400},
   bonus: {
     description: {
       template: 'Les lanceurs de hache ont +1 de portée.',
@@ -987,7 +988,7 @@ export const Perfusion: UniqueTechnology = {
   id: 'Perfusion',
   englishName: 'Perfusion',
   frenchName: 'Perfusion',
-  cost: {wood: 400, gold: 600},
+  cost: {[Resource.Wood]: 400, [Resource.Gold]: 600},
   bonus: {
     description: {
       template: 'Les %1 fonctionnent 2x plus vite.',
@@ -1004,7 +1005,7 @@ export const Atheism: UniqueTechnology = {
   id: 'Atheism',
   englishName: 'Atheism',
   frenchName: 'Athéisme',
-  cost: {food: 500, gold: 500},
+  cost: {[Resource.Food]: 500, [Resource.Gold]: 500},
   bonus: {
     description: {
       template:
@@ -1025,7 +1026,7 @@ export const Couriers: UniqueTechnology = {
   id: 'Couriers',
   englishName: 'Couriers',
   frenchName: 'Coursiers',
-  cost: {food: 600, gold: 600},
+  cost: {[Resource.Food]: 600, [Resource.Gold]: 600},
   bonus: {
     description: {
       template: "Les Kamayuks, %1 et %2 ont +1 d'armure et +2 protection perçage.",
@@ -1052,7 +1053,7 @@ export const Shatagni: UniqueTechnology = {
   id: 'Shatagni',
   englishName: 'Shatagni',
   frenchName: 'Shatagni',
-  cost: {food: 500, gold: 300},
+  cost: {[Resource.Food]: 500, [Resource.Gold]: 300},
   bonus: {
     description: {
       template: 'Les %1 ont +1 de portée.',
@@ -1069,7 +1070,7 @@ export const SilkRoad: UniqueTechnology = {
   id: 'SilkRoad',
   englishName: 'Silk Road',
   frenchName: 'Route de la soie.',
-  cost: {food: 500, gold: 250},
+  cost: {[Resource.Food]: 500, [Resource.Gold]: 250},
   bonus: {
     description: {
       template: 'Les %1 et %2 coutent 2x fois moins.',
@@ -1091,7 +1092,7 @@ export const Kataparuto: UniqueTechnology = {
   id: 'Kataparuto',
   englishName: 'Kataparuto',
   frenchName: 'Kataparuto',
-  cost: {wood: 750, gold: 400},
+  cost: {[Resource.Wood]: 750, [Resource.Gold]: 400},
   bonus: {
     description: {
       template: 'Les %1 se montent et démontent 4x plus vite et tirent 33% plus vite.',
@@ -1108,7 +1109,7 @@ export const DoubleCrossbow: UniqueTechnology = {
   id: 'DoubleCrossbow',
   englishName: 'Double Crossbow',
   frenchName: 'Double arbalète',
-  cost: {food: 700, gold: 400},
+  cost: {[Resource.Food]: 700, [Resource.Gold]: 400},
   bonus: {
     description: {
       template:
@@ -1129,7 +1130,7 @@ export const Shinkichon: UniqueTechnology = {
   id: 'Shinkichon',
   englishName: 'Shinkichon',
   frenchName: 'Shinkichon',
-  cost: {wood: 800, gold: 500},
+  cost: {[Resource.Wood]: 800, [Resource.Gold]: 500},
   bonus: {
     description: {
       template: 'Les %1 ont +1 de portée.',
@@ -1146,7 +1147,7 @@ export const TowerShields: UniqueTechnology = {
   id: 'TowerShields',
   englishName: 'Tower Shields',
   frenchName: 'Boucliers rectangulaires',
-  cost: {food: 800, gold: 200},
+  cost: {[Resource.Food]: 800, [Resource.Gold]: 200},
   bonus: {
     description: {
       template: 'Les %1 et %2 ont +1 de protection perçage.',
@@ -1172,7 +1173,7 @@ export const RecurveBow: UniqueTechnology = {
   id: 'RecurveBow',
   englishName: 'Recurve Bow',
   frenchName: 'Arc recourbé',
-  cost: {wood: 600, gold: 400},
+  cost: {[Resource.Wood]: 600, [Resource.Gold]: 400},
   bonus: {
     description: {
       template: "Les %1 ont +1 d'attaque et +1 de portée.",
@@ -1192,7 +1193,7 @@ export const ForcedLevy: UniqueTechnology = {
   id: 'ForcedLevy',
   englishName: 'Forced Levy',
   frenchName: 'Enrolement de force',
-  cost: {food: 1000, gold: 600},
+  cost: {[Resource.Food]: 1000, [Resource.Gold]: 600},
   bonus: {
     description: {
       template: 'Change le cout en or des %1 en nourriture.',
@@ -1216,7 +1217,7 @@ export const Farimba: UniqueTechnology = {
   id: 'Farimba',
   englishName: 'Farimba',
   frenchName: 'Farimba',
-  cost: {food: 650, gold: 400},
+  cost: {[Resource.Food]: 650, [Resource.Gold]: 400},
   bonus: {
     description: {
       template: "Les %1, %2 et %3 ont +5 d'attaque.",
@@ -1243,7 +1244,7 @@ export const ElDorado: UniqueTechnology = {
   id: 'ElDorado',
   englishName: 'El Dorado',
   frenchName: 'El Dorado',
-  cost: {food: 750, gold: 450},
+  cost: {[Resource.Food]: 750, [Resource.Gold]: 450},
   bonus: {
     description: {
       template: 'Les %1 ont +40 PDV.',
@@ -1260,7 +1261,7 @@ export const Drill: UniqueTechnology = {
   id: 'Drill',
   englishName: 'Drill',
   frenchName: 'Manoeuvres',
-  cost: {food: 500, gold: 450},
+  cost: {[Resource.Food]: 500, [Resource.Gold]: 450},
   bonus: {
     description: {
       template: 'Les unités de %1 se déplacent 50% plus vite.',
@@ -1277,7 +1278,7 @@ export const Mahouts: UniqueTechnology = {
   id: 'Mahouts',
   englishName: 'Mahouts',
   frenchName: 'Cornacs',
-  cost: {food: 300, gold: 300},
+  cost: {[Resource.Food]: 300, [Resource.Gold]: 300},
   bonus: {
     description: {
       template: 'Les Éléphants de guerre se déplacent 30% plus vite.',
@@ -1296,7 +1297,7 @@ export const Arquebus: UniqueTechnology = {
   id: 'Arquebus',
   englishName: 'Arquebus',
   frenchName: 'Arquebuse',
-  cost: {food: 700, gold: 400},
+  cost: {[Resource.Food]: 700, [Resource.Gold]: 400},
   bonus: {
     description: {
       template:
@@ -1325,7 +1326,7 @@ export const Zealotry: UniqueTechnology = {
   id: 'Zealotry',
   englishName: 'Zealotry',
   frenchName: 'Fanatisme',
-  cost: {food: 750, gold: 800},
+  cost: {[Resource.Food]: 750, [Resource.Gold]: 800},
   bonus: {
     description: {
       template: 'Les %1 ont +30 de PDV.',
@@ -1342,7 +1343,7 @@ export const Druzhina: UniqueTechnology = {
   id: 'Druzhina',
   englishName: 'Druzhina',
   frenchName: 'Druzhina',
-  cost: {food: 1200, gold: 500},
+  cost: {[Resource.Food]: 1200, [Resource.Gold]: 500},
   bonus: {
     description: {
       template: "L'%1 infligent 5 dommages (non affecté par l'armure) de zone (rayon 0.5).",
@@ -1359,7 +1360,7 @@ export const Supremacy: UniqueTechnology = {
   id: 'Supremacy',
   englishName: 'Supremacy',
   frenchName: 'Suprématie',
-  cost: {food: 450, gold: 250},
+  cost: {[Resource.Food]: 450, [Resource.Gold]: 250},
   bonus: {
     description: {
       template: "Les %1 ont +6 d'attaque, +2 d'armure, +2 de protection perçage et +40 PDV.",
@@ -1380,7 +1381,7 @@ export const TimuridSiegecraft: UniqueTechnology = {
   id: 'TimuridSiegecraft',
   englishName: 'Timurid Siegecraft',
   frenchName: 'Arme de siège timuride',
-  cost: {wood: 400, gold: 500},
+  cost: {[Resource.Wood]: 400, [Resource.Gold]: 500},
   bonus: {
     description: {
       template: 'Les %1 ont +1 de portée.',
@@ -1397,7 +1398,7 @@ export const Crenellations: UniqueTechnology = {
   id: 'Crenellations',
   englishName: 'Crenellations',
   frenchName: 'Crénelures',
-  cost: {food: 600, stone: 400},
+  cost: {[Resource.Food]: 600, [Resource.Stone]: 400},
   bonus: {
     description: {
       template: "Les %1 ont +3 de portée et l'%1 en garnison peut tirer des flèches.",
@@ -1417,7 +1418,7 @@ export const Artillery: UniqueTechnology = {
   id: 'Artillery',
   englishName: 'Artillery',
   frenchName: 'Artillerie',
-  cost: {gold: 500, stone: 450},
+  cost: {[Resource.Gold]: 500, [Resource.Stone]: 450},
   bonus: {
     description: {
       template: 'Les %1, %2 et tours de bombardent ont +2 de portée.',
@@ -1437,7 +1438,7 @@ export const PaperMoney: UniqueTechnology = {
   id: 'PaperMoney',
   englishName: 'Paper Money',
   frenchName: 'Monnaie de papier',
-  cost: {food: 800, gold: 200},
+  cost: {[Resource.Food]: 800, [Resource.Gold]: 200},
   bonus: {
     description: {template: "Chaque membre de l'équipe reçoit 500 d'or.", variables: []},
     effects: [{teamBonus: true, units: noUnits}],
@@ -1451,7 +1452,7 @@ export const Berserkergang: UniqueTechnology = {
   id: 'Berserkergang',
   englishName: 'Berserkergang',
   frenchName: 'Gang de fou',
-  cost: {food: 850, gold: 400},
+  cost: {[Resource.Food]: 850, [Resource.Gold]: 400},
   bonus: {
     description: {
       template: 'Les Fou de guerre se regénèrent 2x plus vite.',

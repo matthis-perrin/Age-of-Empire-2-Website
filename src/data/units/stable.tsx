@@ -5,6 +5,7 @@ import {ArmorType, AttackType} from '../damage';
 import {allCivilizationsWithout, Ids, onlyCivilizations} from '../civilizations/ids';
 
 import {Unit, UnitType} from './core';
+import { Resource } from '../resource';
 
 export const ScoutCavalry: Unit = {
   id: 'scout-cavalry-dark-age',
@@ -15,7 +16,7 @@ export const ScoutCavalry: Unit = {
   age: Age.DarkAge,
   abilities: [],
   training: [{building: Stable, time: 30}],
-  cost: {food: 80},
+  cost: {[Resource.Food]: 80},
   health: 45,
   attack: {
     type: AttackType.CaC,
@@ -69,7 +70,7 @@ export const LightCavalry: Unit = {
   age: Age.CastleAge,
   abilities: [],
   training: [{building: Stable, time: 30}],
-  cost: {food: 80},
+  cost: {[Resource.Food]: 80},
   health: 60,
   attack: {
     type: AttackType.CaC,
@@ -114,7 +115,7 @@ export const Hussar: Unit = {
   age: Age.ImperialAge,
   abilities: [],
   training: [{building: Stable, time: 30}],
-  cost: {food: 80},
+  cost: {[Resource.Food]: 80},
   health: 75,
   attack: {
     type: AttackType.CaC,
@@ -138,8 +139,8 @@ export const Knight: Unit = {
   abilities: [],
   training: [{building: Stable, time: 30}],
   cost: {
-    food: 60,
-    gold: 75,
+    [Resource.Food]: 60,
+    [Resource.Gold]: 75,
   },
   health: 100,
   attack: {
@@ -170,8 +171,8 @@ export const Cavalier: Unit = {
   abilities: [],
   training: [{building: Stable, time: 30}],
   cost: {
-    food: 60,
-    gold: 75,
+    [Resource.Food]: 60,
+    [Resource.Gold]: 75,
   },
   health: 120,
   attack: {
@@ -208,8 +209,8 @@ export const Paladin: Unit = {
   abilities: [],
   training: [{building: Stable, time: 30}],
   cost: {
-    food: 60,
-    gold: 75,
+    [Resource.Food]: 60,
+    [Resource.Gold]: 75,
   },
   health: 160,
   attack: {
@@ -247,8 +248,8 @@ export const CamelRider: Unit = {
   abilities: [],
   training: [{building: Stable, time: 22}],
   cost: {
-    food: 55,
-    gold: 60,
+    [Resource.Food]: 55,
+    [Resource.Gold]: 60,
   },
   health: 100,
   attack: {
@@ -290,8 +291,8 @@ export const HeavyCamelRider: Unit = {
   abilities: [],
   training: [{building: Stable, time: 22}],
   cost: {
-    food: 55,
-    gold: 60,
+    [Resource.Food]: 55,
+    [Resource.Gold]: 60,
   },
   health: 120,
   attack: {
@@ -322,8 +323,8 @@ export const ImperialCamelRider: Unit = {
   abilities: [],
   training: [{building: Stable, time: 20}],
   cost: {
-    food: 55,
-    gold: 60,
+    [Resource.Food]: 55,
+    [Resource.Gold]: 60,
   },
   health: 140,
   attack: {
@@ -354,8 +355,8 @@ export const BattleElephant: Unit = {
   abilities: [],
   training: [{building: Stable, time: 28}],
   cost: {
-    food: 120,
-    gold: 70,
+    [Resource.Food]: 120,
+    [Resource.Gold]: 70,
   },
   health: 250,
   attack: {
@@ -384,8 +385,8 @@ export const EliteBattleElephant: Unit = {
   abilities: [],
   training: [{building: Stable, time: 28}],
   cost: {
-    food: 120,
-    gold: 70,
+    [Resource.Food]: 120,
+    [Resource.Gold]: 70,
   },
   health: 300,
   attack: {
@@ -417,8 +418,8 @@ export const Tarkan: Unit = {
     {building: Stable, time: 26},
   ],
   cost: {
-    food: 60,
-    gold: 60,
+    [Resource.Food]: 60,
+    [Resource.Gold]: 60,
   },
   health: 100,
   attack: {
@@ -451,8 +452,8 @@ export const EliteTarkan: Unit = {
     {building: Stable, time: 26},
   ],
   cost: {
-    food: 60,
-    gold: 60,
+    [Resource.Food]: 60,
+    [Resource.Gold]: 60,
   },
   health: 150,
   attack: {
@@ -482,8 +483,8 @@ export const SteppeLancer: Unit = {
   abilities: [],
   training: [{building: Stable, time: 24}],
   cost: {
-    food: 70,
-    gold: 45,
+    [Resource.Food]: 70,
+    [Resource.Gold]: 45,
   },
   health: 60,
   attack: {
@@ -511,8 +512,8 @@ export const EliteSteppeLancer: Unit = {
   abilities: [],
   training: [{building: Stable, time: 20}],
   cost: {
-    food: 70,
-    gold: 45,
+    [Resource.Food]: 70,
+    [Resource.Gold]: 45,
   },
   health: 80,
   attack: {

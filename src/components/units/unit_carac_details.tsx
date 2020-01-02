@@ -9,6 +9,7 @@ import {FontWeight} from '../theme';
 import {AggregatedUnitWithBonus} from '../../lib/unit_with_bonuses/core';
 import {Unit, UnitCarac} from '../../data/units/core';
 import { getById } from '../../data/civilizations/registry';
+import { InterpolationStringView } from '../core/interpolation_string_view';
 
 export function UnitCaracDetails<CaracBonus>(props: {
   unit: Unit;
@@ -183,7 +184,7 @@ function UnitCaracBonus<CaracBonus>(props: {
     <GroupLine>
       {caracChange}
       {name}
-      {source.description.template}
+      <InterpolationStringView interpolationString={source.description} />
     </GroupLine>
   );
 }

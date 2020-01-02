@@ -4,6 +4,7 @@ import {AttackType} from '../damage';
 import {allCivilizations} from '../civilizations/ids';
 
 import {Unit, UnitAbility, UnitType} from './core';
+import { Resource } from '../resource';
 
 export const TradeCart: Unit = {
   id: 'trade-cart',
@@ -15,8 +16,8 @@ export const TradeCart: Unit = {
   abilities: [UnitAbility.GenerateGoldByTrading],
   training: [{building: Market, time: 51}],
   cost: {
-    wood: 100,
-    gold: 50,
+    [Resource.Wood]: 100,
+    [Resource.Gold]: 50,
   },
   health: 70,
   attack: {type: AttackType.None},

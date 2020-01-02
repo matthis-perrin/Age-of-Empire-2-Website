@@ -10,6 +10,7 @@ import {
 } from '../civilizations/ids';
 
 import {Unit, UnitAbility, UnitType} from './core';
+import { Resource } from '../resource';
 
 export const FishingShip: Unit = {
   id: 'fishing-ship',
@@ -21,7 +22,7 @@ export const FishingShip: Unit = {
   abilities: [UnitAbility.GatherFood],
   training: [{building: Dock, time: 40}],
   cost: {
-    wood: 75,
+    [Resource.Wood]: 75,
   },
   health: 60,
   attack: {type: AttackType.None},
@@ -41,7 +42,7 @@ export const TransportShip: Unit = {
   abilities: [],
   training: [{building: Dock, time: 46}],
   cost: {
-    wood: 125,
+    [Resource.Wood]: 125,
   },
   health: 100,
   attack: {type: AttackType.None},
@@ -62,8 +63,8 @@ export const TradeCog: Unit = {
   abilities: [UnitAbility.GenerateGoldByTrading],
   training: [{building: Dock, time: 36}],
   cost: {
-    wood: 100,
-    gold: 50,
+    [Resource.Wood]: 100,
+    [Resource.Gold]: 50,
   },
   health: 80,
   attack: {type: AttackType.None},
@@ -83,8 +84,8 @@ export const Galley: Unit = {
   abilities: [],
   training: [{building: Dock, time: 60}],
   cost: {
-    wood: 90,
-    gold: 30,
+    [Resource.Wood]: 90,
+    [Resource.Gold]: 30,
   },
   health: 120,
   attack: {
@@ -117,8 +118,8 @@ export const WarGalley: Unit = {
   abilities: [],
   training: [{building: Dock, time: 36}],
   cost: {
-    wood: 90,
-    gold: 30,
+    [Resource.Wood]: 90,
+    [Resource.Gold]: 30,
   },
   health: 135,
   attack: {
@@ -151,8 +152,8 @@ export const Galleon: Unit = {
   abilities: [],
   training: [{building: Dock, time: 36}],
   cost: {
-    wood: 90,
-    gold: 30,
+    [Resource.Wood]: 90,
+    [Resource.Gold]: 30,
   },
   health: 165,
   attack: {
@@ -185,8 +186,8 @@ export const FireGalley: Unit = {
   abilities: [],
   training: [{building: Dock, time: 60}],
   cost: {
-    wood: 75,
-    gold: 45,
+    [Resource.Wood]: 75,
+    [Resource.Gold]: 45,
   },
   health: 100,
   attack: {
@@ -219,8 +220,8 @@ export const FireShip: Unit = {
   abilities: [],
   training: [{building: Dock, time: 36}],
   cost: {
-    wood: 75,
-    gold: 45,
+    [Resource.Wood]: 75,
+    [Resource.Gold]: 45,
   },
   health: 120,
   attack: {
@@ -266,8 +267,8 @@ export const FastFireShip: Unit = {
   abilities: [],
   training: [{building: Dock, time: 36}],
   cost: {
-    wood: 75,
-    gold: 45,
+    [Resource.Wood]: 75,
+    [Resource.Gold]: 45,
   },
   health: 140,
   attack: {
@@ -300,8 +301,8 @@ export const DemolitionRaft: Unit = {
   abilities: [],
   training: [{building: Dock, time: 45}],
   cost: {
-    wood: 70,
-    gold: 50,
+    [Resource.Wood]: 70,
+    [Resource.Gold]: 50,
   },
   health: 45,
   attack: {
@@ -327,8 +328,8 @@ export const DemolitionShip: Unit = {
   abilities: [],
   training: [{building: Dock, time: 31}],
   cost: {
-    wood: 70,
-    gold: 50,
+    [Resource.Wood]: 70,
+    [Resource.Gold]: 50,
   },
   health: 60,
   attack: {
@@ -366,8 +367,8 @@ export const HeavyDemolitionShip: Unit = {
   abilities: [],
   training: [{building: Dock, time: 31}],
   cost: {
-    wood: 70,
-    gold: 50,
+    [Resource.Wood]: 70,
+    [Resource.Gold]: 50,
   },
   health: 70,
   attack: {
@@ -399,8 +400,8 @@ export const CannonGalleon: Unit = {
   abilities: [],
   training: [{building: Dock, time: 46}],
   cost: {
-    wood: 200,
-    gold: 150,
+    [Resource.Wood]: 200,
+    [Resource.Gold]: 150,
   },
   health: 120,
   attack: {
@@ -454,8 +455,8 @@ export const EliteCannonGalleon: Unit = {
   abilities: [],
   training: [{building: Dock, time: 46}],
   cost: {
-    wood: 200,
-    gold: 150,
+    [Resource.Wood]: 200,
+    [Resource.Gold]: 150,
   },
   health: 150,
   attack: {
@@ -491,8 +492,8 @@ export const Longboat: Unit = {
   abilities: [],
   training: [{building: Dock, time: 25}],
   cost: {
-    wood: 84,
-    gold: 42,
+    [Resource.Wood]: 84,
+    [Resource.Gold]: 42,
   },
   health: 130,
   attack: {
@@ -525,8 +526,8 @@ export const EliteLongboat: Unit = {
   abilities: [],
   training: [{building: Dock, time: 25}],
   cost: {
-    wood: 80,
-    gold: 40,
+    [Resource.Wood]: 80,
+    [Resource.Gold]: 40,
   },
   health: 160,
   attack: {
@@ -559,8 +560,8 @@ export const TurtleShip: Unit = {
   abilities: [],
   training: [{building: Dock, time: 50}],
   cost: {
-    wood: 180,
-    gold: 180,
+    [Resource.Wood]: 180,
+    [Resource.Gold]: 180,
   },
   health: 200,
   attack: {
@@ -594,8 +595,8 @@ export const EliteTurtleShip: Unit = {
   abilities: [],
   training: [{building: Dock, time: 50}],
   cost: {
-    wood: 180,
-    gold: 180,
+    [Resource.Wood]: 180,
+    [Resource.Gold]: 180,
   },
   health: 300,
   attack: {
@@ -632,8 +633,8 @@ export const Caravel: Unit = {
   abilities: [],
   training: [{building: Dock, time: 36}],
   cost: {
-    wood: 90,
-    gold: 40,
+    [Resource.Wood]: 90,
+    [Resource.Gold]: 40,
   },
   health: 130,
   attack: {
@@ -671,8 +672,8 @@ export const EliteCaravel: Unit = {
   abilities: [],
   training: [{building: Dock, time: 36}],
   cost: {
-    wood: 90,
-    gold: 40,
+    [Resource.Wood]: 90,
+    [Resource.Gold]: 40,
   },
   health: 150,
   attack: {

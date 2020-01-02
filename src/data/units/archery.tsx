@@ -10,6 +10,7 @@ import {
 } from '../civilizations/ids';
 
 import {Unit, UnitType} from './core';
+import { Resource } from '../resource';
 
 export const Archer: Unit = {
   id: 'archer',
@@ -21,8 +22,8 @@ export const Archer: Unit = {
   abilities: [],
   training: [{building: Archery, time: 35}],
   cost: {
-    wood: 25,
-    gold: 45,
+    [Resource.Wood]: 25,
+    [Resource.Gold]: 45,
   },
   health: 30,
   attack: {
@@ -51,8 +52,8 @@ export const Crossbowman: Unit = {
   abilities: [],
   training: [{building: Archery, time: 27}],
   cost: {
-    wood: 25,
-    gold: 45,
+    [Resource.Wood]: 25,
+    [Resource.Gold]: 45,
   },
   health: 35,
   attack: {
@@ -98,8 +99,8 @@ export const Arbalester: Unit = {
   abilities: [],
   training: [{building: Archery, time: 27}],
   cost: {
-    wood: 25,
-    gold: 45,
+    [Resource.Wood]: 25,
+    [Resource.Gold]: 45,
   },
   health: 40,
   attack: {
@@ -128,8 +129,8 @@ export const Skirmisher: Unit = {
   abilities: [],
   training: [{building: Archery, time: 22}],
   cost: {
-    food: 25,
-    wood: 35,
+    [Resource.Food]: 25,
+    [Resource.Wood]: 35,
   },
   health: 30,
   attack: {
@@ -161,8 +162,8 @@ export const EliteSkirmisher: Unit = {
   abilities: [],
   training: [{building: Archery, time: 22}],
   cost: {
-    food: 25,
-    wood: 35,
+    [Resource.Food]: 25,
+    [Resource.Wood]: 35,
   },
   health: 35,
   attack: {
@@ -197,8 +198,8 @@ export const ImperialSkirmisher: Unit = {
   abilities: [],
   training: [{building: Archery, time: 22}],
   cost: {
-    food: 25,
-    wood: 35,
+    [Resource.Food]: 25,
+    [Resource.Wood]: 35,
   },
   health: 35,
   attack: {
@@ -232,8 +233,8 @@ export const CavalryArcher: Unit = {
   abilities: [],
   training: [{building: Archery, time: 34}],
   cost: {
-    wood: 40,
-    gold: 60,
+    [Resource.Wood]: 40,
+    [Resource.Gold]: 60,
   },
   health: 50,
   attack: {
@@ -275,8 +276,8 @@ export const HeavyCavalryArcher: Unit = {
   abilities: [],
   training: [{building: Archery, time: 27}],
   cost: {
-    wood: 40,
-    gold: 60,
+    [Resource.Wood]: 40,
+    [Resource.Gold]: 60,
   },
   health: 60,
   attack: {
@@ -327,8 +328,8 @@ export const HandCannoneer: Unit = {
   abilities: [],
   training: [{building: Archery, time: 34}],
   cost: {
-    food: 45,
-    gold: 50,
+    [Resource.Food]: 45,
+    [Resource.Gold]: 50,
   },
   health: 35,
   attack: {
@@ -365,8 +366,8 @@ export const Slinger: Unit = {
   abilities: [],
   training: [{building: Archery, time: 25}],
   cost: {
-    food: 30,
-    gold: 40,
+    [Resource.Food]: 30,
+    [Resource.Gold]: 40,
   },
   health: 40,
   attack: {
@@ -406,8 +407,8 @@ export const Genitour: Unit = {
   abilities: [],
   training: [{building: Archery, time: 25}],
   cost: {
-    food: 50,
-    wood: 35,
+    [Resource.Food]: 50,
+    [Resource.Wood]: 35,
   },
   health: 50,
   attack: {
@@ -445,8 +446,8 @@ export const EliteGenitour: Unit = {
   abilities: [],
   training: [{building: Archery, time: 25}],
   cost: {
-    food: 50,
-    wood: 35,
+    [Resource.Food]: 50,
+    [Resource.Wood]: 35,
   },
   health: 55,
   attack: {

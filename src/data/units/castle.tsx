@@ -5,6 +5,7 @@ import {ArmorType, AttackType} from '../damage';
 import {allCivilizations} from '../civilizations/ids';
 
 import {Unit, UnitType} from './core';
+import { Resource } from '../resource';
 
 export const Petard: Unit = {
   id: 'petard',
@@ -16,8 +17,8 @@ export const Petard: Unit = {
   abilities: [],
   training: [{building: Castle, time: 25}],
   cost: {
-    food: 65,
-    gold: 20,
+    [Resource.Food]: 65,
+    [Resource.Gold]: 20,
   },
   health: 50,
   attack: {
@@ -48,8 +49,8 @@ export const TrebuchetPacked: Unit = {
   abilities: [],
   training: [{building: Castle, time: 50}],
   cost: {
-    wood: 100,
-    gold: 100,
+    [Resource.Wood]: 100,
+    [Resource.Gold]: 100,
   },
   health: 150,
   attack: {
@@ -71,8 +72,8 @@ export const TrebuchetUnpacked: Unit = {
   abilities: [],
   training: [{building: Castle, time: 50}],
   cost: {
-    wood: 100,
-    gold: 100,
+    [Resource.Wood]: 100,
+    [Resource.Gold]: 100,
   },
   health: 150,
   attack: {

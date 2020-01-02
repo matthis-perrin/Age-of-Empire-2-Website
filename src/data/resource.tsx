@@ -6,8 +6,8 @@ export enum Resource {
 }
 
 export interface Cost {
-  wood?: number;
-  food?: number;
-  gold?: number;
-  stone?: number;
+  [Resource.Wood]?: number;
+  [Resource.Food]?: number;
+  [Resource.Gold]?: number;
+  [Resource.Stone]?: number;
 }

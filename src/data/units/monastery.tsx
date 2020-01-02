@@ -8,6 +8,7 @@ import {onlyCivilizations, allCivilizations, Ids} from '../civilizations/ids';
 import {Unit, UnitType, UnitAbility} from './core';
 import {BatteringRam} from './siege_workshop';
 import {TrebuchetPacked, TrebuchetUnpacked} from './castle';
+import { Resource } from '../resource';
 
 export const Monk: Unit = {
   id: 'monk',
@@ -19,7 +20,7 @@ export const Monk: Unit = {
   abilities: [UnitAbility.HealUnits, UnitAbility.ConvertUnits, UnitAbility.CarryRelics],
   training: [{building: Monastery, time: 51}],
   cost: {
-    gold: 100,
+    [Resource.Gold]: 100,
   },
   health: 30,
   attack: {
@@ -53,7 +54,7 @@ export const Missionary: Unit = {
   abilities: [UnitAbility.HealUnits, UnitAbility.ConvertUnits],
   training: [{building: Monastery, time: 51}],
   cost: {
-    gold: 100,
+    [Resource.Gold]: 100,
   },
   health: 30,
   attack: {

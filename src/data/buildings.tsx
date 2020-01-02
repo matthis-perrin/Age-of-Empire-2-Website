@@ -1,6 +1,6 @@
 /* eslint-disable no-magic-numbers */
 import {Age} from './ages/core';
-import {Cost} from './resource';
+import {Cost, Resource} from './resource';
 import {ArmorType, RangeAttack, Armor, AttackType} from './damage';
 import {Ageable, AllAge, makeAgeable} from './core';
 import {CivilizationId, Ids} from './civilizations/ids';
@@ -79,8 +79,8 @@ export const TownCenter: Building = {
     BuildingAbility.DropOffResources,
   ],
   cost: {
-    wood: 275,
-    stone: 100,
+    [Resource.Wood]: 275,
+    [Resource.Stone]: 100,
   },
   constructionTime: {
     default: 150,
@@ -118,7 +118,7 @@ export const Dock: Building = {
   age: {default: Age.DarkAge},
   use: [BuildingAbility.BuildAndImproveShips],
   cost: {
-    wood: 150,
+    [Resource.Wood]: 150,
   },
   constructionTime: {default: 35},
   size: [3, 3],
@@ -140,7 +140,7 @@ export const Barrack: Building = {
   age: {default: Age.DarkAge},
   use: [BuildingAbility.TrainAndImproveInfantry],
   cost: {
-    wood: 175,
+    [Resource.Wood]: 175,
   },
   constructionTime: {default: 50},
   size: [3, 3],
@@ -162,7 +162,7 @@ export const Archery: Building = {
   age: {default: Age.FeudalAge},
   use: [BuildingAbility.TrainAndImproveArchers],
   cost: {
-    wood: 175,
+    [Resource.Wood]: 175,
   },
   constructionTime: {default: 50},
   size: [3, 3],
@@ -184,7 +184,7 @@ export const Stable: Building = {
   age: {default: Age.FeudalAge},
   use: [BuildingAbility.TrainAndImproveCavalry],
   cost: {
-    wood: 175,
+    [Resource.Wood]: 175,
   },
   constructionTime: {default: 50},
   size: [3, 3],
@@ -206,7 +206,7 @@ export const SiegeWorkshop: Building = {
   age: {default: Age.CastleAge, overrides: new Map([[Ids.CumansId, Age.FeudalAge]])},
   use: [BuildingAbility.TrainAndImproveSiegeUnits],
   cost: {
-    wood: 200,
+    [Resource.Wood]: 200,
   },
   constructionTime: {default: 40},
   size: [4, 4],
@@ -233,7 +233,7 @@ export const Castle: Building = {
     BuildingAbility.AttackEnemies,
   ],
   cost: {
-    stone: 650,
+    [Resource.Stone]: 650,
   },
   constructionTime: {default: 200},
   size: [4, 4],
@@ -265,7 +265,7 @@ export const Monastery: Building = {
   age: {default: Age.CastleAge},
   use: [BuildingAbility.TrainAndImproveMonks],
   cost: {
-    wood: 175,
+    [Resource.Wood]: 175,
   },
   constructionTime: {default: 40},
   size: [3, 3],
@@ -291,7 +291,7 @@ export const Market: Building = {
     BuildingAbility.ResearchTradeImprovements,
   ],
   cost: {
-    wood: 175,
+    [Resource.Wood]: 175,
   },
   constructionTime: {default: 60},
   size: [4, 4],
@@ -313,7 +313,7 @@ export const University: Building = {
   age: {default: Age.CastleAge},
   use: [BuildingAbility.ImproveBuildingsAndRangeUnits],
   cost: {
-    wood: 200,
+    [Resource.Wood]: 200,
   },
   constructionTime: {default: 60},
   size: [4, 4],
@@ -335,7 +335,7 @@ export const LumberCamp: Building = {
   age: {default: Age.DarkAge},
   use: [BuildingAbility.DropOffWood, BuildingAbility.ResearchLoggingTechnologies],
   cost: {
-    wood: 100,
+    [Resource.Wood]: 100,
   },
   constructionTime: {default: 35},
   size: [2, 2],
@@ -357,7 +357,7 @@ export const MiningCamp: Building = {
   age: {default: Age.DarkAge},
   use: [BuildingAbility.DropOffGoldAndStone, BuildingAbility.ResearchMiningTechnologies],
   cost: {
-    wood: 100,
+    [Resource.Wood]: 100,
   },
   constructionTime: {default: 35},
   size: [2, 2],
@@ -379,7 +379,7 @@ export const Mill: Building = {
   age: {default: Age.DarkAge},
   use: [BuildingAbility.DropOffFood, BuildingAbility.UpgradeAndQueueFarms],
   cost: {
-    wood: 100,
+    [Resource.Wood]: 100,
   },
   constructionTime: {default: 35},
   size: [2, 2],
@@ -405,7 +405,7 @@ export const Blacksmith: Building = {
     BuildingAbility.ImproveCavalry,
   ],
   cost: {
-    wood: 150,
+    [Resource.Wood]: 150,
   },
   constructionTime: {default: 40},
   size: [3, 3],
