@@ -1,20 +1,26 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import {UnitWithBonuses} from '../../lib/unit_with_bonuses/core';
 import {Age} from '../../data/ages/core';
 import {filterUnitsWithBonusesForAge} from '../../lib/unit_with_bonuses/filtering';
 import {aggregateByCivilization} from '../../lib/unit_with_bonuses/aggregation';
 import {FontWeight} from '../theme';
+import {generateUnitsWithBonuses} from '../../lib/unit_with_bonuses/generation';
 
 import {allUnitCaracColumns} from './unit_carac_columns';
 import {UnitCaracView} from './unit_carac_view';
 
-export function UnitTable(props: {unitWithBonuses: UnitWithBonuses[]; age: Age}): JSX.Element {
-  const {unitWithBonuses, age} = props;
+export function UnitTable(): JSX.Element {
+  const unitWithBonuses = generateUnitsWithBonuses({
+    alliesCount: 4,
+    includeTechnologies: true,
+  });
+  const age = Age.ImperialAge;
   const filtered = filterUnitsWithBonusesForAge(unitWithBonuses, age);
   const aggregated = aggregateByCivilization(filtered);
-  const sorted = aggregated.sort((a1, a2) => a1.unit.name.localeCompare(a2.unit.name));
+  const sorted = aggregated
+    .sort((a1, a2) => a1.unit.name.localeCompare(a2.unit.name))
+    .slice(0, 100);
 
   // headers
 

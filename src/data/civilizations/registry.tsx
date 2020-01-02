@@ -617,3 +617,12 @@ export const civilizationRegistry: Civilization[] = [
   Vietnamese,
   Vikings,
 ];
+
+export function getById(id: CivilizationId): Civilization {
+  for (const civilization of civilizationRegistry) {
+    if (civilization.id === id) {
+      return civilization;
+    }
+  }
+  throw new Error(`Unknown civilization ${id}`);
+}

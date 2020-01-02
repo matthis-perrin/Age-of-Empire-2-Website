@@ -10,15 +10,10 @@ import {Search} from './search-bar/search';
 import {UnitTable} from './units/unit_table';
 
 export function App(): JSX.Element {
-  const unitWithBonuses = generateUnitsWithBonuses({
-    alliesCount: 4,
-    includeTechnologies: true,
-  });
-
   return (
     <React.Fragment>
       <CSSReset />
-      <UnitTable unitWithBonuses={unitWithBonuses} age={Age.ImperialAge} />
+      <UnitTable />
       {/* <Search /> */}
       {/* <CivilizationPage /> */}
     </React.Fragment>
