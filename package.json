@@ -27,7 +27,7 @@
     "eslint-plugin-react-hooks": "^2.3.0",
     "eslint-plugin-unicorn": "^15.0.0",
     "prettier": "1.19.1",
-    "react-scripts": "3.3.0",
+    "react-scripts": "5.0.1",
     "source-map-explorer": "2.1.2",
     "tslint": "^5.20.1",
     "typescript": "3.7.4"
